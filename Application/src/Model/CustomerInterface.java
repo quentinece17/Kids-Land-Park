@@ -7,8 +7,9 @@ package Model;
 
 /**
  *
- * @author quentin
+ * @authors : quentin, corentin and nicolas
  */
+// Interface implemented by the classes 'MemberCustomer' and 'GuestCustomer'
 public interface CustomerInterface {
     
     public void calculateBills ();

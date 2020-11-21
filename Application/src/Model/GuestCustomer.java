@@ -7,11 +7,11 @@ package Model;
 
 /**
  *
- * @author quentin
+ * @authors : quentin, corentin and nicolas
  */
 public class GuestCustomer extends Customer implements CustomerInterface {
 
-    public GuestCustomer(String n_, int a_) {
+    public GuestCustomer(String n_, int a_, double discount_) {
         super(n_, a_);
     }
 

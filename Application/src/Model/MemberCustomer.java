@@ -38,4 +38,9 @@ public class MemberCustomer extends Customer implements CustomerInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    // Getters
+    public String getMemberType() { return memberType;}
+    public double getDiscount() { return discount;} 
+    public String getLogin() { return login;} 
+    
 }

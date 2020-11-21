@@ -7,18 +7,19 @@ package Controller;
 
 /**
  *
- * @author quentin
+ * @authors : quentin, corentin and nicolas
  */
+// Class Person
 public class Person {
     
     private String name;
     private int age;
     
+    // Constructeur Person
     public Person (String n_, int a_) {
         
         name = n_;
-        age = a_;
-        
+        age = a_;  
     }
     
     public String getName () { return name; }

@@ -9,15 +9,15 @@ import Controller.Person;
 
 /**
  *
- * @author quentin
+ * @authors : quentin, corentin and nicolas
  */
 public class Customer extends Person {
     
     private double totalPrice;
  
+    // Constructeur Customer
     public Customer (String n_, int a_) {
         
-        super (n_, a_);
-        
+        super (n_, a_);  
     }
 }

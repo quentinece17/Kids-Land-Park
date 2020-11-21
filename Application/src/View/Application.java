@@ -7,7 +7,7 @@ package View;
 
 /**
  *
- * @author quentin
+ * @authors : quentin, corentin and nicolas
  */
 public class Application {
 

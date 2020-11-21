@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author quentin
+ * @authors : quentin, corentin and nicolas
  */
 public class Ride {
    
@@ -22,5 +22,19 @@ public class Ride {
     private final int nbTicketsMax = 10;
     
     //Si la liste atteint la taille du nombre de tickets max (ici 10), alors 
-    private ArrayList <Ticket> ticket;
+    private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
+    
+    // Constructeur Ride
+    public Ride(String name_, double price_, String features_ ){
+        /// Initialisation des attributs de la nouvelle classe instanciée.
+        name = name_;
+        price = price_;
+        features = features_;
+        ticket= new ArrayList <Ticket> ();
+    }
+    
+    // Getters
+    public String getName() { return name; }
+    public double getPrice() { return price; }
+    public String getFeatures() { return features;}
 }

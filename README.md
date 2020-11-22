@@ -2,14 +2,33 @@
 
 Pour le pattern MVC, j'ai essayé de classer les classes dans les packages Controller, View et Model mais je suis pas sûr de moi, donc hésitez pas à le dire si vous pensez différemment 
 
-Pour la DB qui stocke les commandes - Plusieurs possibilités :
 
-- On stocke les tickets : un ticket a une date, une attraction, et il est attribué a une personne -> dans ce cas il faut rajouter des attributs a la classe Ticket
+Pour les DB : 3 DB :
 
-- On stocke les dates : À x date, on a un certain nombre de tickets réservé, dans ce cas le ticket a une attraction et est attribué à une personne, mais il n'a plus de date (c'est l'inverse)
+- La DB Tickets : 4 attributs
+    - Id_tickets : identifiant du ticket -> Clé Primaire
+    - Ride : une attraction : référence une attraction de la DB "Attraction" : Clé Étrangère -> Un ticket ne correspond qu'à une seule attraction
+    - Date : une date de type Date 
+    - Personne : une personne : référence à une personne de la DB "Personne" : Clé Étrangère -> Un ticket appartient a une seule et unique personne
 
-- Je pense qu'il faut réfléchir aux liens entre les DB (foreign key) "Personne" et celle qui stocke les commandes, genre la DB ticket a une foreign key qui référence une personne par exemple ça peut être pas mal.
-Par contre si on fait ça, il faut réfléchir a comment référencer une personne si c'est un GuestCustomer car la personne en question ne sera pas référencé dans une DB. Une solution pourraît être que dès qu'un guestCustomer passe une commande, on stocke ses infos dans une DB "GustCustomer" -> genre on construit la DB au fur et à mesure, pas comme les autres qui seront préalablement construites. 
+- La DB Ride : 3 attributs :
+    - name_Ride : le nom de l'attraction -> Clé Primaire
+    - Price : le prix de l'attraction 
+    - features : les caractéristiques de l'attraction : type String
+
+- La DB Personne : 4 attributs (5ème pas sûr):
+    - name : le nom de la personne -> Clé Primaire
+    - age : l'âge de la personne
+    - login : le login de la personne si elle en a un
+    - type : le type de la personne : E pour Employé, MC pour MemberCustomer et GC pour GestCustomer
+    - memberType : si la personne est un MemberCustomer, il a un type : regular, senior ou child
+
+-> Cette DB sera modifié au fur et à mesure, dès qu'un GuestCustomer achétera des tickets, il sera référencé dans la DB personne sous le type "GC"
+
+Remarques : 
+
+    - Le nombre de tickets maximum disponible pour UNE DATE et pour UNE ATTRACTION ne se gère uniquement dans le code JAVA, pas dans les DB
+    - Pour gérer les dates, on peut gérer seulement un semestre (3-4 mois) et donc faire un tableau de toutes les dates sur cette période. Si il faut gérer une année entière -> peut-être réfléchir à une autre solution
 
 
 Step à suivre pour l'application (je le vois comme ça, mais dites le si vous voyez ça autrement !): 
@@ -18,11 +37,9 @@ Step à suivre pour l'application (je le vois comme ça, mais dites le si vous v
 o	Si oui : il rentre le login
 o	Si non : c’est un guestCustomer
 
--	Si l’utilisateur rentre son login, on regarde dans la DB « Employee » s’il s’y trouve :
-o	Si il s’y trouve : c’est un employé, il peut donc avoir accès à la DB qui gère les commandes
-o	Si il ne s’y trouve pas -> on vérifie dans la DB « MemberCustomer » pour être sur
-
--	Si ce n’est pas un employé et qu’il se trouve dans la DB « MemberCustomer » -> c’est un MemberGuest ; Si il ne s’y trouve pas -> erreur : il faut ressaisir le login ou alors c’est un GuestCustomer
+-	Si l’utilisateur rentre son login, on regarde dans la DB « Personne » si le login existe :
+o	Si il existe : on regarde si le login en question correspond à un Employé ou à un MemberCustomer (regarder le type : E ou MC)
+o	Si il n'existe pas -> la personne n'est pas référencé dans la DB, on lui demande de resaisir son login ou de se connecter en tant que GuestCustomer
 
 - Pour un Customer : 
 
@@ -34,7 +51,7 @@ o	Si il ne s’y trouve pas -> on vérifie dans la DB « MemberCustomer » pour 
     - Si c'est un Membre, la réduction s'applique
 
     En back : 
-    - Quand la commande est validé, on rempli la liste de tickets dans la classe date et dans la classe   attraction -> quand la liste de tickets de la classe Attraction est rempli au max -> l'attraction devient indisponible pour la date en question. Idem, si la liste de ticket de la classe Date est rempli au max -> la date devient indisponible 
+    - Quand la commande est validé, on rempli la liste de tickets dans la classe Date et dans la classe Ride -> quand la liste de tickets de la classe Ride est rempli au max -> l'attraction devient indisponible pour la date en question. Idem, si la liste de ticket de la classe Date est rempli au max -> la date devient indisponible 
 
 - Pour un Employee : Réfléchir à comment faire les points ci-dessous : 
 
@@ -43,12 +60,3 @@ o	Si il ne s’y trouve pas -> on vérifie dans la DB « MemberCustomer » pour 
         - Créer des promotions (disponible pour tous les customers ? Juste les membres ? Juste les guest ?)
         - Avoir accès aux dossiers des clients (MemberCustomer ?) -> avoir accès à la DB
         - Définir les attractions les + populaires
-
-Interrogation :
-
-- Les attributs mis dans date ne devraient peut-être pas y être ? Je me demande si ça ne devraient pas juste être dans la DB ? 
-D'ailleurs, comment on gère toutes les dates ? Difficile de toutes les créer pour une année entière...
-
-    
-
-

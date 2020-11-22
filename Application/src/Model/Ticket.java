@@ -11,19 +11,19 @@ package Model;
  */
 public class Ticket {
     
-    private double price;
+    private double final_price;
     
     //Ticket pour une attraction
     private Ride ride;
     
     // Constructeur Ticket
     public Ticket(double price_, Ride ride_){
-        price = price_;
+        final_price = price_;
         ride = ride_;
     }
     
     // Getters
-    public double getPrice(){ return price; }
+    public double getPrice(){ return final_price; }
     public Ride getRide() { return ride; }
     
 }

@@ -14,12 +14,10 @@ public class MemberCustomer extends Customer implements CustomerInterface {
     //Pour le memberType, si le customer est bien un MemberCustomer, son memberType sera indiqué dans la DB, c'est comme ça qu'on le construira
     private String memberType;
     private double discount;
-    private String login;
     
     public MemberCustomer(String n_, int a_, String type, String log) {
        
-        super(n_, a_);
-        login = log;
+        super(n_, a_, log);
         
         //Si login ok (vérifier dans DB) : 
             //On regarde memberType :
@@ -41,6 +39,5 @@ public class MemberCustomer extends Customer implements CustomerInterface {
     // Getters
     public String getMemberType() { return memberType;}
     public double getDiscount() { return discount;} 
-    public String getLogin() { return login;} 
     
 }

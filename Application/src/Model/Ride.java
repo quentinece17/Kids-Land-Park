@@ -22,7 +22,7 @@ public class Ride {
     private final int nbTicketsMax = 10;
     
     //Si la liste atteint la taille du nombre de tickets max (ici 10), alors 
-    private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
+    private ArrayList <Integer> ticket= new ArrayList <Integer> ();
     
     // Constructeur Ride
     public Ride(String name_, double price_, String features_ ){
@@ -30,7 +30,7 @@ public class Ride {
         name = name_;
         price = price_;
         features = features_;
-        ticket= new ArrayList <Ticket> ();
+        ticket= new ArrayList <Integer> ();
     }
     
     // Getters

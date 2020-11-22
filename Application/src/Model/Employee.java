@@ -13,12 +13,11 @@ import Controller.Person;
 public class Employee extends Person {
     
     //Il faut vérifier que c'est un employé, donc il doit saisir son login ? 
-    private String login;
     
     public Employee (String n_, int a_, String log) { 
         
-        super (n_, a_); 
-        login = log;
+        super (n_, a_, log); 
+
     }
     
  

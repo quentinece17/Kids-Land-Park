@@ -6,6 +6,7 @@
 package Model;
 
 import Controller.Person;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,10 +15,13 @@ import Controller.Person;
 public class Customer extends Person {
     
     private double totalPrice;
+    
+    //Liste de tickets achetés par le customer
+    private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
  
     // Constructeur Customer
-    public Customer (String n_, int a_) {
+    public Customer (String n_, int a_, String log) {
         
-        super (n_, a_);  
+        super (n_, a_, log);  
     }
 }

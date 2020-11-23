@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package View;
-
+import Model.DataBase;
 /**
  *
  * @authors : quentin, corentin and nicolas
@@ -15,6 +15,8 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        DataBase base = new DataBase ();
         // TODO code application logic here
     }
     

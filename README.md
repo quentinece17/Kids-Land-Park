@@ -60,3 +60,10 @@ o	Si il n'existe pas -> la personne n'est pas référencé dans la DB, on lui de
         - Créer des promotions (disponible pour tous les customers ? Juste les membres ? Juste les guest ?)
         - Avoir accès aux dossiers des clients (MemberCustomer ?) -> avoir accès à la DB
         - Définir les attractions les + populaires
+
+
+Librairies pour l'affichage des dates : 
+
+    - JDatePicker
+    - https://www.codejava.net/java-se/swing/how-to-use-jdatepicker-to-display-calendar-component
+    

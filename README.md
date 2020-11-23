@@ -66,4 +66,34 @@ Librairies pour l'affichage des dates :
 
     - JDatePicker
     - https://www.codejava.net/java-se/swing/how-to-use-jdatepicker-to-display-calendar-component
-    
+
+
+Création des DB : 
+
+- create database KidsLand;
+- use KidsLand;
+
+- Pour la DB Personne : 
+
+    - create table Personne (user_name VARCHAR(20), user_age INT, user_login VARCHAR(20), user_type VARCHAR(10), member_type VARCHAR(10), PRIMARY KEY (user_name));
+    - insert into Personne values ("Jean Dupont", 43, "dupont43", "MC", "regular");
+    - insert into Personne values ("Marie Clair", 24, "clair24", "MC", "regular");
+    - insert into Personne values ("Esteban Letalec", 17, "letalec17", "MC", "children");
+    - insert into Personne values ("Jean-Pierre Foumeau", 66, "foumeau66", "MC", "senior");
+    - insert into Personne values ("Fabien Bartez", 44, "bartez44", "E", "X");
+
+- Pour la DB Ride :
+
+    - create table Ride (name_ride VARCHAR(20), price_ride DOUBLE, features_ride VARCHAR(300), max_tickets INT ,PRIMARY KEY (name_ride));
+    - insert into Ride values ("SpeedLand Express", 6.75,"Extreme speed, not recommended for shy people. Strong sensations guaranteed. Forbidden for less than 1m50", 16);
+    - insert into Ride values ("AquaImmersion", 4.5,"Get ready to be soaked! Accessible to everyone. Average speed", 14);
+    - insert into Ride values ("GhostTerror", 5,"Don’t be afraid! Thrills guaranteed in this ghost train. Very dark ride", 20);
+    - insert into Ride values ("FlyingChairs",4,"Find the famous flying chairs in this ride for children. Average flying height", 14);
+    - insert into Ride values ("ExtremeLand", 7,"The most extreme attraction of the park! Maximum speed of 100km/h. Several looping and very big thrills. Prohibited under 1m60", 18);
+    - insert into Ride values ("Giga Bumper-car", 5.5,"Giga bumper car for any level! Session duration: 3 minutes", 25);
+
+- Pour la DB Tickets :
+
+    - 
+
+

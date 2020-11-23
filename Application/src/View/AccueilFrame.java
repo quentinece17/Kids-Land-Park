@@ -42,7 +42,7 @@ public class AccueilFrame extends JFrame{
     public AccueilFrame(){
         
         try{
-            img = new ImageIcon("park.png");    // Chargement de l'image
+            img = new ImageIcon("park.jpg");    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }

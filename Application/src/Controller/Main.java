@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< Updated upstream:Application/src/View/Application.java
 package View;
 import Model.DataBase;
+=======
+package Controller;
+
+>>>>>>> Stashed changes:Application/src/Controller/Main.java
 /**
  *
- * @authors : quentin, corentin and nicolas
+ * @authors : quentin, corentin & nicolas
  */
-public class Application {
-
+public class Main {
+    
     /**
      * @param args the command line arguments
      */
@@ -18,6 +23,6 @@ public class Application {
         
         DataBase base = new DataBase ();
         // TODO code application logic here
-    }
-    
+        Application park = new Application();
+    }  
 }

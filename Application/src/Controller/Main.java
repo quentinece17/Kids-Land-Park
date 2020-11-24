@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Controller;
+import Model.DataBase;
+
 
 import Model.DataBase;
 

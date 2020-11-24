@@ -9,12 +9,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -42,7 +45,7 @@ public class AccueilFrame extends JFrame{
     public AccueilFrame(){
         
         try{
-            img = new ImageIcon("park.png");    // Chargement de l'image
+            img = new ImageIcon("park.jpg");    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
@@ -82,6 +85,8 @@ public class AccueilFrame extends JFrame{
         noAccount.setForeground(Color.WHITE);
         
         
+        account.addActionListener(new InteractionButtonListener());
+        noAccount.addActionListener(new InteractionButtonListener());
         // Ajouter 'label' et les bouttons sur le panel 1 et l'image sur le panel 2 sur la fenêtre d'accueil
         p1.add(label);
         p1.add(account);
@@ -93,5 +98,37 @@ public class AccueilFrame extends JFrame{
         add(p2, BorderLayout.SOUTH);
         
         setVisible(true);           // Fenêtre visible
+    }
+    
+        
+    private class InteractionButtonListener implements ActionListener
+   {
+      /**
+         The actionPerformed method executes when the user
+         clicks on the Calculate button.
+         @param e The event object.
+      */
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+         
+         if(e.getSource()== account)
+         {
+             RegisterFrame test = new RegisterFrame(1);
+             
+         } else if(e.getSource()== noAccount)
+         {
+             RegisterFrame test2 = new RegisterFrame(2);
+             
+         }
+        
+         
+
+         
+
+         // Display the result.
+         //JOptionPane.showMessageDialog(null,  "you will pay "+ " $ for the call ");
+      }
     }
 }

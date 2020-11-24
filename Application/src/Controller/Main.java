@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<<<<<<< Updated upstream:Application/src/View/Application.java
-package View;
-import Model.DataBase;
-=======
 package Controller;
 
->>>>>>> Stashed changes:Application/src/Controller/Main.java
+import Model.DataBase;
+
 /**
  *
  * @authors : quentin, corentin & nicolas

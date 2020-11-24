@@ -6,6 +6,7 @@
 package Controller;
 
 import View.AccueilFrame;
+import View.RegisterFrame;
 import javax.swing.*;
 import javax.swing.Icon;
 import java.awt.*;
@@ -16,7 +17,7 @@ import javafx.scene.layout.Border;
  * @authors : quentin, corentin and nicolas
  */
 public class Application{
-       public Application(){ AccueilFrame accueil = new AccueilFrame(); }
+       public Application(){  AccueilFrame accueil = new AccueilFrame();}
     
 }
     

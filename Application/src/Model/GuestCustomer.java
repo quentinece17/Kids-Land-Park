@@ -11,8 +11,8 @@ package Model;
  */
 public class GuestCustomer extends Customer implements CustomerInterface {
 
-    public GuestCustomer(String n_, int a_, String log, double discount_) {
-        super(n_, a_, log);
+    public GuestCustomer(int id, String n_, int a_, double discount_) {
+        super (id, n_, a_);
     }
 
     @Override

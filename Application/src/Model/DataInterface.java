@@ -4,19 +4,15 @@
  * and open the template in the editor.
  */
 package Model;
-import Controller.Person;
 
 /**
  *
  * @author quentin
  */
-public class Employee extends Person {
-        
-    public Employee (int id, String n_, int a_) { 
-        
-        super (id, n_, a_); 
-
-    }
+public interface DataInterface {
     
- 
+    public String verifUser (String pseu, String log, String info);
+    
+    public void createGuest (String name, int age, String user_type);
+    
 }

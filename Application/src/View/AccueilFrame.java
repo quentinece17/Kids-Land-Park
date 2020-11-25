@@ -27,6 +27,9 @@ import javax.swing.JTextField;
  */
 public class AccueilFrame extends JFrame{
     
+    private JFrame window = new JFrame ();
+    private RegisterFrame register;
+    
     private JButton account = new JButton("Log in");
     private JButton noAccount = new JButton("Sign up");
     String space = "                                                          ";
@@ -38,6 +41,7 @@ public class AccueilFrame extends JFrame{
     private JPanel p1 = new JPanel();   // Ecran d'accueil
     private JPanel p2 = new JPanel();   // Image d'accueil
     private JPanel p3 = new JPanel();    // Panel qui rassemble p1 et p2
+    
     
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel;               // JLabel qui va recevoir l'image
@@ -51,10 +55,10 @@ public class AccueilFrame extends JFrame{
         catch (Exception e){ e.printStackTrace(); }
         
         // Frame Design
-        setTitle("Kids Land Park");
-        setSize(900, 750);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        window.setTitle("Kids Land Park");
+        window.setSize(900, 750);
+        window.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        window.setLayout(new BorderLayout());
         
         // Border pour le JLabel 'label'(Color.RED) et Border pour les boutons (Color.BLACK) de l'écrand d'accueil
         javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
@@ -94,10 +98,12 @@ public class AccueilFrame extends JFrame{
         p2.add(imageLabel);
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
-        add(p1, BorderLayout.CENTER);
-        add(p2, BorderLayout.SOUTH);
+        window.add(p1, BorderLayout.CENTER);
+        window.add(p2, BorderLayout.SOUTH);
         
-        setVisible(true);           // Fenêtre visible
+        window.setVisible(true);           // Fenêtre visible
+        
+        
     }
     
         
@@ -115,20 +121,23 @@ public class AccueilFrame extends JFrame{
          
          if(e.getSource()== account)
          {
-             RegisterFrame test = new RegisterFrame(1);
+             register = new RegisterFrame(1);
+             window.dispose();
              
-         } else if(e.getSource()== noAccount)
+         } 
+         else if(e.getSource()== noAccount)
          {
-             RegisterFrame test2 = new RegisterFrame(2);
+             register = new RegisterFrame(2);
+             window.dispose();
+             //Si l'utilisateur n'a pas de compte, pas besoin d'aller dans la DB, c'est un GC et on l'ajoutera après
              
          }
-        
-         
-
-         
 
          // Display the result.
          //JOptionPane.showMessageDialog(null,  "you will pay "+ " $ for the call ");
       }
     }
+    
+    public JFrame getWindow () { return window; }
+    
 }

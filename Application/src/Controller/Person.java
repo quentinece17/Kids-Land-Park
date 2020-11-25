@@ -5,6 +5,9 @@
  */
 package Controller;
 
+import View.AccueilFrame;
+import View.RegisterFrame;
+
 /**
  *
  * @authors : quentin, corentin and nicolas
@@ -12,23 +15,25 @@ package Controller;
 // Class Person
 public class Person {
     
-    private String name;
-    private int age;
-    private String login;
+    private int idUser;
+    private String nameUser;
+    private int ageUser;
 
     
     // Constructeur Person
-    public Person (String n_, int a_, String log) {
+    public Person (int id, String n_, int a_) {
         
-        name = n_;
-        age = a_;  
-        
-        //si c'est un GuestCustomer, le login sera null
-        //Peut-être pas besoin de faire un attribut login, il suffit peut-être juste de regarder dans la DB
-        login = log;
+        nameUser = n_;
+        ageUser = a_;  
+  
     }
     
-    public String getName () { return name; }
-    public int getAge () { return age; }
+    public static void createPerson (int id, String name)
+    {
+        
+    }
+    
+    public String getName () { return nameUser; }
+    public int getAge () { return ageUser; }
     
 }

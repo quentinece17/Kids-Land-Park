@@ -2,3 +2,6 @@
 /Application/build/
 Application/KidsLandPark.jpg
 /Application/dist/
+*.xml
+Application/nbproject/genfiles.properties
+Application/src/Model/DataBase.java

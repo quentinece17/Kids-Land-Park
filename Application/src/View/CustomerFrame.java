@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Application;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -40,16 +41,12 @@ public class CustomerFrame extends JFrame {
     private String nameUser;
     private int idUser;
     
-    public CustomerFrame (int id, String name, String type) 
+    private Application controller;
+    
+    public CustomerFrame (Application app)
     {
-        idUser = id;
-        typeUser = type;
-        nameUser = name;
-        
-        if (typeUser.equals("MC"))
-            label = new JLabel ("Hello " + name + " ! You are now connected as a MemberCustomer.");
-        else if (typeUser.equals("GC"))
-            label = new JLabel ("Hello " + name + " ! You are now connected as a GuestCustomer.");
+        controller = app;
+        label = new JLabel ();
         
         // Frame Design
         window.setTitle("Kids Land Park");
@@ -59,9 +56,15 @@ public class CustomerFrame extends JFrame {
         
         panel.add (label);
         window.add(panel, BorderLayout.CENTER);
-        
-        window.setVisible(true);
-        
     }
+    
+    public void setText (String text)
+    {
+        label.setText(text);
+    }
+    
+
+    public JFrame getWindow () { return window; }
+    public JLabel getLabel () { return label; }
     
 }

@@ -11,8 +11,10 @@ package Model;
  */
 public interface DataInterface {
     
-    public String verifUser (String pseu, String log, String info);
+    public Person createPerson (String pseu, String log);
     
-    public void createGuest (String name, int age, String user_type);
+    public int verifUser (String pseu, String log);
+    
+    public Person createGuest (String name, int age, String user_type);
     
 }

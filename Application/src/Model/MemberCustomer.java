@@ -11,13 +11,18 @@ package Model;
  */
 public class MemberCustomer extends Customer implements CustomerInterface {
 
-    //Pour le memberType, si le customer est bien un MemberCustomer, son memberType sera indiqué dans la DB, c'est comme ça qu'on le construira
-    private String memberType;
     private double discount;
+    private String pseudoUser;
+    private String loginUser;
+    private String memberTypeUser;
+
     
-    public MemberCustomer(int id) {
+    public MemberCustomer(int id, String name, int age, String type, String pseu, String log, String memberType) {
        
-        super (id);
+       super (id, name, age,type);
+       pseudoUser = pseu;
+       loginUser = log;
+       memberTypeUser = memberType;
         
         //Si login ok (vérifier dans DB) : 
             //On regarde memberType :
@@ -37,7 +42,9 @@ public class MemberCustomer extends Customer implements CustomerInterface {
     }
     
     // Getters
-    public String getMemberType() { return memberType;}
+    public String getPseudoUser () { return pseudoUser; }
+    public String getLoginUser () { return loginUser; }
+    public String getMemberType() { return memberTypeUser;}
     public double getDiscount() { return discount;} 
     
 }

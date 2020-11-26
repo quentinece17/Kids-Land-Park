@@ -5,48 +5,53 @@
  */
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import Controller.Application;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
  * @authors : quentin, corentin and nicolas
  */
+
+//Class qui crée la fenêtre d'accueil
 public class AccueilFrame extends JFrame{
     
+    //Intance du controller
+    private Application controller;
+    
+    //Frame 
     private JFrame window = new JFrame ();
-    private RegisterFrame register;
     
-    private JButton account = new JButton("Log in");
-    private JButton noAccount = new JButton("Sign up");
-    String space = "                                                          ";
-    private JLabel label = new JLabel(space + "Welcome to Kids Land Park" + space);
-    Font font= new Font("Arial",Font.BOLD,20);      // Font for the Label "Welcome..."
-    
-    private JLabel login = new JLabel("login : ");
-    private JTextField log = new JTextField(10);
+    //JPanel
     private JPanel p1 = new JPanel();   // Ecran d'accueil
     private JPanel p2 = new JPanel();   // Image d'accueil
     private JPanel p3 = new JPanel();    // Panel qui rassemble p1 et p2
     
+    //JButton
+    private JButton account = new JButton("Log in");
+    private JButton noAccount = new JButton("Sign up");
     
+    String space = "                                                      ";
+    
+    //JLabel
+    private JLabel label = new JLabel(space + "Welcome to Kids Land Park" + space);
+    private JLabel login = new JLabel("login : ");
+    
+    //JTextFiel
+    private JTextField log = new JTextField(10);
+    
+    Font font= new Font("Arial",Font.BOLD,20);      // Font for the Label "Welcome..."
+   
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel;               // JLabel qui va recevoir l'image
     
-    public AccueilFrame(){
+    
+    public AccueilFrame(Application app){
+        
+        controller = app;
         
         try{
             img = new ImageIcon("park.jpg");    // Chargement de l'image
@@ -99,16 +104,14 @@ public class AccueilFrame extends JFrame{
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
-        window.add(p2, BorderLayout.SOUTH);
-        
-        window.setVisible(true);           // Fenêtre visible
-        
+        window.add(p2, BorderLayout.SOUTH);        
         
     }
     
         
     private class InteractionButtonListener implements ActionListener
-   {
+    {
+        
       /**
          The actionPerformed method executes when the user
          clicks on the Calculate button.
@@ -121,23 +124,22 @@ public class AccueilFrame extends JFrame{
          
          if(e.getSource()== account)
          {
-             register = new RegisterFrame(1);
+             controller.AffichageRegister();
              window.dispose();
              
          } 
          else if(e.getSource()== noAccount)
          {
-             register = new RegisterFrame(2);
-             window.dispose();
-             //Si l'utilisateur n'a pas de compte, pas besoin d'aller dans la DB, c'est un GC et on l'ajoutera après
-             
+             controller.AffichageGuestInfo();
+             window.dispose();             
          }
 
          // Display the result.
          //JOptionPane.showMessageDialog(null,  "you will pay "+ " $ for the call ");
       }
+
     }
     
     public JFrame getWindow () { return window; }
-    
+
 }

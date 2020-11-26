@@ -20,8 +20,8 @@ public class Customer extends Person {
     private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
  
     // Constructeur Customer
-    public Customer (int id) {
+    public Customer (int id, String name, int age, String type) {
         
-        super (id);  
+        super (id, name, age, type); 
     }
 }

@@ -15,9 +15,9 @@ public class MemberCustomer extends Customer implements CustomerInterface {
     private String memberType;
     private double discount;
     
-    public MemberCustomer(int id, String n_, int a_, String type) {
+    public MemberCustomer(int id) {
        
-        super (id, n_, a_);
+        super (id);
         
         //Si login ok (vérifier dans DB) : 
             //On regarde memberType :

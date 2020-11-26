@@ -7,6 +7,9 @@ package Controller;
 
 import Model.DataBase;
 import Model.DataInterface;
+import Model.Employee;
+import Model.GuestCustomer;
+import Model.MemberCustomer;
 import View.AccueilFrame;
 import View.RegisterFrame;
 
@@ -72,5 +75,20 @@ public class Application{
         add.createGuest(name, age, user_type);
     }
     
+//    public static void createPerson (int id, String userType)
+//    {
+//        if (userType.equals ("MC"))
+//        {
+//            MemberCustomer member = new MemberCustomer (id);
+//        }
+//        else if (userType.equals ("E"))
+//        {
+//            Employee empl = new Employee (id);
+//        }
+//        else if (userType.equals("GC"))
+//        {
+////            GuestCustomer guest = new GuestCustomer (id);
+//        }
+//    }
 }
     

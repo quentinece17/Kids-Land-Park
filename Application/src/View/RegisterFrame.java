@@ -13,7 +13,6 @@ package View;
 import Controller.Application;
 import static Controller.Application.commData;
 import static Controller.Application.createGuestData;
-import static Controller.Person.createPerson;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -207,16 +206,16 @@ public class RegisterFrame extends JFrame {
                 //On récupère son type (MC ou E)
                 type = commData (pseu.getText(), log.getText(), "user_type");
                 typeUser = type;
-                
-//                createPerson (idUser, nameUser);
-                
+                                
                 if (typeUser.equals("MC"))
                 {
+                    //Ici appeler une fonction qui crée un MC et qui le retourne comme ca on l'envoi à CustomerFrame
                     //Frame du Customer
                     CustomerFrame customer = new CustomerFrame (idUser, nameUser, typeUser);
                 }
                 else if (typeUser.equals("E"))
                 {
+                    //Ici appeler une fonction qui crée un Employé et qui le retourne comme ca on l'envoi à CustomerFrame
                     //Frame de l'employé
                 }
                 window.dispose();
@@ -240,6 +239,8 @@ public class RegisterFrame extends JFrame {
               
               //Création du GuestCustomer dans la base de donnée
               createGuestData (nameUser, ageUser, typeUser);
+              
+              //Ici appeler une fonction qui crée un GC et qui le retourne comme ca on l'envoi à CustomerFrame
               
               //Affichage de la page pour un Customer
               CustomerFrame customer = new CustomerFrame (idUser, nameUser, typeUser);

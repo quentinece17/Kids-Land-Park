@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Model;
-import Controller.Person;
 
 /**
  *
@@ -12,9 +11,9 @@ import Controller.Person;
  */
 public class Employee extends Person {
         
-    public Employee (int id, String n_, int a_) { 
+    public Employee (int id) { 
         
-        super (id, n_, a_); 
+        super (id); 
 
     }
     

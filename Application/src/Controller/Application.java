@@ -89,7 +89,7 @@ public class Application{
      {
          DataInterface add = new DataBase ();
          user = add.createGuest(name, age, user_type);
-         System.out.println ("Hello " + user.getNameUser() + "\n Age : " + user.getAgeUser() + " \nId : " + user.getIdUser() + "\nType : "+ user.getTypeUser());
+         System.out.println ("Hello " + user.getNameUser() + "\nAge : " + user.getAgeUser() + " \nId : " + user.getIdUser() + "\nType : "+ user.getTypeUser());
      } 
 
 

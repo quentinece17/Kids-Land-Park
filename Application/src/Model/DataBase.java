@@ -41,6 +41,7 @@ public class DataBase implements DataInterface {
                     //On crée un MemberCustomer
                     user = new MemberCustomer (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
                 }
+                //Si l'utilisateur est un Employée
                 else if (rs.getString(6).equals ("E"))
                 {
                     int id = Integer.parseInt(rs.getString(1));

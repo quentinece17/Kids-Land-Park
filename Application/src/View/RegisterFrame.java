@@ -147,13 +147,24 @@ public class RegisterFrame extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e)
       {
-          if (e.getSource() == register)
-          {
+            if (e.getSource() == register)
+            {
               controller.personData(pseu.getText(), log.getText());
-              controller.AffichageCustomer(); 
-              window.dispose();
-                
+              //Si l'utilisateur est un MemberCustomer
+              if (controller.getMember() != null && controller.getEmployee() == null)
+              {
+                  controller.AffichageCustomer();
+                  window.dispose();
+                 
               }
+              //Si l'utilisateur est un Employee
+              else if (controller.getMember() == null && controller.getEmployee() != null)
+              {
+                  //Afficher la frame d'un Employee
+                  System.out.println ("Je suis un employé : " + controller.getEmployee().getNameUser());
+              }
+                
+            }
 //              else if (name == null)
 //              {
 //                //Message d'erreur ou redemander à l'utilisateur d'essayer de se reconnecter

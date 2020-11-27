@@ -101,7 +101,7 @@ public class GuestInformationFrame extends JFrame{
         
         p1.setLayout(null);
         label2.setBounds(0, 20, 900, 45);
-        start.setBounds(650,120,130,30);
+        start.setBounds(430,120,130,30);
          
         label2.setBorder(bLabel);
         label2.setForeground(Color.red);
@@ -112,8 +112,8 @@ public class GuestInformationFrame extends JFrame{
         f_name.setBounds(240,120,110,20);
         lastname.setBounds(150,150,80,40);
         l_name.setBounds(240,160,110,20);
-        age.setBounds(390, 151, 80, 40);
-        agetext.setBounds(450, 160, 110, 20);
+        age.setBounds(150, 190, 80, 40);
+        agetext.setBounds(240, 200, 110, 20);
         
         start.setBorder(bButtons);
         start.setBackground(new Color(254, 150, 160));
@@ -141,7 +141,6 @@ public class GuestInformationFrame extends JFrame{
               //On récupère les informations de l'utilisateur
               String nameUser = f_name.getText() +" " + l_name.getText();
               String typeUser = "GC";
-              int idUser = -1;
               int ageUser = Integer.parseInt(agetext.getText());
               
               //Création du GuestCustomer dans la base de donnée

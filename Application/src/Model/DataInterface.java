@@ -11,10 +11,14 @@ package Model;
  */
 public interface DataInterface {
     
-    public Person createPerson (String pseu, String log);
+    public String typeUser (String pseu, String log);
+    
+    public Employee createEmployee (String pseu, String log);
+    
+    public MemberCustomer createMember (String pseu, String log);
     
     public int verifUser (String pseu, String log);
     
-    public Person createGuest (String name, int age, String user_type);
+    public GuestCustomer createGuest (String name, int age, String user_type);
     
 }

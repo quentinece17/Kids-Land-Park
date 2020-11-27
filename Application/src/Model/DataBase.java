@@ -12,8 +12,43 @@ import java.sql.*;
  */
 public class DataBase implements DataInterface {
     
+    public String typeUser (String pseu, String log)
+    {
+       String type = null;
+       Connection conn = null;
+       Statement stmt = null;
+        
+       String request = "select user_type from Personne where user_pseudo = '" + pseu + "' and user_login = '"
+                        + log + "';";
+       
+       try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next()) {
+                
+                type = rs.getString(1);
+            }
+            
+            conn.close();
+            stmt.close();
+        }
+       
+       catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+       
+       return type;
+    }
+    
     @Override
-    public Person createPerson (String pseu, String log) 
+    public MemberCustomer createMember (String pseu, String log) 
     {
         
         Connection conn = null;
@@ -21,7 +56,7 @@ public class DataBase implements DataInterface {
         
         String request = "select * from Personne where user_pseudo = '" + pseu + "' and user_login = '"
                         + log + "';";
-        Person user = null;
+        MemberCustomer user = null;
                 
         try 
         {
@@ -33,21 +68,50 @@ public class DataBase implements DataInterface {
             ResultSet rs = stmt.executeQuery(request);
             
             while (rs.next()) {
-                //Si l'utilisateur est un MemberCustomer
-                if (rs.getString(6).equals("MC"))
-                {
-                    int id = Integer.parseInt(rs.getString(1));
-                    int age = Integer.parseInt (rs.getString(3));
-                    //On crée un MemberCustomer
-                    user = new MemberCustomer (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
-                }
-                //Si l'utilisateur est un Employée
-                else if (rs.getString(6).equals ("E"))
-                {
-                    int id = Integer.parseInt(rs.getString(1));
-                    int age = Integer.parseInt (rs.getString(3));
-                    user = new Employee (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6));
-                }
+                int id = Integer.parseInt(rs.getString(1));
+                int age = Integer.parseInt (rs.getString(3));
+                //On crée un MemberCustomer
+                user = new MemberCustomer (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                    
+            }
+            
+            conn.close();
+            stmt.close();
+            
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        
+        return user;
+    }
+    
+    @Override
+    public Employee createEmployee (String pseu, String log)
+    {
+        Connection conn = null;
+        Statement stmt = null;
+        
+        String request = "select * from Personne where user_pseudo = '" + pseu + "' and user_login = '"
+                        + log + "';";
+        Employee user = null;
+                
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next()) {
+               
+                int id = Integer.parseInt(rs.getString(1));
+                int age = Integer.parseInt (rs.getString(3));
+                user = new Employee (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6));
                     
             }
             
@@ -105,11 +169,11 @@ public class DataBase implements DataInterface {
     }
 
     @Override
-    public Person createGuest(String name, int age, String user_type) 
+    public GuestCustomer createGuest(String name, int age, String user_type) 
     {
         Connection conn = null;
         Statement stmt = null;
-        Person guest = null;
+        GuestCustomer guest = null;
         
         String request = "insert into Personne (user_name, user_age, user_type) values ('" + name +"', " + age + ", '" + user_type + "');";
         

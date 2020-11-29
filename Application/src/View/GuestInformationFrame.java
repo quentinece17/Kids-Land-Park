@@ -40,6 +40,7 @@ public class GuestInformationFrame extends JFrame{
     
     //JButton
     private JButton start = new JButton(" Confirm ");
+    private JButton retour ;
 
     //Gestion du titre de la fenêtre
     String space = "                                                      ";
@@ -77,7 +78,6 @@ public class GuestInformationFrame extends JFrame{
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
-        start.addActionListener(new InteractionButtonListener());
         
         // Design des panels
         p1.setSize(new Dimension(900, 350));
@@ -87,6 +87,9 @@ public class GuestInformationFrame extends JFrame{
          
         buildpanel1();    
         p2.add(imageLabel);
+        
+        start.addActionListener(new InteractionButtonListener());
+        retour.addActionListener(new InteractionButtonListener());
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
@@ -99,9 +102,15 @@ public class GuestInformationFrame extends JFrame{
          javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.BLACK);
         
+        try{
+            img = new ImageIcon("retour2.jpg");    // Chargement de l'image
+            retour = new JButton(img);       // On place cette image dans le Label dédiée à l'image du park
+        }catch (Exception e){ e.printStackTrace(); }
+
         p1.setLayout(null);
         label2.setBounds(0, 20, 900, 45);
         start.setBounds(430,120,130,30);
+        retour.setBounds(0,0,22,15);
          
         label2.setBorder(bLabel);
         label2.setForeground(Color.red);
@@ -118,7 +127,12 @@ public class GuestInformationFrame extends JFrame{
         start.setBorder(bButtons);
         start.setBackground(new Color(254, 150, 160));
         start.setForeground(Color.WHITE);
-            
+        
+        retour.setBorder(bButtons);
+        //retour.setBackground(new Color(254, 150, 160));
+        retour.setForeground(Color.WHITE);
+
+        
         p1.add (firstname);
         p1.add (f_name);
         p1.add (lastname);
@@ -127,6 +141,7 @@ public class GuestInformationFrame extends JFrame{
         p1.add(agetext);
         p1.add(label2);
         p1.add(start);
+        p1.add(retour);
 
     }
     
@@ -150,6 +165,14 @@ public class GuestInformationFrame extends JFrame{
               controller.AffichageCustomer();
               window.dispose();
           }
+            
+            
+            if(e.getSource()== retour)
+          {
+              controller.AffichageAccueil();
+              window.dispose();
+          }
+
         }
         
     }

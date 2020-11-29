@@ -43,6 +43,7 @@ public class RegisterFrame extends JFrame {
     
     //JButton
     private JButton register = new JButton(" Register ");
+    private JButton retour ;
 
     //Gestion du titre de la fenêtre
     String space = "                                                      ";
@@ -83,7 +84,7 @@ public class RegisterFrame extends JFrame {
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
 
-        register.addActionListener(new InteractionButtonListener());
+        
         
            
         // Design des panels
@@ -95,6 +96,8 @@ public class RegisterFrame extends JFrame {
         buildpanel1();    
         p2.add(imageLabel);
         
+        register.addActionListener(new InteractionButtonListener());
+        retour.addActionListener(new InteractionButtonListener());
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
         window.add(p2, BorderLayout.SOUTH);        
@@ -108,6 +111,11 @@ public class RegisterFrame extends JFrame {
         javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.BLACK);
         
+        try{
+            img = new ImageIcon("retour2.jpg");    // Chargement de l'image
+            retour = new JButton(img);       // On place cette image dans le Label dédiée à l'image du park
+        }catch (Exception e){ e.printStackTrace(); }
+
         // On met le Layout du panel 1 à null pour pouvoir placer les boutons comme bon nous semble
         p1.setLayout(null);
         label.setBounds(0, 20, 900, 45);
@@ -116,6 +124,7 @@ public class RegisterFrame extends JFrame {
         login.setBounds(370,110,80,40);
         log.setBounds(440,120,90,20);
         register.setBounds(600,120,85,25);
+        retour.setBounds(0,0,22,15);
         
         // Design des label et bouttons 
         label.setBorder(bLabel);
@@ -125,6 +134,10 @@ public class RegisterFrame extends JFrame {
         register.setBorder(bButtons);
         register.setBackground(new Color(254, 150, 160));
         register.setForeground(Color.WHITE);
+        retour.setBorder(bButtons);
+        //retour.setBackground(new Color(254, 150, 160));
+        retour.setForeground(Color.WHITE);
+
         
         //ajouter les éléments au panel
         p1.add(pseudo);
@@ -133,6 +146,7 @@ public class RegisterFrame extends JFrame {
         p1.add(log);
         p1.add(label);
         p1.add(register);
+        p1.add(retour);
 
     }
     
@@ -170,6 +184,13 @@ public class RegisterFrame extends JFrame {
 //                //Message d'erreur ou redemander à l'utilisateur d'essayer de se reconnecter
 //                  window.dispose ();
 //              }
+            
+            if(e.getSource()== retour)
+          {
+              controller.AffichageAccueil();
+              window.dispose();
+          }
+
               
           }
           

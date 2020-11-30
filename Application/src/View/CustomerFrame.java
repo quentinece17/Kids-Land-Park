@@ -22,6 +22,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+//Import for JDatePicker
+import org.jdatepicker.impl.*;
+
 /**
  *
  * @author quentin
@@ -42,6 +45,9 @@ public class CustomerFrame extends JFrame {
     private int idUser;
     
     private Application controller;
+
+    private JDatePickerImpl datePicker;
+    
     
     public CustomerFrame (Application app)
     {
@@ -53,6 +59,7 @@ public class CustomerFrame extends JFrame {
         window.setSize(900, 750);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
+        
         
         panel.add (label);
         window.add(panel, BorderLayout.CENTER);

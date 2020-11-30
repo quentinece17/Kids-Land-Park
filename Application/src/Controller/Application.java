@@ -12,7 +12,9 @@ import Model.GuestCustomer;
 import Model.MemberCustomer;
 import Model.Person;
 import View.AccueilFrame;
+import View.AgeExceptionFrame;
 import View.CustomerFrame;
+import View.FieldsExceptionFrame;
 import View.GuestInformationFrame;
 import View.RegisterFrame;
 
@@ -32,6 +34,8 @@ public class Application{
     private RegisterFrame register;
     private GuestInformationFrame guestInfo;
     private CustomerFrame customer;
+    private FieldsExceptionFrame field;
+    private AgeExceptionFrame age;
     
     //Utilisateur
     Person user;
@@ -43,7 +47,6 @@ public class Application{
     public Application(){  
 
         Initialisation ();
-
     }
 
     //Initialisation des différentes window
@@ -54,13 +57,16 @@ public class Application{
         register = new RegisterFrame (this);
         guestInfo = new GuestInformationFrame (this);
         customer = new CustomerFrame (this);
+        field = new FieldsExceptionFrame(this);
+        age = new AgeExceptionFrame(this);
     }
 
     //Méthodes d'affichage des différentes windows
     public void AffichageAccueil () { accueil.getWindow().setVisible(true);}
     public void AffichageRegister (){ register.getWindow().setVisible(true);}
     public void AffichageGuestInfo () { guestInfo.getWindow().setVisible(true);}
-    
+    public void AffichageFieldsException () { field.getWindow().setVisible(true);}
+    public void AffichageAgeException () { field.getWindow().setVisible(true);}
     public void AffichageCustomer (){ 
         customer.getWindow().setVisible(true);
         if (member != null && guest == null)
@@ -109,6 +115,16 @@ public class Application{
 
 
      public Person getPerson () { return user; }
+     
+     // Exception Frame Setters
+     // On initialise le message de la fenêtre d'exception correspondante
+     public void setFieldExceptionLabel(String msg){
+         field.setMessage(msg);
+     }
+     // Setter 
+     public void setAgeExceptionLabel(String msg){
+         field.setMessage(msg);
+     }
      public Employee getEmployee () { return employee; }
      public GuestCustomer getGuest () { return guest; }
      public MemberCustomer getMember () { return member; }

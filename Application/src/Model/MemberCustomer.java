@@ -5,16 +5,22 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author quentin
  */
-public class MemberCustomer extends Customer implements CustomerInterface {
+public class MemberCustomer extends Person implements CustomerInterface {
 
     private double discount;
+    private double totalPrice;
     private String pseudoUser;
     private String loginUser;
     private String memberTypeUser;
+    
+    //Liste de tickets achetés par le customer
+    private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
 
     
     public MemberCustomer(int id, String name, int age, String type, String pseu, String log, String memberType) {
@@ -23,16 +29,15 @@ public class MemberCustomer extends Customer implements CustomerInterface {
        pseudoUser = pseu;
        loginUser = log;
        memberTypeUser = memberType;
-        
-        //Si login ok (vérifier dans DB) : 
-            //On regarde memberType :
-                // if (memberType.equals ("regular")) { discount = ...; }
-                // else if (memberType.equals ("senior")) { discount = ...; }
-                // else if ((memberType.equals ("children")) { discount = ...; }
-        
-        //Sinon, on ne crée pas le Member car il est invalide, du coup peut-être vérifier le login avant d'appeler le constructeur
-        
-        
+       
+       if (memberType.equals("children"))
+           discount = 0.3;
+       
+       else if (memberType.equals("regular"))
+           discount = 0.2;
+       
+       else if (memberType.equals("senior"))
+           discount = 0.1;
         
     }
 

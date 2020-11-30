@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -39,6 +39,9 @@ public class Application{
     
     //Utilisateur
     Person user;
+    private Employee employee = null;
+    private GuestCustomer guest = null;
+    private MemberCustomer member = null;
     
     //Constructeur
     public Application(){  
@@ -66,7 +69,10 @@ public class Application{
     public void AffichageAgeException () { field.getWindow().setVisible(true);}
     public void AffichageCustomer (){ 
         customer.getWindow().setVisible(true);
-        customer.setText("Hello " + user.getNameUser());
+        if (member != null && guest == null)
+            customer.setText("Hello " + member.getNameUser());
+        if (guest != null && member == null)
+            customer.setText("Hello " + guest.getNameUser());
     }
 
     public void personData (String pseu, String log)
@@ -85,8 +91,17 @@ public class Application{
         }
         //Si la Personne existe
         else {
-            user = verif.createPerson(pseu, log);
-            System.out.println (user.getNameUser());
+            //On regarde quel est le type de l'utilisateur
+            String type = verif.typeUser(pseu, log);
+            System.out.println (type);
+            if (type.equals ("MC"))
+            {
+                member = verif.createMember(pseu, log);
+            }
+            else if (type.equals("E"))
+            {
+                employee = verif.createEmployee(pseu, log);
+            }
         }
     }
     
@@ -94,8 +109,8 @@ public class Application{
      public void createGuestData (String name, int age, String user_type)
      {
          DataInterface add = new DataBase ();
-         user = add.createGuest(name, age, user_type);
-         System.out.println ("Hello " + user.getNameUser() + "\nAge : " + user.getAgeUser() + " \nId : " + user.getIdUser() + "\nType : "+ user.getTypeUser());
+         guest = add.createGuest(name, age, user_type);
+         System.out.println ("Hello " + guest.getNameUser() + "\n Age : " + guest.getAgeUser() + " \nId : " + guest.getIdUser() + "\nType : "+ guest.getTypeUser());
      } 
 
 
@@ -110,5 +125,8 @@ public class Application{
      public void setAgeExceptionLabel(String msg){
          field.setMessage(msg);
      }
+     public Employee getEmployee () { return employee; }
+     public GuestCustomer getGuest () { return guest; }
+     public MemberCustomer getMember () { return member; }
 }
     

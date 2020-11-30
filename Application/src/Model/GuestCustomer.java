@@ -5,11 +5,17 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @authors : quentin, corentin and nicolas
  */
-public class GuestCustomer extends Customer implements CustomerInterface {
+public class GuestCustomer extends Person implements CustomerInterface {
+    
+    private double totalPrice;
+    //Liste de tickets achetés par le customer
+    private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
 
     public GuestCustomer(int id, String name, int age, String type) {
         

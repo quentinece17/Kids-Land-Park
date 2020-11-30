@@ -13,10 +13,10 @@ import Model.MemberCustomer;
 import Model.Person;
 import View.AccueilFrame;
 import View.AgeExceptionFrame;
-import View.CustomerFrame;
 import View.FieldsExceptionFrame;
 import View.GuestInformationFrame;
 import View.RegisterFrame;
+import View.CustomerFrame;
 
 import javax.swing.*;
 import javax.swing.Icon;
@@ -33,9 +33,10 @@ public class Application{
     private AccueilFrame accueil;
     private RegisterFrame register;
     private GuestInformationFrame guestInfo;
-    private CustomerFrame customer;
     private FieldsExceptionFrame field;
     private AgeExceptionFrame age;
+    
+    private CustomerFrame customer;
     
     //Utilisateur
     Person user;
@@ -56,9 +57,9 @@ public class Application{
         accueil.getWindow().setVisible(true);
         register = new RegisterFrame (this);
         guestInfo = new GuestInformationFrame (this);
-        customer = new CustomerFrame (this);
         field = new FieldsExceptionFrame(this);
         age = new AgeExceptionFrame(this);
+        customer = new CustomerFrame (this);
     }
 
     //Méthodes d'affichage des différentes windows
@@ -67,6 +68,7 @@ public class Application{
     public void AffichageGuestInfo () { guestInfo.getWindow().setVisible(true);}
     public void AffichageFieldsException () { field.getWindow().setVisible(true);}
     public void AffichageAgeException () { field.getWindow().setVisible(true);}
+    
     public void AffichageCustomer (){ 
         customer.getWindow().setVisible(true);
         if (member != null && guest == null)

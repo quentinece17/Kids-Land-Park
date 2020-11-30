@@ -6,12 +6,15 @@
 package View;
 
 import Controller.Application;
+import Model.AgeException;
+import Model.FieldException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -61,6 +64,8 @@ public class GuestInformationFrame extends JFrame{
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel; 
     
+    private String Message = new String(""); // Si il y a une exception --> Message récupère alors le String généré par cette Exception
+    
     public GuestInformationFrame (Application app)
     {
         controller = app;
@@ -77,7 +82,16 @@ public class GuestInformationFrame extends JFrame{
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
-        start.addActionListener(new InteractionButtonListener());
+        // block try-catch pour voir si tous les champs demandés pour le 'GuestCustomer' sont bien rentrés.
+        //try{
+           start.addActionListener(new InteractionButtonListener()); 
+        //}
+        //catch( FieldException eField) {
+            //Message = eField.getMessage(); // Message récupère le String généré dans le constructeur de FieldException
+            //controller.setie;ldExceptionLabel(Message);
+            //controller.AffichageFielFdsException()
+        //}
+        
         
         // Design des panels
         p1.setSize(new Dimension(900, 350));
@@ -96,7 +110,7 @@ public class GuestInformationFrame extends JFrame{
     
     public void buildpanel1 ()
     {
-         javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
+        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.BLACK);
         
         p1.setLayout(null);
@@ -134,27 +148,80 @@ public class GuestInformationFrame extends JFrame{
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        // Comme on ne peut pas envoyer d'exception créer par nous même héritant de Exception,
+        //nous avons regardé dans l'interface ActionListener les Exceptions qui pouvaient être envoyé par sa méthode 'actionPerformed'
+        // --> il se trouve que actionPerformed montre dans sa signature dans l'interface qu'il peut envoyé des 'RuntimeException' 
+        // Donc notre FieldException hérite de RuntimeException et non de Exception
+        
+        public void actionPerformed(ActionEvent e) throws RuntimeException {
             
             if (e.getSource() == start)
-          {
-              //On récupère les informations de l'utilisateur
-              String nameUser = f_name.getText() +" " + l_name.getText();
-              String typeUser = "GC";
-              int idUser = -1;
-              int ageUser = Integer.parseInt(agetext.getText());
-              
-              //Création du GuestCustomer dans la base de donnée
-              controller.createGuestData (nameUser, ageUser, typeUser);
-                            
-              //Affichage de la page pour un Customer
-              controller.AffichageCustomer();
-              window.dispose();
-          }
+            {
+                // Si tout les JTextField sont remplie ont peut rajouter le customer dans la base de données --> Une exception est envoyé à son appelant
+                if ( f_name.getText().equals("") || l_name.getText().equals("") || agetext.getText().equals(""))
+                {
+                    FieldException ex = new FieldException();
+                    controller.setFieldExceptionLabel(ex.getMessage());
+                    controller.AffichageFieldsException();
+                    //window.dispose();
+                }
+                
+                // Si l'âge est différent de "" --> vérifier si c'est bien un nombre
+                else if (!agetext.getText().equals("")){
+                    try{
+                        Integer test = Integer.parseInt(age.getText());
+                    }
+                    catch (NumberFormatException eAge){
+                        AgeException ex = new AgeException("You must enter a number in the age field");
+                        controller.setAgeExceptionLabel(ex.getMessage());
+                        controller.AffichageAgeException();
+                    }
+                }
+                    
+                // Si on entre un âge négatif
+                else if (Integer.parseInt(agetext.getText()) < 0)
+                {
+                    AgeException ex = new AgeException("You can't enter a negative age");
+                    controller.setAgeExceptionLabel(ex.getMessage());
+                    controller.AffichageAgeException();
+                }
+                
+                // Si on entre un âge supérieur à 100
+                else if (Integer.parseInt(agetext.getText()) > 100)
+                {
+                    AgeException ex = new AgeException("We're sorry but you are too old");
+                    controller.setAgeExceptionLabel(ex.getMessage());
+                    controller.AffichageAgeException();
+                }
+                
+                
+                else {
+                        {
+                        // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
+                        //On récupère les informations de l'utilisateur
+                        String nameUser = f_name.getText() +" " + l_name.getText();
+                        String typeUser = "GC";
+                        int ageUser = Integer.parseInt(agetext.getText());
+                        
+                        //Création du GuestCustomer dans la base de donnée
+                        controller.createGuestData (nameUser, ageUser, typeUser);
+                        
+                        //Affichage de la page pour un Customer
+                        //controller.AffichageFieldsException();
+                        // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
+                        window.dispose();
+                        }
+                }
+                }
+                
+            }
+                    
         }
-        
+       
+    // Getters
+    public JFrame getWindow () { return window; }
+    public String getMessage () { return Message; }
+    
     }
     
-    public JFrame getWindow () { return window; }
     
-}

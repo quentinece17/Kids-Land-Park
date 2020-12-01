@@ -18,6 +18,7 @@ import View.FieldsExceptionFrame;
 import View.GuestInformationFrame;
 import View.RegisterFrame;
 import View.CustomerFrame;
+import View.SignUpFrame;
 
 import javax.swing.*;
 import javax.swing.Icon;
@@ -37,8 +38,8 @@ public class Application{
     private GuestInformationFrame guestInfo;
     private FieldsExceptionFrame field;
     private AgeExceptionFrame age;
-    
     private CustomerFrame customer;
+    private SignUpFrame newPerson;
     
     //Tableau d'attractions
     Ride [] ride;
@@ -65,11 +66,13 @@ public class Application{
         field = new FieldsExceptionFrame(this);
         age = new AgeExceptionFrame(this);
         customer = new CustomerFrame (this);
+        newPerson = new SignUpFrame(this);
     }
 
     //Méthodes d'affichage des différentes windows
     public void AffichageAccueil () { accueil.getWindow().setVisible(true);}
     public void AffichageRegister (){ register.getWindow().setVisible(true);}
+    public void AffichageSignUp (){ newPerson.getWindow().setVisible(true);}
     public void AffichageGuestInfo () { guestInfo.getWindow().setVisible(true);}
     public void AffichageFieldsException () { field.getWindow().setVisible(true);}
     public void AffichageAgeException () { field.getWindow().setVisible(true);}

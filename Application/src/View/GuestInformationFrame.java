@@ -41,6 +41,9 @@ public class GuestInformationFrame extends JFrame{
     private JPanel p1 = new JPanel();   // Ecran d'accueil
     private JPanel p2 = new JPanel();
     
+    // JButtonGroup --> Le nouveau venu est soit un Member customer soit un Guest customer
+    
+    
     //JButton
     private JButton start = new JButton(" Confirm ");
     private JButton retour ;
@@ -79,7 +82,7 @@ public class GuestInformationFrame extends JFrame{
          
          // Frame Design
         window.setTitle("Register ");
-        window.setSize(900, 750);
+        window.setSize(900, 820);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
@@ -185,7 +188,7 @@ public class GuestInformationFrame extends JFrame{
                 // Si l'âge est différent de "" --> vérifier si c'est bien un nombre
                 if (!agetext.getText().equals("")){
                     try{
-                        Integer test = Integer.parseInt(age.getText());
+                        Integer test = Integer.parseInt(agetext.getText());
                     }
                     catch (NumberFormatException eAge){
                         AgeException ex = new AgeException("You must enter a number in the age field");
@@ -219,11 +222,12 @@ public class GuestInformationFrame extends JFrame{
                         int ageUser = Integer.parseInt(agetext.getText());
                         
                         //Création du GuestCustomer dans la base de donnée
-                        controller.createGuestData (nameUser, ageUser, typeUser);
+                        //controller.createGuestData (nameUser, ageUser, typeUser);
                         
                         //Affichage de la page pour un Customer
                         //controller.AffichageFieldsException();
                         // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
+                        controller.AffichageSignUp();
                         window.dispose();
                         }
                 }

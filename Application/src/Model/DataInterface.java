@@ -11,6 +11,8 @@ package Model;
  */
 public interface DataInterface {
     
+    public Ride [] createRide ();
+    
     public String typeUser (String pseu, String log);
     
     public Employee createEmployee (String pseu, String log);

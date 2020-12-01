@@ -1,5 +1,8 @@
 # Project-Databases
 
+Quand on clique sur une date, il faut afficher les attractions et quand on clique sur une attraction : il faut regarder dans la liste "tickets" de la classe Ride combien il y en a pour la date actuelle
+
+
 Pour le pattern MVC, j'ai essayé de classer les classes dans les packages Controller, View et Model mais je suis pas sûr de moi, donc hésitez pas à le dire si vous pensez différemment 
 
 

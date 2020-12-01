@@ -11,6 +11,7 @@ import Model.Employee;
 import Model.GuestCustomer;
 import Model.MemberCustomer;
 import Model.Person;
+import Model.Ride;
 import View.AccueilFrame;
 import View.AgeExceptionFrame;
 import View.FieldsExceptionFrame;
@@ -21,6 +22,7 @@ import View.CustomerFrame;
 import javax.swing.*;
 import javax.swing.Icon;
 import java.awt.*;
+import java.text.ParseException;
 import javafx.scene.layout.Border;
 
 /**
@@ -38,20 +40,23 @@ public class Application{
     
     private CustomerFrame customer;
     
+    //Tableau d'attractions
+    Ride [] ride;
+    
     //Utilisateur
-    Person user;
     private Employee employee = null;
     private GuestCustomer guest = null;
     private MemberCustomer member = null;
     
     //Constructeur
-    public Application(){  
+    public Application() throws ParseException{  
 
+        InitialisationRide ();
         Initialisation ();
     }
 
     //Initialisation des différentes window
-    public void Initialisation () 
+    public void Initialisation () throws ParseException 
     {
         accueil = new AccueilFrame(this);
         accueil.getWindow().setVisible(true);
@@ -77,6 +82,12 @@ public class Application{
             customer.setText("Hello " + guest.getNameUser());
     }
 
+    public void InitialisationRide () 
+    {
+        DataInterface create = new DataBase ();
+        ride = create.createRide();
+        
+    }
     public void personData (String pseu, String log)
     {
         //Permet de vérifier si la personne qui s'identifie existe
@@ -116,7 +127,6 @@ public class Application{
      } 
 
 
-     public Person getPerson () { return user; }
      
      // Exception Frame Setters
      // On initialise le message de la fenêtre d'exception correspondante

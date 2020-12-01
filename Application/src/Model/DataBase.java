@@ -12,6 +12,7 @@ import java.sql.*;
  */
 public class DataBase implements DataInterface {
     
+    @Override
     public String typeUser (String pseu, String log)
     {
        String type = null;
@@ -47,6 +48,53 @@ public class DataBase implements DataInterface {
        return type;
     }
     
+    @Override
+    public Ride[] createRide ()
+    {
+        Connection conn = null;
+        Statement stmt = null;
+        int nbRide = 0;
+        String request = "select count(*) from Ride;";
+        Ride container [] = null;
+        
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next())
+            {
+                nbRide = Integer.parseInt(rs.getString(1));
+            }
+            
+            container = new Ride[nbRide];
+            
+            for (int i=1; i<=nbRide; ++i)
+            {
+                request = "select * from Ride where id_ride = " + i +";";
+                rs = stmt.executeQuery(request);
+                
+                while (rs.next())
+                {
+                    container[i-1] = new Ride (rs.getString(2), Double.parseDouble(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5)));
+                }
+            }
+            
+            conn.close();
+            stmt.close();
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        
+        return container;
+    }
     @Override
     public MemberCustomer createMember (String pseu, String log) 
     {

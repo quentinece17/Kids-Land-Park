@@ -8,6 +8,7 @@ package View;
 import javax.swing.JFrame;
 
 import Controller.Application;
+import com.toedter.calendar.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -39,12 +41,26 @@ public class CustomerFrame extends JFrame {
     /**
      * Creates new form Test
      */
-    public CustomerFrame(Application app) {
+    public CustomerFrame(Application app) throws ParseException {
         controller = app;
         initComponents();
         
+        //Permet d'afficher la date choisie en modifiant le format d'écriture
         MyDateListener listener = new MyDateListener();
         jCalendar1.addPropertyChangeListener(listener);
+  
+        InvalidDate();
+    }
+    
+    //Fonction permettant de rentre invalide toutes les dates se trouvant avant la date actuelle
+    public void InvalidDate () throws ParseException {
+        //On définit le format de date : même format que dans la base de donnée
+        SimpleDateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+        //Création d'un objet RangeEvaluator
+        RangeValidation validDate = new RangeValidation ();
+        validDate.setStartDate(dateFormat.parse("1000-01-01"));
+        validDate.setEndDate(dateFormat.parse(getCurrentDate()));
+        jCalendar1.getDayChooser().addDateEvaluator(validDate);
     }
 
     /**
@@ -150,7 +166,6 @@ public class CustomerFrame extends JFrame {
         Locale locale = Locale.getDefault();
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
         dateActual = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE).format(date);
-        
         System.out.println (dateActual);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -169,6 +184,76 @@ public class CustomerFrame extends JFrame {
 			}
         }
         
+    }
+    
+    //Classe permettant de rendre les dates indisponibles
+    private class RangeValidation implements IDateEvaluator {
+        private DateUtil dateUtil = new DateUtil ();
+        
+        @Override
+        public boolean isSpecial(Date date) {
+            return false;
+        }
+
+        @Override
+        public Color getSpecialForegroundColor() {
+            return null;
+        }
+
+        @Override
+        public Color getSpecialBackroundColor() {
+            return null;
+        }
+
+        @Override
+        public String getSpecialTooltip() {
+            return null;
+        }
+
+        @Override
+        public boolean isInvalid(Date date) {
+            return dateUtil.checkDate(date);
+        }
+
+        @Override
+        public Color getInvalidForegroundColor() {
+            return null; 
+        }
+
+        @Override
+        public Color getInvalidBackroundColor() {
+            return null; 
+        }
+
+        @Override
+        public String getInvalidTooltip() {
+            return null; 
+        }
+        
+        //Date minimale pouvant être sélectionné : dans notre cas, c'est la date du jour
+        public void setStartDate (Date startDate){
+            dateUtil.setMinSelectableDate(startDate);
+        }
+        
+        public Date getStartDate () {
+            return dateUtil.getMinSelectableDate();
+        }
+        
+        public void setEndDate (Date endDate) {
+            dateUtil.setMaxSelectableDate(endDate);
+        }
+        
+        public Date getEndDate () {
+            return dateUtil.getMaxSelectableDate();
+        }
+                
+    }
+    
+    //Fonction permettant de récupérer la date actuelle (toujours sous le même format)
+    public String getCurrentDate () {
+        DateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
+        Date date = new Date();
+        return format.format(date);
     }
     
      public void setText (String text)

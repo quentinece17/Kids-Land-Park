@@ -15,7 +15,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.InputMismatchException;
+import javafx.scene.control.RadioButton;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +25,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
@@ -65,6 +68,13 @@ public class GuestInformationFrame extends JFrame{
     private JLabel age = new JLabel ("Age : ");
     private JTextField agetext = new JTextField (10);
     
+    // Gestion du type du membre
+    private JLabel memberType = new JLabel ("Member type : ");
+    private ButtonGroup customerType = new ButtonGroup();           // Button group qui laisse libre choix quand a la sélection du typer de 'customer'
+    private JRadioButton guestButton = new JRadioButton("Guest");     // Boutton Guest 
+    private JRadioButton memberButton = new JRadioButton("Member");   // Boutton Member
+    
+    
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel; 
     
@@ -82,7 +92,7 @@ public class GuestInformationFrame extends JFrame{
          
          // Frame Design
         window.setTitle("Register ");
-        window.setSize(900, 820);
+        window.setSize(900, 900);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
@@ -124,6 +134,10 @@ public class GuestInformationFrame extends JFrame{
             retour = new JButton(img);       // On place cette image dans le Label dédiée à l'image du park
         }catch (Exception e){ e.printStackTrace(); }
 
+        // Customr type : construction du button Group pour le type de customer
+        customerType.add(memberButton);
+        customerType.add(guestButton);
+        
         p1.setLayout(null);
         label2.setBounds(0, 20, 900, 45);
         start.setBounds(430,120,130,30);
@@ -140,10 +154,18 @@ public class GuestInformationFrame extends JFrame{
         l_name.setBounds(240,160,110,20);
         age.setBounds(150, 190, 80, 40);
         agetext.setBounds(240, 200, 110, 20);
+        memberType.setBounds(150, 240, 100, 40);
+        memberButton.setBounds(250, 240, 100, 40);
+        guestButton.setBounds(250, 290, 100, 40);
+        
         
         start.setBorder(bButtons);
         start.setBackground(new Color(254, 150, 160));
         start.setForeground(Color.WHITE);
+        
+        // Initialiser les couleurs des boutyons pour les laisser se fojndre dans la couleur de fond du panel
+        memberButton.setBackground(new Color(253, 233, 224));
+        guestButton.setBackground(new Color(253, 233, 224));
         
         retour.setBorder(bButtons);
         //retour.setBackground(new Color(254, 150, 160));
@@ -159,6 +181,9 @@ public class GuestInformationFrame extends JFrame{
         p1.add(label2);
         p1.add(start);
         p1.add(retour);
+        p1.add(memberType);
+        p1.add(memberButton);
+        p1.add(guestButton);
 
     }
     
@@ -214,7 +239,9 @@ public class GuestInformationFrame extends JFrame{
                 }
                 
                 else {
-                        {
+                    /// Si c'est le button 'member' qui a été sélectionner
+                    if (memberButton.isSelected()){
+                       {
                         // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
                         //On récupère les informations de l'utilisateur
                         String nameUser = f_name.getText() +" " + l_name.getText();
@@ -229,7 +256,28 @@ public class GuestInformationFrame extends JFrame{
                         // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
                         controller.AffichageSignUp();
                         window.dispose();
-                        }
+                        } 
+                    }
+                    
+                    /// Si c'est le button 'guest' qui a été sélectionner
+                    else if (guestButton.isSelected()){
+                       {
+                        // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
+                        //On récupère les informations de l'utilisateur
+                        String nameUser = f_name.getText() +" " + l_name.getText();
+                        String typeUser = "GC";
+                        int ageUser = Integer.parseInt(agetext.getText());
+                        
+                        //Création du GuestCustomer dans la base de donnée
+                        //controller.createGuestData (nameUser, ageUser, typeUser);
+                        
+                        //Affichage de la page pour un Customer
+                        //controller.AffichageFieldsException();
+                        // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
+                        controller.AffichageSignUp();
+                        window.dispose();
+                        } 
+                    }
                 }
                 }
             

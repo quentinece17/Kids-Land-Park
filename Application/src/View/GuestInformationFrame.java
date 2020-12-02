@@ -254,7 +254,7 @@ public class GuestInformationFrame extends JFrame{
                         //Affichage de la page pour un Customer
                         //controller.AffichageFieldsException();
                         // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
-                        controller.AffichageSignUp();
+                        controller.AffichageSignUp(f_name.getText(), l_name.getText(), ageUser);
                         window.dispose();
                         } 
                     }
@@ -269,12 +269,12 @@ public class GuestInformationFrame extends JFrame{
                         int ageUser = Integer.parseInt(agetext.getText());
                         
                         //Création du GuestCustomer dans la base de donnée
-                        //controller.createGuestData (nameUser, ageUser, typeUser);
+                        controller.createGuestData (nameUser, ageUser, typeUser);
                         
                         //Affichage de la page pour un Customer
                         //controller.AffichageFieldsException();
                         // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
-                        controller.AffichageSignUp();
+                        controller.AffichageCustomer();
                         window.dispose();
                         } 
                     }

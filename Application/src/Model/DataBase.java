@@ -95,6 +95,7 @@ public class DataBase implements DataInterface {
         
         return container;
     }
+    
     @Override
     public MemberCustomer createMember (String pseu, String log) 
     {
@@ -216,6 +217,8 @@ public class DataBase implements DataInterface {
         return valid;
     }
 
+    //public 
+    
     @Override
     public GuestCustomer createGuest(String name, int age, String user_type) 
     {

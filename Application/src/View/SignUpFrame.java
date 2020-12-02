@@ -17,8 +17,9 @@ public class SignUpFrame extends javax.swing.JFrame {
     /**
      * Creates new form SignUpFrame
      */
-    public SignUpFrame(Application app) {
+    public SignUpFrame(Application app ) {
         
+        // Initialisation du design de la fenêtre 'SignUpFrame' 
         initComponents();
         controller = app;
     }
@@ -159,7 +160,14 @@ public class SignUpFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if ( evt.getSource() == button1 )
         {
+            if (textField1.getText().equals("") || jPasswordField2.getText().equals("") || jPasswordField3.getText().equals(""))
+                System.out.print("Warning !  no valid fields");
             
+            else 
+            {
+                if (jPasswordField2.getText().equals(jPasswordField3.getText()))
+                System.out.println("YESS");
+            }
         }
     }//GEN-LAST:event_button1ActionPerformed
 
@@ -202,8 +210,17 @@ public class SignUpFrame extends javax.swing.JFrame {
         });
     }*/
     public JFrame getWindow () { return this; }
+    public void setDataSignUp(String n_, String lastN_, int age_ ){
+        userName = n_;
+        userLastName = lastN_;
+        userAge = age_;
+    }
+    
     // Controller attribute related to the class Apllication
     private Application controller;
+    private String userName;
+    private String userLastName;
+    private int userAge;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
@@ -216,4 +233,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     private java.awt.Panel panel1;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
+
+    
+    
 }

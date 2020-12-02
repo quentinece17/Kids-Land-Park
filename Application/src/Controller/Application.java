@@ -72,7 +72,11 @@ public class Application{
     //Méthodes d'affichage des différentes windows
     public void AffichageAccueil () { accueil.getWindow().setVisible(true);}
     public void AffichageRegister (){ register.getWindow().setVisible(true);}
-    public void AffichageSignUp (){ newPerson.getWindow().setVisible(true);}
+    
+    public void AffichageSignUp (String prenom, String nom, int age){
+        newPerson.setDataSignUp(prenom, nom, age);
+        newPerson.getWindow().setVisible(true);
+    }
     public void AffichageGuestInfo () { guestInfo.getWindow().setVisible(true);}
     public void AffichageFieldsException () { field.getWindow().setVisible(true);}
     public void AffichageAgeException () { field.getWindow().setVisible(true);}
@@ -130,6 +134,11 @@ public class Application{
      } 
 
 
+     // Création 'un nouveau member customer dans la base de donnéeset récupérationde ce MemberCustomer dans le programme
+     public void createMember_inSQL(String fullName, int age, String pseudo_, String password_){
+         DataInterface add = new DataBase ();
+         member = add.createSQL_Member(fullName, age, "MC", pseudo_, password_);
+     }
      
      // Exception Frame Setters
      // On initialise le message de la fenêtre d'exception correspondante

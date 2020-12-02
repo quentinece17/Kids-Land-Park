@@ -17,8 +17,9 @@ public class SignUpFrame extends javax.swing.JFrame {
     /**
      * Creates new form SignUpFrame
      */
-    public SignUpFrame(Application app) {
+    public SignUpFrame(Application app ) {
         
+        // Initialisation du design de la fenêtre 'SignUpFrame' 
         initComponents();
         controller = app;
     }
@@ -159,8 +160,21 @@ public class SignUpFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if ( evt.getSource() == button1 )
         {
+            if (textField1.getText().equals("") || jPasswordField2.getText().equals("") || jPasswordField3.getText().equals(""))
+            {
+                System.out.print("Warning !  no valid fields");
+            }
             
-        }
+            else 
+            {
+                if (jPasswordField2.getText().equals(jPasswordField3.getText()))
+                {
+                    controller.createMember_inSQL(userFullName, userAge, textField1.getText(), jPasswordField2.getText());
+                    controller.AffichageCustomer();
+                    dispose();  // La fenetre actuel disparait
+                }
+            }
+        }// hello here
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
@@ -202,8 +216,15 @@ public class SignUpFrame extends javax.swing.JFrame {
         });
     }*/
     public JFrame getWindow () { return this; }
+    public void setDataSignUp(String n_, String lastN_, int age_ ){
+        userFullName = n_ + " " + lastN_; // Construction du nom de l'utilisateur à insérer ensuite dans la base de données
+        userAge = age_;                   // Stockage de l'age de l'utilisateur
+    }
+    
     // Controller attribute related to the class Apllication
     private Application controller;
+    private String userFullName;
+    private int userAge;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
@@ -216,4 +237,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     private java.awt.Panel panel1;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
+
+    
+    
 }

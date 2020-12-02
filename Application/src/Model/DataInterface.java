@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author quentin
+ * @authors : quentin, corezntin& nicolas
  */
 public interface DataInterface {
     
@@ -22,5 +22,7 @@ public interface DataInterface {
     public int verifUser (String pseu, String log);
     
     public GuestCustomer createGuest (String name, int age, String user_type);
+    
+    public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password);
     
 }

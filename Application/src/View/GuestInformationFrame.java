@@ -237,7 +237,7 @@ public class GuestInformationFrame extends JFrame{
                     controller.setAgeExceptionLabel(ex.getMessage());
                     controller.AffichageAgeException();
                 }
-                
+                //Si tout ce qui est rentré dans les champs est bon
                 else {
                     /// Si c'est le button 'member' qui a été sélectionner
                     if (memberButton.isSelected()){

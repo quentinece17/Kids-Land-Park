@@ -174,7 +174,7 @@ public class SignUpFrame extends javax.swing.JFrame {
                     dispose();  // La fenetre actuel disparait
                 }
             }
-        }
+        }// hello here
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed

@@ -169,7 +169,7 @@ public class SignUpFrame extends javax.swing.JFrame {
             {
                 if (jPasswordField2.getText().equals(jPasswordField3.getText()))
                 {
-                    controller.createMember_inSQL(userFullName, userFullName, ABORT, userFullName, userFullName);
+                    controller.createMember_inSQL(userFullName, userAge, textField1.getText(), jPasswordField2.getText());
                     controller.AffichageCustomer();
                     dispose();  // La fenetre actuel disparait
                 }

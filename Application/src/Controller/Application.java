@@ -135,8 +135,7 @@ public class Application{
 
 
      // Création 'un nouveau member customer dans la base de donnéeset récupérationde ce MemberCustomer dans le programme
-     public void createMember_inSQL(String name, String lastName, int age, String pseudo_, String password_){
-         String fullName = name + " " + lastName;
+     public void createMember_inSQL(String fullName, int age, String pseudo_, String password_){
          DataInterface add = new DataBase ();
          member = add.createSQL_Member(fullName, age, "MC", pseudo_, password_);
      }

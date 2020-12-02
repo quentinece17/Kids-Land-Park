@@ -256,6 +256,45 @@ public class DataBase implements DataInterface {
         return guest;
     }
 
-    
+    // Fonction qui insère un member customer à part entière dans la base de données 
+    @Override
+    public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password) {
+        
+        Connection conn = null;
+        Statement stmt = null;
+        MemberCustomer member = null;
+        String mType = "X";
+        
+        // On défini ici le type du member customer en fonction de son age
+        // On commence du + grand au plus petit sinon par exemple si l'age est de 13 et qu'on vérifie si l'age est <= 55 en dernier, la personne sera senior automatiquement
+        if (age >= 55)  mType = "senior";
+        if (age < 55)   mType = "regular";
+        if (age < 13)   mType = "children";
+        
+            
+        //MemberCustomer member = new MemberCustomer(name, age, user_type, pseudo , password); 
+        String request = "insert into Personne (user_name, user_age, user_pseudo, user_login, user_type, member_type) values ('" + name + "', " + age + ", '" + pseudo + "', '" + password + "', 'MC', '" + mType + "');";
+        
+        // Insertion dans la base de données du nouveau Member Customer
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
 
+            member = createMember(pseudo, password);
+            
+            conn.close();
+            stmt.close();
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        return member;
+    }
+    
 }

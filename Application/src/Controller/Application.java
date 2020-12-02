@@ -134,8 +134,11 @@ public class Application{
      } 
 
 
-     public void createMember_inSQL(String name, String lastName, int age){
-         
+     // Création 'un nouveau member customer dans la base de donnéeset récupérationde ce MemberCustomer dans le programme
+     public void createMember_inSQL(String name, String lastName, int age, String pseudo_, String password_){
+         String fullName = name + " " + lastName;
+         DataInterface add = new DataBase ();
+         member = add.createSQL_Member(fullName, age, "MC", pseudo_, password_);
      }
      
      // Exception Frame Setters

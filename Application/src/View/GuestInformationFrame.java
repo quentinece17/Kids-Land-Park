@@ -239,45 +239,45 @@ public class GuestInformationFrame extends JFrame{
                 }
                 
                 else {
-                    /// Si c'est le button 'member' qui a été sélectionner
-                    if (memberButton.isSelected()){
-                       {
-                        // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
-                        //On récupère les informations de l'utilisateur
-                        String nameUser = f_name.getText() +" " + l_name.getText();
-                        String typeUser = "GC";
-                        int ageUser = Integer.parseInt(agetext.getText());
-                        
-                        //Création du GuestCustomer dans la base de donnée
-                        //controller.createGuestData (nameUser, ageUser, typeUser);
-                        
-                        //Affichage de la page pour un Customer
-                        //controller.AffichageFieldsException();
-                        // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
-                        controller.AffichageSignUp(f_name.getText(), l_name.getText(), ageUser);
-                        window.dispose();
-                        } 
-                    }
-                    
-                    /// Si c'est le button 'guest' qui a été sélectionner
-                    else if (guestButton.isSelected()){
-                       {
-                        // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
-                        //On récupère les informations de l'utilisateur
-                        String nameUser = f_name.getText() +" " + l_name.getText();
-                        String typeUser = "GC";
-                        int ageUser = Integer.parseInt(agetext.getText());
-                        
-                        //Création du GuestCustomer dans la base de donnée
-                        controller.createGuestData (nameUser, ageUser, typeUser);
-                        
-                        //Affichage de la page pour un Customer
-                        //controller.AffichageFieldsException();
-                        // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
-                        controller.AffichageCustomer();
-                        window.dispose();
-                        } 
-                    }
+                        /// Si c'est le button 'member' qui a été sélectionner
+                        if (memberButton.isSelected()){
+                           {
+                            // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
+                            //On récupère les informations de l'utilisateur
+                            String nameUser = f_name.getText() +" " + l_name.getText();
+                            String typeUser = "GC";
+                            int ageUser = Integer.parseInt(agetext.getText());
+
+                            //Création du GuestCustomer dans la base de donnée
+                            //controller.createGuestData (nameUser, ageUser, typeUser);
+
+                            //Affichage de la page pour un Customer
+                            //controller.AffichageFieldsException();
+                            // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
+                            controller.AffichageSignUp(f_name.getText(), l_name.getText(), ageUser);
+                            window.dispose();
+                            } 
+                        }
+
+                        /// Si c'est le button 'guest' qui a été sélectionner
+                        else if (guestButton.isSelected()){
+                           {
+                            // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
+                            //On récupère les informations de l'utilisateur
+                            String nameUser = f_name.getText() +" " + l_name.getText();
+                            String typeUser = "GC";
+                            int ageUser = Integer.parseInt(agetext.getText());
+
+                            //Création du GuestCustomer dans la base de donnée
+                            controller.createGuestData (nameUser, ageUser, typeUser);
+
+                            //Affichage de la page pour un Customer
+                            //controller.AffichageFieldsException();
+                            // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
+                            controller.AffichageCustomer();
+                            window.dispose();
+                            } 
+                        }
                 }
                 }
             

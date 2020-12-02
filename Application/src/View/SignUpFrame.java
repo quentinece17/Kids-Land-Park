@@ -161,12 +161,18 @@ public class SignUpFrame extends javax.swing.JFrame {
         if ( evt.getSource() == button1 )
         {
             if (textField1.getText().equals("") || jPasswordField2.getText().equals("") || jPasswordField3.getText().equals(""))
+            {
                 System.out.print("Warning !  no valid fields");
+            }
             
             else 
             {
                 if (jPasswordField2.getText().equals(jPasswordField3.getText()))
-                System.out.println("YESS");
+                {
+                    controller.createMember_inSQL(userFullName, userFullName, ABORT, userFullName, userFullName);
+                    controller.AffichageCustomer();
+                    dispose();  // La fenetre actuel disparait
+                }
             }
         }
     }//GEN-LAST:event_button1ActionPerformed
@@ -211,15 +217,13 @@ public class SignUpFrame extends javax.swing.JFrame {
     }*/
     public JFrame getWindow () { return this; }
     public void setDataSignUp(String n_, String lastN_, int age_ ){
-        userName = n_;
-        userLastName = lastN_;
-        userAge = age_;
+        userFullName = n_ + " " + lastN_; // Construction du nom de l'utilisateur à insérer ensuite dans la base de données
+        userAge = age_;                   // Stockage de l'age de l'utilisateur
     }
     
     // Controller attribute related to the class Apllication
     private Application controller;
-    private String userName;
-    private String userLastName;
+    private String userFullName;
     private int userAge;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

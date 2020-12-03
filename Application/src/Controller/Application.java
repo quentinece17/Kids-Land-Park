@@ -19,6 +19,7 @@ import View.FieldsExceptionFrame;
 import View.GuestInformationFrame;
 import View.RegisterFrame;
 import View.CustomerFrame;
+import View.InfosAttraction;
 import View.SignUpFrame;
 
 import javax.swing.*;
@@ -42,6 +43,7 @@ public class Application{
     private CustomerFrame customer;
     private SignUpFrame newPerson;
     private ChooseRide chooseride;
+    private InfosAttraction infoAttrac;
     
     //Tableau d'attractions
     Ride [] ride;
@@ -70,6 +72,7 @@ public class Application{
         customer = new CustomerFrame (this);
         newPerson = new SignUpFrame(this);
         chooseride = new ChooseRide (this);
+        infoAttrac = new InfosAttraction (this);
     }
 
     //Méthodes d'affichage des différentes windows
@@ -100,6 +103,25 @@ public class Application{
         chooseride.setInfoAttrac4(ride[3].getName());
         chooseride.setInfoAttrac5(ride[4].getName());
         chooseride.setInfoAttrac6(ride[5].getName());
+    }
+    
+    public void AffichageInfosAttraction (String attraction) {
+        infoAttrac.getWindow().setVisible(true);
+        //On regarde à quelle attraction correspond celle envoyé en paramètre (celle sur laquelle l'utilisateur a cliqué)
+        for (int i=0; i<ride.length; ++i)
+        {
+            if (ride[i].getName().equals(attraction))
+            {
+                infoAttrac.setName(ride[i].getName());
+                infoAttrac.setPrice(String.valueOf(ride[i].getPrice()));
+                infoAttrac.setFeatures(ride[i].getFeatures());
+            }
+            else {
+                //Exception
+                System.out.println ("Attraction pas trouvé");
+            }
+        }
+        
     }
 
     public void InitialisationRide () 

@@ -69,7 +69,7 @@ public class GuestInformationFrame extends JFrame{
     private JTextField agetext = new JTextField (10);
     
     // Gestion du type du membre
-    private JLabel memberType = new JLabel ("Member type : ");
+    private JLabel memberType = new JLabel ("Customer type : ");
     private ButtonGroup customerType = new ButtonGroup();           // Button group qui laisse libre choix quand a la sélection du typer de 'customer'
     private JRadioButton guestButton = new JRadioButton("Guest");     // Boutton Guest 
     private JRadioButton memberButton = new JRadioButton("Member");   // Boutton Member
@@ -92,7 +92,7 @@ public class GuestInformationFrame extends JFrame{
          
          // Frame Design
         window.setTitle("Register ");
-        window.setSize(900, 900);
+        window.setSize(900, 800);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
@@ -140,7 +140,7 @@ public class GuestInformationFrame extends JFrame{
         
         p1.setLayout(null);
         label2.setBounds(0, 20, 900, 45);
-        start.setBounds(430,120,130,30);
+        start.setBounds(670,193,130,30);
         retour.setBounds(0,0,22,15);
          
         label2.setBorder(bLabel);
@@ -154,9 +154,9 @@ public class GuestInformationFrame extends JFrame{
         l_name.setBounds(240,160,110,20);
         age.setBounds(150, 190, 80, 40);
         agetext.setBounds(240, 200, 110, 20);
-        memberType.setBounds(150, 240, 100, 40);
-        memberButton.setBounds(250, 240, 100, 40);
-        guestButton.setBounds(250, 290, 100, 40);
+        memberType.setBounds(380, 110, 100, 40);
+        memberButton.setBounds(500, 110, 100, 40);
+        guestButton.setBounds(500, 140, 100, 40);
         
         
         start.setBorder(bButtons);

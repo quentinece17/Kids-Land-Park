@@ -162,11 +162,16 @@ public class CustomerFrame extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Récupération de la date sélectionné
         Date date = jCalendar1.getCalendar().getTime();
         Locale locale = Locale.getDefault();
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
         dateActual = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE).format(date);
         System.out.println (dateActual);
+        
+        //Affichage de la frame des attractions
+        controller.AffichageChooseRide();
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

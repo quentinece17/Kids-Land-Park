@@ -14,6 +14,7 @@ import Model.Person;
 import Model.Ride;
 import View.AccueilFrame;
 import View.AgeExceptionFrame;
+import View.ChooseRide;
 import View.FieldsExceptionFrame;
 import View.GuestInformationFrame;
 import View.RegisterFrame;
@@ -40,6 +41,7 @@ public class Application{
     private AgeExceptionFrame age;
     private CustomerFrame customer;
     private SignUpFrame newPerson;
+    private ChooseRide chooseride;
     
     //Tableau d'attractions
     Ride [] ride;
@@ -67,6 +69,7 @@ public class Application{
         age = new AgeExceptionFrame(this);
         customer = new CustomerFrame (this);
         newPerson = new SignUpFrame(this);
+        chooseride = new ChooseRide (this);
     }
 
     //Méthodes d'affichage des différentes windows
@@ -87,6 +90,16 @@ public class Application{
             customer.setText("Hello " + member.getNameUser());
         if (guest != null && member == null)
             customer.setText("Hello " + guest.getNameUser());
+    }
+    
+    public void AffichageChooseRide () {
+        chooseride.getWindow().setVisible(true);
+        chooseride.setInfoAttrac1(ride[0].getName());
+        chooseride.setInfoAttrac2(ride[1].getName());
+        chooseride.setInfoAttrac3(ride[2].getName());
+        chooseride.setInfoAttrac4(ride[3].getName());
+        chooseride.setInfoAttrac5(ride[4].getName());
+        chooseride.setInfoAttrac6(ride[5].getName());
     }
 
     public void InitialisationRide () 
@@ -152,5 +165,5 @@ public class Application{
      public Employee getEmployee () { return employee; }
      public GuestCustomer getGuest () { return guest; }
      public MemberCustomer getMember () { return member; }
+     public Ride[] getRide () { return ride; }
 }
-    

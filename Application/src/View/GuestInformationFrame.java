@@ -159,7 +159,6 @@ public class GuestInformationFrame extends JFrame{
         firstname.setForeground(Color.WHITE);
         f_name.setBounds(240,160,110,20);
         f_name.setBorder(bTextFields);
-        f_name.setForeground(Color.WHITE);
         lastname.setBounds(150,190,80,40);
         lastname.setForeground(Color.WHITE);
         l_name.setBounds(240,200,110,20);

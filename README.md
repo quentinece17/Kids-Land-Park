@@ -2,6 +2,17 @@
 
 Quand on clique sur une date, il faut afficher les attractions et quand on clique sur une attraction : il faut regarder dans la liste "tickets" de la classe Ride combien il y en a pour la date actuelle
 
+Idées d'Extensions : 
+
+    - Page Profil pour les Membres avec leurs informations : 
+        - Affichage d'une photo de profil se trouvant dans la base de donnée
+        - Possibilité de changer certaines informations
+        - Possibilité de se désabonner
+        - Visualisation de leurs commandes et possibilités de les supprimer (modifier ?)
+    
+    - Pour les attractions, afficher une image de l'attraction quand on regarde ses infos
+    - Pour chaque infos d'attractions, afficher les infos selon le thème de l'attraction (ex : GhostTerror -> thème qui fait peur)
+
 
 Pour le pattern MVC, j'ai essayé de classer les classes dans les packages Controller, View et Model mais je suis pas sûr de moi, donc hésitez pas à le dire si vous pensez différemment 
 

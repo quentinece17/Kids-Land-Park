@@ -26,6 +26,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 //Classe qui crée la fenêtre où l'utilisateur doit se connecter
@@ -52,7 +53,7 @@ public class RegisterFrame extends JFrame {
     
     //Gestion du login
     private JLabel login = new JLabel("Login : ");
-    private JTextField log = new JTextField(10);
+    private JPasswordField log = new JPasswordField();
     
     //Gestion du pseudo
     private JLabel pseudo = new JLabel("Pseudo : ");

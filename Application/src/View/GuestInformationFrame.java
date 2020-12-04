@@ -102,10 +102,6 @@ public class GuestInformationFrame extends JFrame{
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
-        // block try-catch pour voir si tous les champs demandés pour le 'GuestCustomer' sont bien rentrés.
-        //try{
-           start.addActionListener(new InteractionButtonListener()); 
-        //}
         //catch( FieldException eField) {
             //Message = eField.getMessage(); // Message récupère le String généré dans le constructeur de FieldException
             //controller.setie;ldExceptionLabel(Message);
@@ -264,15 +260,8 @@ public class GuestInformationFrame extends JFrame{
                             // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
                             //On récupère les informations de l'utilisateur
                             String nameUser = f_name.getText() +" " + l_name.getText();
-                            String typeUser = "GC";
                             int ageUser = Integer.parseInt(agetext.getText());
 
-                            //Création du GuestCustomer dans la base de donnée
-                            //controller.createGuestData (nameUser, ageUser, typeUser);
-
-                            //Affichage de la page pour un Customer
-                            //controller.AffichageFieldsException();
-                            // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
                             controller.AffichageSignUp(f_name.getText(), l_name.getText(), ageUser);
                             window.dispose();
                             } 
@@ -288,6 +277,7 @@ public class GuestInformationFrame extends JFrame{
                             int ageUser = Integer.parseInt(agetext.getText());
 
                             //Création du GuestCustomer dans la base de donnée
+                            System.out.println("TEST");
                             controller.createGuestData (nameUser, ageUser, typeUser);
 
                             //Affichage de la page pour un Customer

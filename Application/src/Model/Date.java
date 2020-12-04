@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Controller.Application;
 import java.util.ArrayList;
 
 /**
@@ -13,27 +14,31 @@ import java.util.ArrayList;
  */
 public class Date {
     
-    //Il faut un attribut pour la date en question : String ? 3 int ? GregorianCalendar ? 
+    //Instance d'Application pour accéder au tableau d'attractions
+    private Application controller;
+    private String dateActuelle; 
     
-    //Par exemple, on a 30 tickets max de dispo pour une date
-    private final int nbTicketMax = 30;
-    
-    //Pour une date, il y a un certain nombre de tickets disponible
-    //Pas sûr que ce soit utile, on peut tout simplement regarder dans la DB "Tickets", le nombre de tickets qu'il y a a la date en question
-    private ArrayList <Integer> tickets;
+    //Tableau d'attractions :  Pour chaque date, chaque attraction a un nombre de tickets disponible
+    private Ride [] rideOfTheDate = new Ride [6];
     
     //S'il n'y a plus de tickets dispo pour une certaine date, le boolean passe à false -> la date n'est plus disponible
     private boolean validDate;
     
     // Constructeur Date
-    public Date(){
-        tickets = new ArrayList<Integer>();  // Instanciation de la liste de Ticket 'tickets' en attributs
-        validDate = true;                   /// Etant donnée qu'une classe date vient d'être créer, son boolean vaut 'true'
+    public Date(String date){
+        
+        validDate = true;                   // Etant donnée qu'une classe date vient d'être créer, son boolean vaut 'true'
+        dateActuelle = date;
+        
+        DataInterface add = new DataBase ();
+        rideOfTheDate = add.createRide();
+        
     }
     
-    // Getter
-    public ArrayList<Integer> getTickets() { return tickets; }
     
+    public String getDateActuelle () { return dateActuelle; }
+    public Ride[] getRide () { return rideOfTheDate; }
+            
     
     
 }

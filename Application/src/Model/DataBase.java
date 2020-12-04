@@ -48,6 +48,30 @@ public class DataBase implements DataInterface {
        return type;
     }
     
+    public void createTicket (int idRide, int idUser, String date) {
+        
+        Connection conn = null;
+        Statement stmt = null;
+        
+        String request = "insert into Tickets (ride_ticket, user_ticket, date_ticket) values (" + idRide + ", " + idUser + ", '" + date + "');"; 
+    
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
+            
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+    }
+    
     @Override
     public Ride[] createRide ()
     {
@@ -80,7 +104,7 @@ public class DataBase implements DataInterface {
                 
                 while (rs.next())
                 {
-                    container[i-1] = new Ride (rs.getString(2), Double.parseDouble(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5)));
+                    container[i-1] = new Ride (Integer.parseInt(rs.getString(1)), rs.getString(2), Double.parseDouble(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5)));
                 }
             }
             
@@ -217,7 +241,39 @@ public class DataBase implements DataInterface {
         return valid;
     }
 
-    //public 
+    public int verifNumberOfTickets (String date, int id) {
+        
+        int nb = 0;
+        Connection conn = null;
+        Statement stmt = null;
+        
+        String request = "select count(*) from Tickets where date_ticket = '" + date + "' and ride_ticket = " + id + ";";
+        
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next())
+            {
+                nb = Integer.parseInt(rs.getString(1));
+            }
+            conn.close();
+            stmt.close();
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        
+        
+        return nb;
+    }
     
     @Override
     public GuestCustomer createGuest(String name, int age, String user_type) 

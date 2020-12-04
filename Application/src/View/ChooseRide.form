@@ -105,7 +105,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Choose your attraction"/>
+            <Property name="text" type="java.lang.String" value="Ride available for : "/>
           </Properties>
         </Component>
       </SubComponents>

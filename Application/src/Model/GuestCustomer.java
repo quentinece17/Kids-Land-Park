@@ -14,12 +14,14 @@ import java.util.ArrayList;
 public class GuestCustomer extends Person implements CustomerInterface {
     
     private double totalPrice;
+    
     //Liste de tickets achetés par le customer
-    private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
+    private ArrayList <Order> order = new ArrayList <Order> ();
 
     public GuestCustomer(int id, String name, int age, String type) {
         
         super (id, name, age,type);
+        totalPrice = 0;
     }
 
     @Override
@@ -27,4 +29,8 @@ public class GuestCustomer extends Person implements CustomerInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public ArrayList <Order> getOrder () { return order; }
+    public double getPrice () { return totalPrice; }
+    
+     public void setPrice (double p) { totalPrice = p; }
 }

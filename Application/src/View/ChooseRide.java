@@ -25,6 +25,7 @@ public class ChooseRide extends javax.swing.JFrame {
      */
     public ChooseRide(Application app) {
         controller = app;
+        dateChoosen = null;
         initComponents();
   
     }
@@ -63,7 +64,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Choose your attraction");
+        jLabel1.setText("Ride available for : ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -338,42 +339,42 @@ public class ChooseRide extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        controller.AffichageInfosAttraction(jLabel2.getText());
+        controller.AffichageInfosAttraction(jLabel2.getText(), dateChoosen);
         dispose ();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        controller.AffichageInfosAttraction(jLabel3.getText());
+        controller.AffichageInfosAttraction(jLabel3.getText(), dateChoosen);
         dispose ();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        controller.AffichageInfosAttraction(jLabel4.getText());
+        controller.AffichageInfosAttraction(jLabel4.getText(), dateChoosen);
         dispose ();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        controller.AffichageInfosAttraction(jLabel5.getText());
+        controller.AffichageInfosAttraction(jLabel5.getText(), dateChoosen);
         dispose ();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        controller.AffichageInfosAttraction(jLabel6.getText());
+        controller.AffichageInfosAttraction(jLabel6.getText(), dateChoosen);
         dispose ();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        controller.AffichageInfosAttraction(jLabel7.getText());
+        controller.AffichageInfosAttraction(jLabel7.getText(), dateChoosen);
         dispose ();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -385,6 +386,9 @@ public class ChooseRide extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    public void setDateChoosen (String date) { dateChoosen = date; }
+    
+    public void setDateChoosenLabel (String text) { jLabel1.setText(text); }
     public void setInfoAttrac1 (String text) { jLabel2.setText(text); }
     public void setInfoAttrac2 (String text) { jLabel3.setText(text); }
     public void setInfoAttrac3 (String text) { jLabel4.setText(text); }  
@@ -395,6 +399,7 @@ public class ChooseRide extends javax.swing.JFrame {
     public JFrame getWindow () { return this; }
     
     private Application controller;
+    private String dateChoosen;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

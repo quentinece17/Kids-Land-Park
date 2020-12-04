@@ -170,7 +170,7 @@ public class CustomerFrame extends JFrame {
         System.out.println (dateActual);
         
         //Affichage de la frame des attractions
-        controller.AffichageChooseRide();
+        controller.AffichageChooseRide(dateActual);
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

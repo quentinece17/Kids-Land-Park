@@ -20,7 +20,7 @@ public class MemberCustomer extends Person implements CustomerInterface {
     private String memberTypeUser;
     
     //Liste de tickets achetés par le customer
-    private ArrayList <Ticket> ticket= new ArrayList <Ticket> ();
+    private ArrayList <Order> order= new ArrayList <Order> ();
 
     
     public MemberCustomer(int id, String name, int age, String type, String pseu, String log, String memberType) {
@@ -29,6 +29,7 @@ public class MemberCustomer extends Person implements CustomerInterface {
        pseudoUser = pseu;
        loginUser = log;
        memberTypeUser = memberType;
+       totalPrice = 0;
        
        if (memberType.equals("children"))
            discount = 0.3;
@@ -51,5 +52,10 @@ public class MemberCustomer extends Person implements CustomerInterface {
     public String getLoginUser () { return loginUser; }
     public String getMemberType() { return memberTypeUser;}
     public double getDiscount() { return discount;} 
+    public double getPrice () { return totalPrice; }
+    public ArrayList <Order> getOrder () { return order; }
+    
+    
+    public void setPrice (double p) { totalPrice = p; }
     
 }

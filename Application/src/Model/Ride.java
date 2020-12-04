@@ -13,27 +13,30 @@ import java.util.ArrayList;
  */
 public class Ride {
    
+    private int idRide;
     private String name;
     private double price;
     private String features;
-    private int nbTicketsMax;
-    
-    //Si la liste atteint la taille du nombre de tickets max (ici 10), alors 
-    private ArrayList <Integer> ticket= new ArrayList <Integer> ();
+    private int nbTicketsAvailable;
+
     
     // Constructeur Ride
-    public Ride(String name_, double price_, String features_ , int maxTicket){
+    public Ride(int id, String name_, double price_, String features_ , int maxTicket){
         /// Initialisation des attributs de la nouvelle classe instanciée.
+        idRide = id;
         name = name_;
         price = price_;
         features = features_;
-        nbTicketsMax = maxTicket;
+        nbTicketsAvailable = maxTicket;
         
     }
     
     // Getters
+    public int getIdRide () { return idRide; } 
     public String getName() { return name; }
     public double getPrice() { return price; }
     public String getFeatures() { return features;}
-    public int getNbTicketsMax () { return nbTicketsMax;}
+    public int getNbTicketsAvailable () { return nbTicketsAvailable;}
+    
+    public void setNbTicketsAvailable (int nb) { nbTicketsAvailable = nb; } 
 }

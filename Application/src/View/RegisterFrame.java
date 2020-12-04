@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -47,8 +48,8 @@ public class RegisterFrame extends JFrame {
     private JButton retour ;
 
     //Gestion du titre de la fenêtre
-    String space = "                                                      ";
-    private JLabel label = new JLabel(space + " Please enter your informations : " + space);
+    String space = "                                                ";
+    private JLabel label = new JLabel(space + " Please enter your personnal information : " + space);
     Font font= new Font("Arial",Font.BOLD,20);
     
     //Gestion du login
@@ -74,7 +75,8 @@ public class RegisterFrame extends JFrame {
         controller = app;
         
         try{
-            img = new ImageIcon("park.jpg");    // Chargement de l'image
+            // Importation et Redimensionnement de la taille de l'image du parc d'attraction
+            img = new ImageIcon(new ImageIcon("parkIcon3.jpg").getImage().getScaledInstance(550, 489, Image.SCALE_DEFAULT));    
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
@@ -86,13 +88,14 @@ public class RegisterFrame extends JFrame {
         window.setLayout(new BorderLayout());
 
         
-        
+        javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 3 );
+        imageLabel.setBorder(bImage);
            
         // Design des panels
         p1.setSize(new Dimension(900, 350));
         p2.setSize(new Dimension(900, 400));
-        p1.setBackground(new Color(253, 233, 224));
-        p2.setBackground(new Color(253, 233, 224));  
+        p1.setBackground(Color.BLACK);
+        p2.setBackground(Color.BLACK);  
          
         buildpanel1();    
         p2.add(imageLabel);
@@ -109,35 +112,39 @@ public class RegisterFrame extends JFrame {
     {
         
         // Border pour le JLabel 'label'(Color.RED) et Border pour les boutons (Color.BLACK) de l'écrand d'accueil
-        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
-        javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.BLACK);
+        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(new Color (206, 206, 206));
+        javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.WHITE);
+        javax.swing.border.Border bTextFields = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
         
         try{
-            img = new ImageIcon("retour2.jpg");    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("retour4.jpg").getImage().getScaledInstance(55, 40, Image.SCALE_DEFAULT));    // Chargement de l'image
             retour = new JButton(img);       // On place cette image dans le Label dédiée à l'image du park
         }catch (Exception e){ e.printStackTrace(); }
 
         // On met le Layout du panel 1 à null pour pouvoir placer les boutons comme bon nous semble
         p1.setLayout(null);
-        label.setBounds(0, 20, 900, 45);
-        pseudo.setBounds(150,110,60,40);
-        pseu.setBounds(220,120,90,20);
-        login.setBounds(370,110,80,40);
-        log.setBounds(440,120,90,20);
-        register.setBounds(600,120,85,25);
-        retour.setBounds(0,0,22,15);
+        label.setBounds(0, 45, 925, 45);
+        pseudo.setBounds(200,110,60,40);
+        pseu.setBounds(270,120,90,20);
+        login.setBounds(420,110,80,40);
+        log.setBounds(490,120,90,20);
+        register.setBounds(650,120,85,25);
+        retour.setBounds(0,0,55,40);    /// On met la meme largeur et hauteur que le redimensionnement du bouton retourn ici
         
-        // Design des label et bouttons 
+        // Design des label et bouttons et JTextFields
         label.setBorder(bLabel);
-        label.setForeground(Color.red);
+        label.setForeground(new Color (206, 206, 206));
         label.setFont(font);
-        label.setBackground(new Color(253, 233, 224));
+        label.setBackground(Color.BLACK);
         register.setBorder(bButtons);
-        register.setBackground(new Color(254, 150, 160));
+        register.setBackground(Color.BLACK);
         register.setForeground(Color.WHITE);
-        retour.setBorder(bButtons);
-        //retour.setBackground(new Color(254, 150, 160));
+        pseudo.setForeground(Color.WHITE);
+        pseu.setBorder(bTextFields);
+        log.setBorder(bTextFields);
+        login.setForeground(Color.WHITE);
         retour.setForeground(Color.WHITE);
+        
 
         
         //ajouter les éléments au panel

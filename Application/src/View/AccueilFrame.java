@@ -54,7 +54,7 @@ public class AccueilFrame extends JFrame{
         controller = app;
         
         try{
-            img = new ImageIcon("park.jpg");    // Chargement de l'image
+            img = new ImageIcon("parkIcon3.jpg");    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
@@ -65,32 +65,34 @@ public class AccueilFrame extends JFrame{
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
-        // Border pour le JLabel 'label'(Color.RED) et Border pour les boutons (Color.BLACK) de l'écrand d'accueil
-        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
-        javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.BLACK);
+        // Border pour le JLabel 'label'(Color.RED) et Border pour les boutons (Color.BLACK) de l'écrand d'accueil ET Aussi pour l'image
+        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.WHITE);
+        javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 3 );
+        javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.RED);
         
         // Design des panels
         p1.setSize(new Dimension(900, 350));
         p2.setSize(new Dimension(900, 400));
-        p1.setBackground(new Color(253, 233, 224));
-        p2.setBackground(new Color(253, 233, 224));
+        p1.setBackground(Color.BLACK); //new Color(253, 233, 224)
+        p2.setBackground(Color.BLACK); //new Color(253, 233, 224)
         
         // On met le Layout du panel 1 à null pour pouvoir placer les boutons comme bon nous semble
         p1.setLayout(null);
-        label.setBounds(0, 20, 900, 45);            // Placer le JLabel "Welcome to Kids Land Park"
+        label.setBounds(0, 20, 920, 45);            // Placer le JLabel "Welcome to Kids Land Park"
         account.setBounds(320, 85, 85, 25);         // Placer le bouton "Log in"
         noAccount.setBounds(540, 85, 85, 25);       // Placer le bouton "Sign up"
         
         // Design des label et bouttons 
+        imageLabel.setBorder(bImage);
         label.setBorder(bLabel);
-        label.setForeground(Color.red);
-        label.setFont(font);
-        label.setBackground(new Color(253, 233, 224));
-        account.setBorder(bButtons);
-        account.setBackground(new Color(254, 150, 160));
+        label.setForeground(new Color (206, 206, 206));
+        label.setFont(font);    // Police et taille du string dans le label
+        label.setBackground( new Color (206, 206, 206)); //new Color(253, 233, 224)
+        account.setBorder(bLabel);
+        account.setBackground(Color.BLACK); //new Color(254, 150, 160)
         account.setForeground(Color.WHITE);
-        noAccount.setBorder(bButtons);
-        noAccount.setBackground(new Color(254, 150, 160));
+        noAccount.setBorder(bLabel);
+        noAccount.setBackground(Color.BLACK); //new Color(254, 150, 160)
         noAccount.setForeground(Color.WHITE);
         
         

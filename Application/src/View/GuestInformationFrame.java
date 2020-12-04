@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.InputMismatchException;
@@ -69,7 +70,7 @@ public class GuestInformationFrame extends JFrame{
     private JTextField agetext = new JTextField (10);
     
     // Gestion du type du membre
-    private JLabel memberType = new JLabel ("Customer type : ");
+    private JLabel type = new JLabel ("Customer type : ");
     private ButtonGroup customerType = new ButtonGroup();           // Button group qui laisse libre choix quand a la sélection du typer de 'customer'
     private JRadioButton guestButton = new JRadioButton("Guest");     // Boutton Guest 
     private JRadioButton memberButton = new JRadioButton("Member");   // Boutton Member
@@ -85,21 +86,22 @@ public class GuestInformationFrame extends JFrame{
         controller = app;
         
         try{
-            img = new ImageIcon("park.jpg");    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("parkIcon3.jpg").getImage().getScaledInstance(500, 475, Image.SCALE_DEFAULT));    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
+            
         }
         catch (Exception e){ e.printStackTrace(); }
          
+        // On set du border de l'image
+        javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 3 );
+        imageLabel.setBorder(bImage);
+        
          // Frame Design
         window.setTitle("Register ");
         window.setSize(900, 800);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
-        // block try-catch pour voir si tous les champs demandés pour le 'GuestCustomer' sont bien rentrés.
-        //try{
-           start.addActionListener(new InteractionButtonListener()); 
-        //}
         //catch( FieldException eField) {
             //Message = eField.getMessage(); // Message récupère le String généré dans le constructeur de FieldException
             //controller.setie;ldExceptionLabel(Message);
@@ -107,10 +109,10 @@ public class GuestInformationFrame extends JFrame{
         //}
         
         // Design des panels
-        p1.setSize(new Dimension(900, 350));
-        p2.setSize(new Dimension(900, 400));
-        p1.setBackground(new Color(253, 233, 224));
-        p2.setBackground(new Color(253, 233, 224));  
+        p1.setSize(new Dimension(900, 520));    // La somme des hauteurs des 2 panels donnent 900, soit la hauteur en pixel du GuestIinformationFrame
+        p2.setSize(new Dimension(900, 380));
+        p1.setBackground(Color.BLACK);
+        p2.setBackground(Color.BLACK);  
          
         buildpanel1();    
         p2.add(imageLabel);
@@ -126,11 +128,12 @@ public class GuestInformationFrame extends JFrame{
     
     public void buildpanel1 ()
     {
-        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.RED);
-        javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.BLACK);
+        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(new Color (206, 206, 206));
+        javax.swing.border.Border bTextFields = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
+        javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.WHITE);
         
         try{
-            img = new ImageIcon("retour2.jpg");    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("retour4.jpg").getImage().getScaledInstance(55, 40, Image.SCALE_DEFAULT));    // Chargement de l'image
             retour = new JButton(img);       // On place cette image dans le Label dédiée à l'image du park
         }catch (Exception e){ e.printStackTrace(); }
 
@@ -139,37 +142,49 @@ public class GuestInformationFrame extends JFrame{
         customerType.add(guestButton);
         
         p1.setLayout(null);
-        label2.setBounds(0, 20, 900, 45);
-        start.setBounds(670,193,130,30);
-        retour.setBounds(0,0,22,15);
+        label2.setBounds(0, 60, 900, 45);
+        start.setBounds(670,180,130,30);
+        retour.setBounds(0,0,55,40);    /// On met la meme largeur et hauteur que le redimensionnement du bouton retourn ici
          
         label2.setBorder(bLabel);
-        label2.setForeground(Color.red);
+        label2.setForeground(new Color (206, 206, 206));
         label2.setFont(font2);
-        label2.setBackground(new Color(253, 233, 224));
+        label2.setBackground(Color.BLACK);
         
-        firstname.setBounds(150,110,80,40);
-        f_name.setBounds(240,120,110,20);
-        lastname.setBounds(150,150,80,40);
-        l_name.setBounds(240,160,110,20);
-        age.setBounds(150, 190, 80, 40);
-        agetext.setBounds(240, 200, 110, 20);
-        memberType.setBounds(380, 110, 100, 40);
-        memberButton.setBounds(500, 110, 100, 40);
-        guestButton.setBounds(500, 140, 100, 40);
+        firstname.setBounds(150,150,80,40);
+        firstname.setForeground(Color.WHITE);
+        f_name.setBounds(240,160,110,20);
+        f_name.setBorder(bTextFields);
+        lastname.setBounds(150,190,80,40);
+        lastname.setForeground(Color.WHITE);
+        l_name.setBounds(240,200,110,20);
+        l_name.setBorder(bTextFields);
+        age.setBounds(150, 230, 80, 40);
+        agetext.setBounds(240, 240, 110, 20);
+        agetext.setBorder(bTextFields);
+        age.setForeground(Color.WHITE);
+        type.setBounds(380, 150, 100, 40);
+        type.setForeground(Color.WHITE);
+        memberButton.setBounds(500, 152, 100, 40);
+        guestButton.setBounds(500, 182, 100, 40);
+        
+        // Initialiser les couleurs des boutyons pour les laisser se fojndre dans la couleur de fond du panel
+        type.setBackground(Color.BLACK);
+        type.setForeground(Color.WHITE);
+        guestButton.setBackground(Color.BLACK);
+        guestButton.setForeground(Color.WHITE);
+        memberButton.setBackground(Color.BLACK);
+        memberButton.setForeground(Color.WHITE);
         
         
         start.setBorder(bButtons);
-        start.setBackground(new Color(254, 150, 160));
+        start.setBackground(Color.BLACK);
         start.setForeground(Color.WHITE);
         
-        // Initialiser les couleurs des boutyons pour les laisser se fojndre dans la couleur de fond du panel
-        memberButton.setBackground(new Color(253, 233, 224));
-        guestButton.setBackground(new Color(253, 233, 224));
         
-        retour.setBorder(bButtons);
+        //retour.setBorder(bButtons);
         //retour.setBackground(new Color(254, 150, 160));
-        retour.setForeground(Color.WHITE);
+        //retour.setForeground(Color.WHITE);
 
         
         p1.add (firstname);
@@ -181,7 +196,7 @@ public class GuestInformationFrame extends JFrame{
         p1.add(label2);
         p1.add(start);
         p1.add(retour);
-        p1.add(memberType);
+        p1.add(type);
         p1.add(memberButton);
         p1.add(guestButton);
 
@@ -245,15 +260,8 @@ public class GuestInformationFrame extends JFrame{
                             // Si aucune exception n'est envoyée à l'appelant, on exécute la suite car tous les JTextField sont remplies.
                             //On récupère les informations de l'utilisateur
                             String nameUser = f_name.getText() +" " + l_name.getText();
-                            String typeUser = "GC";
                             int ageUser = Integer.parseInt(agetext.getText());
 
-                            //Création du GuestCustomer dans la base de donnée
-                            //controller.createGuestData (nameUser, ageUser, typeUser);
-
-                            //Affichage de la page pour un Customer
-                            //controller.AffichageFieldsException();
-                            // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
                             controller.AffichageSignUp(f_name.getText(), l_name.getText(), ageUser);
                             window.dispose();
                             } 
@@ -269,6 +277,7 @@ public class GuestInformationFrame extends JFrame{
                             int ageUser = Integer.parseInt(agetext.getText());
 
                             //Création du GuestCustomer dans la base de donnée
+                            System.out.println("TEST");
                             controller.createGuestData (nameUser, ageUser, typeUser);
 
                             //Affichage de la page pour un Customer

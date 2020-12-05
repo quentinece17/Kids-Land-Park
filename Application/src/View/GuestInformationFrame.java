@@ -53,7 +53,7 @@ public class GuestInformationFrame extends JFrame{
     private JButton retour ;
 
     //Gestion du titre de la fenêtre
-    String space = "                                                      ";
+    String space = "                                         ";
     private JLabel label2 = new JLabel(space + " Welcome New customer !" + space);
     Font font2 = new Font("Arial",Font.BOLD,20); 
     
@@ -86,19 +86,20 @@ public class GuestInformationFrame extends JFrame{
         controller = app;
         
         try{
-            img = new ImageIcon(new ImageIcon("parkIcon3.jpg").getImage().getScaledInstance(500, 475, Image.SCALE_DEFAULT));    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("icon.jpg").getImage().getScaledInstance(155, 131, Image.SCALE_DEFAULT));    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
             
         }
         catch (Exception e){ e.printStackTrace(); }
          
         // On set du border de l'image
-        javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 3 );
+        javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
         imageLabel.setBorder(bImage);
+        imageLabel.setBounds(455, 150, 155, 131);
         
          // Frame Design
         window.setTitle("Register ");
-        window.setSize(900, 800);
+        window.setSize(750, 490);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
@@ -109,26 +110,27 @@ public class GuestInformationFrame extends JFrame{
         //}
         
         // Design des panels
-        p1.setSize(new Dimension(900, 520));    // La somme des hauteurs des 2 panels donnent 900, soit la hauteur en pixel du GuestIinformationFrame
-        p2.setSize(new Dimension(900, 380));
-        p1.setBackground(Color.BLACK);
-        p2.setBackground(Color.BLACK);  
+       // p1.setSize(new Dimension(900, 520));    // La somme des hauteurs des 2 panels donnent 900, soit la hauteur en pixel du GuestIinformationFrame
+        //p2.setSize(new Dimension(900, 380));
+        p1.setBackground( new Color (195, 195, 195) );
+        p1.add(imageLabel);
+        //p2.setBackground(Color.BLACK);  
          
         buildpanel1();    
-        p2.add(imageLabel);
+        //p2.add(imageLabel);
         
         start.addActionListener(new InteractionButtonListener());
         retour.addActionListener(new InteractionButtonListener());
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
-        window.add(p2, BorderLayout.SOUTH);    
+        //window.add(p2, BorderLayout.SOUTH);    
           
     }
     
     public void buildpanel1 ()
     {
-        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(new Color (206, 206, 206));
+        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.WHITE, 2);
         javax.swing.border.Border bTextFields = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.WHITE);
         
@@ -143,37 +145,37 @@ public class GuestInformationFrame extends JFrame{
         
         p1.setLayout(null);
         label2.setBounds(0, 60, 900, 45);
-        start.setBounds(670,180,130,30);
+        start.setBounds(460,290,130,30);
         retour.setBounds(0,0,55,40);    /// On met la meme largeur et hauteur que le redimensionnement du bouton retourn ici
          
         label2.setBorder(bLabel);
-        label2.setForeground(new Color (206, 206, 206));
+        label2.setForeground(Color.WHITE);
         label2.setFont(font2);
         label2.setBackground(Color.BLACK);
         
         firstname.setBounds(150,150,80,40);
         firstname.setForeground(Color.WHITE);
-        f_name.setBounds(240,160,110,20);
+        f_name.setBounds(245,160,110,20);
         f_name.setBorder(bTextFields);
         lastname.setBounds(150,190,80,40);
         lastname.setForeground(Color.WHITE);
-        l_name.setBounds(240,200,110,20);
+        l_name.setBounds(245,200,110,20);
         l_name.setBorder(bTextFields);
         age.setBounds(150, 230, 80, 40);
-        agetext.setBounds(240, 240, 110, 20);
+        agetext.setBounds(245, 240, 110, 20);
         agetext.setBorder(bTextFields);
         age.setForeground(Color.WHITE);
-        type.setBounds(380, 150, 100, 40);
+        type.setBounds(150, 305, 100, 40);
         type.setForeground(Color.WHITE);
-        memberButton.setBounds(500, 152, 100, 40);
-        guestButton.setBounds(500, 182, 100, 40);
+        memberButton.setBounds(268, 305, 100, 40);
+        guestButton.setBounds(268, 345, 100, 40);
         
         // Initialiser les couleurs des boutyons pour les laisser se fojndre dans la couleur de fond du panel
-        type.setBackground(Color.BLACK);
+        type.setBackground(new Color (195, 195, 195));
         type.setForeground(Color.WHITE);
-        guestButton.setBackground(Color.BLACK);
+        guestButton.setBackground(new Color (195, 195, 195));
         guestButton.setForeground(Color.WHITE);
-        memberButton.setBackground(Color.BLACK);
+        memberButton.setBackground(new Color (195, 195, 195));
         memberButton.setForeground(Color.WHITE);
         
         

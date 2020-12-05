@@ -48,8 +48,8 @@ public class RegisterFrame extends JFrame {
     private JButton retour ;
 
     //Gestion du titre de la fenêtre
-    String space = "                                                ";
-    private JLabel label = new JLabel(space + " Please enter your personnal information : " + space);
+    String space = "                                ";
+    private JLabel label = new JLabel("Please enter your personnal information : " + space);
     Font font= new Font("Arial",Font.BOLD,20);
     
     //Gestion du login
@@ -76,35 +76,36 @@ public class RegisterFrame extends JFrame {
         
         try{
             // Importation et Redimensionnement de la taille de l'image du parc d'attraction
-            img = new ImageIcon(new ImageIcon("parkIcon3.jpg").getImage().getScaledInstance(550, 489, Image.SCALE_DEFAULT));    
+            img = new ImageIcon(new ImageIcon("icon.jpg").getImage().getScaledInstance(155, 131, Image.SCALE_DEFAULT));    
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
          
          // Frame Design
         window.setTitle("Register ");
-        window.setSize(900, 750);
+        window.setSize(550, 435);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
+        imageLabel.setBounds(340, 170, 157, 133);
 
         
         javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 3 );
         imageLabel.setBorder(bImage);
            
         // Design des panels
-        p1.setSize(new Dimension(900, 350));
-        p2.setSize(new Dimension(900, 400));
-        p1.setBackground(Color.BLACK);
-        p2.setBackground(Color.BLACK);  
+        //p1.setSize(new Dimension(900, 350));
+        //p2.setSize(new Dimension(900, 400));
+        p1.setBackground(new Color (195, 195, 195));
+        //p2.setBackground(Color.BLACK);  
          
         buildpanel1();    
-        p2.add(imageLabel);
+        //p2.add(imageLabel);
         
         register.addActionListener(new InteractionButtonListener());
         retour.addActionListener(new InteractionButtonListener());
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
-        window.add(p2, BorderLayout.SOUTH);        
+        //window.add(p2, BorderLayout.SOUTH);        
         
     }
     
@@ -112,7 +113,7 @@ public class RegisterFrame extends JFrame {
     {
         
         // Border pour le JLabel 'label'(Color.RED) et Border pour les boutons (Color.BLACK) de l'écrand d'accueil
-        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(new Color (206, 206, 206));
+        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(new Color (206, 206, 206), 2);
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.WHITE);
         javax.swing.border.Border bTextFields = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
         
@@ -124,18 +125,18 @@ public class RegisterFrame extends JFrame {
         // On met le Layout du panel 1 à null pour pouvoir placer les boutons comme bon nous semble
         p1.setLayout(null);
         label.setBounds(0, 45, 925, 45);
-        pseudo.setBounds(200,110,60,40);
-        pseu.setBounds(270,120,90,20);
-        login.setBounds(420,110,80,40);
-        log.setBounds(490,120,90,20);
-        register.setBounds(650,120,85,25);
+        pseudo.setBounds(50,160,60,40);
+        pseu.setBounds(125,170,90,20);
+        login.setBounds(50,240,80,40);
+        log.setBounds(125,250,90,20);
+        register.setBounds(125,310,85,25);
         retour.setBounds(0,0,55,40);    /// On met la meme largeur et hauteur que le redimensionnement du bouton retourn ici
         
         // Design des label et bouttons et JTextFields
         label.setBorder(bLabel);
-        label.setForeground(new Color (206, 206, 206));
+        label.setForeground(Color.WHITE);
         label.setFont(font);
-        label.setBackground(Color.BLACK);
+        //label.setBackground(Color.BLACK);
         register.setBorder(bButtons);
         register.setBackground(Color.BLACK);
         register.setForeground(Color.WHITE);
@@ -155,6 +156,7 @@ public class RegisterFrame extends JFrame {
         p1.add(label);
         p1.add(register);
         p1.add(retour);
+        p1.add(imageLabel);
 
     }
     

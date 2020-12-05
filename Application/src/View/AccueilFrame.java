@@ -34,7 +34,7 @@ public class AccueilFrame extends JFrame{
     private JButton account = new JButton("Log in");
     private JButton noAccount = new JButton("Sign up");
     
-    String space = "                                                      ";
+    String space = "                   ";
     
     //JLabel
     private JLabel label = new JLabel(space + "Welcome to Kids Land Park" + space);
@@ -54,14 +54,14 @@ public class AccueilFrame extends JFrame{
         controller = app;
         
         try{
-            img = new ImageIcon("parkIcon3.jpg");    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("icon.jpg").getImage().getScaledInstance(155, 131, Image.SCALE_DEFAULT));    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
         
         // Frame Design
         window.setTitle("Kids Land Park");
-        window.setSize(900, 750);
+        window.setSize(500, 350);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
@@ -71,23 +71,24 @@ public class AccueilFrame extends JFrame{
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.RED);
         
         // Design des panels
-        p1.setSize(new Dimension(900, 350));
-        p2.setSize(new Dimension(900, 400));
-        p1.setBackground(Color.BLACK); //new Color(253, 233, 224)
-        p2.setBackground(Color.BLACK); //new Color(253, 233, 224)
+        //p1.setSize(new Dimension(900, 350));
+        //p2.setSize(new Dimension(900, 400));
+        p1.setBackground(new Color (195, 195, 195)); //new Color(253, 233, 224)
+        //p2.setBackground(new Color (195, 195, 195)); //new Color(253, 233, 224)
         
         // On met le Layout du panel 1 à null pour pouvoir placer les boutons comme bon nous semble
         p1.setLayout(null);
         label.setBounds(0, 20, 920, 45);            // Placer le JLabel "Welcome to Kids Land Park"
-        account.setBounds(320, 85, 85, 25);         // Placer le bouton "Log in"
-        noAccount.setBounds(540, 85, 85, 25);       // Placer le bouton "Sign up"
+        account.setBounds(150, 85, 85, 25);         // Placer le bouton "Log in"
+        noAccount.setBounds(250, 85, 85, 25);       // Placer le bouton "Sign up"
+        imageLabel.setBounds(170, 140, 157, 133);
         
         // Design des label et bouttons 
         imageLabel.setBorder(bImage);
         label.setBorder(bLabel);
-        label.setForeground(new Color (206, 206, 206));
+        label.setForeground( Color.BLACK );
         label.setFont(font);    // Police et taille du string dans le label
-        label.setBackground( new Color (206, 206, 206)); //new Color(253, 233, 224)
+        label.setBackground( new Color (206, 206, 206) ); //new Color(253, 233, 224)
         account.setBorder(bLabel);
         account.setBackground(Color.BLACK); //new Color(254, 150, 160)
         account.setForeground(Color.WHITE);
@@ -102,11 +103,11 @@ public class AccueilFrame extends JFrame{
         p1.add(label);
         p1.add(account);
         p1.add(noAccount);
-        p2.add(imageLabel);
+        p1.add(imageLabel);//p2.add(imageLabel);
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
-        window.add(p2, BorderLayout.SOUTH);        
+        //window.add(p2, BorderLayout.SOUTH);        
         
     }
     

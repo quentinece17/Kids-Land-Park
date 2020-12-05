@@ -50,7 +50,7 @@ public class SignUpFrame extends javax.swing.JFrame {
 
         panel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        panel1.setBackground(new java.awt.Color(206, 206, 206));
+        panel1.setBackground(new java.awt.Color(195, 195, 195));
 
         textField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +64,9 @@ public class SignUpFrame extends javax.swing.JFrame {
 
         label3.setText("Confirm password");
 
+        button1.setBackground(new java.awt.Color(0, 0, 0));
         button1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setLabel("Connect");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +76,7 @@ public class SignUpFrame extends javax.swing.JFrame {
 
         label4.setAlignment(java.awt.Label.CENTER);
         label4.setFont(new java.awt.Font("Courier New", 3, 14)); // NOI18N
+        label4.setForeground(new java.awt.Color(255, 255, 255));
         label4.setText("Please fill the following fields");
 
         jPasswordField3.addActionListener(new java.awt.event.ActionListener() {

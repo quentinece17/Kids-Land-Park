@@ -125,5 +125,5 @@ Création des DB :
 
 
 
-create table Order (id_order INT AUTO_INCREMENT, ride_order INT, user_order INT, number_ticket INT, date_order Date, date_of_purchase Date, PRIMARY KEY (id_order), CONSTRAINT FK_ride_id FOREIGN KEY (ride_order) REFERENCES Ride(id_ride), CONSTRAINT FK_user_id FOREIGN KEY (user_order) REFERENCES Personne(user_id));
+create table Command (id_command INT AUTO_INCREMENT, ride_command INT, user_command INT, adult_ticket INT, child_ticket INT, date_command Date, date_purchase Date, PRIMARY KEY (id_command), CONSTRAINT fk_ride_id FOREIGN KEY (ride_command) REFERENCES Ride(id_ride), CONSTRAINT fk_user_id FOREIGN KEY (user_command) REFERENCES Personne(user_id));
 

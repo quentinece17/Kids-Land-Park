@@ -48,13 +48,12 @@ public class DataBase implements DataInterface {
        return type;
     }
     
-    public void createTicket (int idRide, int idUser, int nbOfTickets, String date, String datePurchase) {
+    public void createTicket (int idRide, int idUser, int adTick, int childTick, String date, String datePurchase) {
         
         Connection conn = null;
         Statement stmt = null;
         
-        String request = "insert into Command (ride_command, user_command, number_ticket, date_command, date_purchase) values (" + idRide + ", " + idUser + ", " + nbOfTickets + ",'" + date + "', '" + datePurchase +"');"; 
-        System.out.println (request);
+        String request = "insert into Command (ride_command, user_command, adult_ticket, child_ticket, date_command, date_purchase) values (" + idRide + ", " + idUser + ", " + adTick + ", "+ childTick +",'" + date + "', '" + datePurchase +"');"; 
         try 
         {
             DataSource data = new DataSource ();
@@ -281,7 +280,7 @@ public class DataBase implements DataInterface {
         Connection conn = null;
         Statement stmt = null;
         
-        String request = "select number_ticket from Command where date_command = '" + date + "' and ride_command = " + id + ";";
+        String request = "select * from Command where date_command = '" + date + "' and ride_command = " + id + ";";
         
          try 
         {
@@ -294,7 +293,7 @@ public class DataBase implements DataInterface {
             
             while (rs.next())
             {
-                nb += Integer.parseInt(rs.getString(1));
+                nb += Integer.parseInt(rs.getString(4)) + Integer.parseInt(rs.getString(5));
             }
             conn.close();
             stmt.close();
@@ -302,7 +301,7 @@ public class DataBase implements DataInterface {
         
         catch (SQLException e){
             
-            System.out.println ("Error Occured " + e.getMessage ());
+            System.out.println ("Error Occured loulou " + e.getMessage ());
         }
         
         

@@ -6,10 +6,11 @@
 package View;
 
 import Controller.Application;
-import Model.Date;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.util.Date;
 
 /**
  *
@@ -24,7 +25,6 @@ public class ConfirmOrder extends javax.swing.JFrame {
         controller = app;
         dateChoosen = null;
         nbOfTickets = 1;
-
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
     }
@@ -41,7 +41,11 @@ public class ConfirmOrder extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable() {
+            public boolean isCellEditable (int d, int c) {
+                return false;
+            }
+        };
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -177,7 +181,13 @@ public class ConfirmOrder extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        controller.createTicket_inSQL();
+        //On récupère la date actuelle
+        Date dateActual = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+        String date = dateFormat.format(dateActual);
+        System.out.println (date);
+        
+        controller.createTicket_inSQL(date);
         
 
         // TODO add your handling code here:

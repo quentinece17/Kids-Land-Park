@@ -11,7 +11,7 @@ package Model;
  */
 public interface DataInterface {
     
-    public void createTicket (int idRide, int idUser, String date);
+    public void createTicket (int idRide, int idUser, int nbOfTickets, String date, String datePurchase);
     
     public Ride [] createRide ();
     

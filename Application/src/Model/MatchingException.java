@@ -11,7 +11,7 @@ package Model;
  */
 public class MatchingException extends Exception {
     
-    public MatchingException(){
-        super("Please fill all the text fields.");
+    public MatchingException(String str){
+        super(str);
     }
 }

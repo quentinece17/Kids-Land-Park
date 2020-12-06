@@ -10,6 +10,7 @@ import Model.DataInterface;
 import Model.Date;
 import Model.Employee;
 import Model.GuestCustomer;
+import Model.MatchingException;
 import Model.MemberCustomer;
 import Model.Order;
 import Model.Person;
@@ -23,6 +24,8 @@ import View.GuestInformationFrame;
 import View.RegisterFrame;
 import View.CustomerFrame;
 import View.InfosAttraction;
+import View.MatchingGuestExceptionFrame;
+import View.MatchingUserExceptionFrame;
 import View.NumberOfTickets;
 import View.SignUpFrame;
 
@@ -51,6 +54,8 @@ public class Application{
     private InfosAttraction infoAttrac;
     private NumberOfTickets numTickets;
     private ConfirmOrder confirmation;
+    private MatchingGuestExceptionFrame matchingGuestFields;
+    private MatchingUserExceptionFrame matchingUserSQL;
     
     //Tableau d'attractions
     private Ride [] ride;
@@ -87,6 +92,8 @@ public class Application{
         infoAttrac = new InfosAttraction (this);
         numTickets = new NumberOfTickets (this);
         confirmation = new ConfirmOrder (this);
+        matchingGuestFields = new MatchingGuestExceptionFrame(this);
+        matchingUserSQL = new MatchingUserExceptionFrame(this);
     }
     
     public void AddDate (String date) {
@@ -116,6 +123,8 @@ public class Application{
     //Méthodes d'affichage des différentes windows
     public void AffichageAccueil () { accueil.getWindow().setVisible(true);}
     public void AffichageRegister (){ register.getWindow().setVisible(true);}
+    public void AffichageMatchingGuest () { matchingGuestFields.getWindow().setVisible(true); }
+    public void AffichageMatchingUser () { matchingUserSQL.getWindow().setVisible(true); }
     
     public void AffichageSignUp (String prenom, String nom, int age){
         newPerson.setDataSignUp(prenom, nom, age);
@@ -307,7 +316,8 @@ public class Application{
         ride = create.createRide();
         
     }
-    public void personData (String pseu, String log)
+    // Permet de vérifier si l'utilisateur existe dans la base de données
+    public boolean personData (String pseu, String log)
     {
         //Permet de vérifier si la personne qui s'identifie existe
         int valid = 0;
@@ -318,9 +328,8 @@ public class Application{
         
         //Si la personne n'existe pas
         if (valid==0)
-        {
-            System.out.println ("user existe pas");
-        }
+            return false;
+        
         //Si la Personne existe
         else {
             //On regarde quel est le type de l'utilisateur
@@ -334,6 +343,7 @@ public class Application{
             {
                 employee = verif.createEmployee(pseu, log);
             }
+            return true; // La personne existe
         }
     }
     
@@ -442,14 +452,23 @@ public class Application{
      
      // Exception Frame Setters
      // On initialise le message de la fenêtre d'exception correspondante
+     /////////////////////////////////////////////////////////////////////////
      public void setFieldExceptionLabel(String msg){
          field.setMessage(msg);
      }
-     // Setter 
-     public void setAgeExceptionLabel(String msg){
-         field.setMessage(msg);
+     
+     public void setMatchingGuestExceptionLabel(String msg){
+         matchingGuestFields.setMessage(msg);
      }
-    
+     public void setMatchingUserExceptionLabel(String msg){
+         matchingUserSQL.setMessage(msg);
+     }
+     
+     public void setAgeExceptionLabel(String msg){
+         age.setMessage(msg);
+     }
+    ////////////////////////////////////////////////////////////////////
+     
      //Getters
      public Employee getEmployee () { return employee; }
      public GuestCustomer getGuest () { return guest; }

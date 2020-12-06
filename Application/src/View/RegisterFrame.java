@@ -11,6 +11,7 @@ package View;
  */
 
 import Controller.Application;
+import Model.MatchingException;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -160,6 +161,16 @@ public class RegisterFrame extends JFrame {
 
     }
     
+    // Vérifie si le pseudo comporte bien un '@' et un '.' pour une addresse e-mail
+    public boolean checkPseudo (String str) {
+        // Non valide
+        if ( (str.indexOf('@') == -1) || (str.indexOf('.') == -1) )
+            return false;
+        // Valide
+        else
+            return true;
+    }
+    
     private class InteractionButtonListener implements ActionListener
     {
       /**
@@ -173,20 +184,43 @@ public class RegisterFrame extends JFrame {
       {
             if (e.getSource() == register)
             {
-              controller.personData(pseu.getText(), log.getText());
-              //Si l'utilisateur est un MemberCustomer
-              if (controller.getMember() != null && controller.getEmployee() == null)
-              {
-                  controller.AffichageCustomer();
-                  window.dispose();
-                 
-              }
-              //Si l'utilisateur est un Employee
-              else if (controller.getMember() == null && controller.getEmployee() != null)
-              {
-                  //Afficher la frame d'un Employee
-                  System.out.println ("Je suis un employé : " + controller.getEmployee().getNameUser());
-              }
+                
+                boolean exist = controller.personData(pseu.getText(), log.getText());
+                /// SI IL YA DES WARNINGS ///////////////////////////
+                // Si le pseudo est valide
+                if ( !checkPseudo(pseu.getText()) )
+                {
+                    MatchingException ex = new MatchingException("Your pseudo must be an email address !");
+                    controller.setMatchingUserExceptionLabel(ex.getMessage()); // Une fenetre de warning pop-up ici 
+                    controller.AffichageMatchingUser();
+                }
+                
+                // Si la personne n'existe pas
+                else if (!exist)
+                {
+                    MatchingException ex = new MatchingException("Your pseudo and password don't exist");
+                    controller.setMatchingUserExceptionLabel(ex.getMessage()); // Une fenetre de warning pop-up ici 
+                    controller.AffichageMatchingUser();
+                }
+                
+                // Sinon, si il n'y a PAS de warning à signaler ///////////////
+                else
+                {
+                       //Si l'utilisateur est un MemberCustomer
+                    if (controller.getMember() != null && controller.getEmployee() == null)
+                    {
+                        controller.AffichageCustomer();
+                        window.dispose();
+
+                    }
+                    //Si l'utilisateur est un Employee
+                    else if (controller.getMember() == null && controller.getEmployee() != null)
+                    {
+                        //Afficher la frame d'un Employee
+                        System.out.println ("Je suis un employé : " + controller.getEmployee().getNameUser());
+                    }
+                }
+                
                 
             }
 //              else if (name == null)

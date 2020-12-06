@@ -6,6 +6,8 @@
 package View;
 
 import Controller.Application;
+import Model.FieldException;
+import Model.MatchingException;
 import javax.swing.JFrame;
 
 /**
@@ -185,9 +187,17 @@ public class SignUpFrame extends javax.swing.JFrame {
         {
             if (textField1.getText().equals("") || jPasswordField2.getText().equals("") || jPasswordField3.getText().equals(""))
             {
-                System.out.print("Warning !  no valid fields");
+                FieldException ex = new FieldException();
+                controller.setFieldExceptionLabel(ex.getMessage());
+                controller.AffichageFieldsException();
             }
 
+            if (!jPasswordField2.getText().equals(jPasswordField3.getText())){
+                MatchingException ex = new MatchingException(" Passwords are not matching ");
+                controller.setMatchingGuestExceptionLabel(ex.getMessage()); // Une fenetre de warning pop-up ici 
+                controller.AffichageMatchingGuest();
+            }
+            
             else
             {
                 if (jPasswordField2.getText().equals(jPasswordField3.getText()))

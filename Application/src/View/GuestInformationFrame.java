@@ -280,7 +280,6 @@ public class GuestInformationFrame extends JFrame{
                             int ageUser = Integer.parseInt(agetext.getText());
 
                             //Création du GuestCustomer dans la base de donnée
-                            System.out.println("TEST");
                             controller.createGuestData (nameUser, ageUser, typeUser);
 
                             //Affichage de la page pour un Customer

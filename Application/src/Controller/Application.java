@@ -54,7 +54,8 @@ public class Application{
     
     //Tableau d'attractions
     private Ride [] ride;
-    private String actualRide;
+    
+    private Ride ActualRide;
     
     //Liste de dates
     ArrayList <Date> allDates = new ArrayList <>();
@@ -105,6 +106,12 @@ public class Application{
         
         
     }
+    
+    public void saveActualRide (String name) {
+        
+        DataInterface save = new DataBase();
+        ActualRide = save.findRide(name);
+    }
 
     //Méthodes d'affichage des différentes windows
     public void AffichageAccueil () { accueil.getWindow().setVisible(true);}
@@ -119,6 +126,8 @@ public class Application{
     public void AffichageAgeException () { field.getWindow().setVisible(true);}
     public void AffichageNumberOfTickets (String date) {
         numTickets.getWindow().setVisible(true);
+        numTickets.setTextField(null);
+        
         numTickets.setDateChoosen(date);
     }
     
@@ -145,43 +154,64 @@ public class Application{
     public void AffichageConfirmOrder (String date, String nbTickets) {
         
         confirmation.getWindow().setVisible (true);
+
+        //On envoit la date choisi à la frame ConfirmOrder
         confirmation.setDateChoosen(date);
-        confirmation.setDateChoosenLabel(date);
-        confirmation.setNbOfTickets(Integer.parseInt(nbTickets));
-        double price=0;
-        double discount=0;
-        String discountField=null;
-        for (int i=0; i<ride.length; ++i)
+        //On reset le JTable
+        int numberOfOrder = confirmation.getTableModel().getRowCount();
+        for (int i=0; i<numberOfOrder; ++i)
         {
-            if (ride[i].getName().equals(actualRide))
-                price = ride[i].getPrice();
+            confirmation.getTableModel().removeRow(i);
+            
         }
-        confirmation.setRide(actualRide);
-        confirmation.setNbTickets(nbTickets);
-        double finalPrice = price * (Integer.parseInt(nbTickets));
-        confirmation.setPrice1(String.valueOf(finalPrice));
+        confirmation.setNbOfTickets(Integer.parseInt(nbTickets));
+        
         if (member != null && guest == null)
         {
-            discount = member.getDiscount()*100;
-            discountField = discount + " %";
-            confirmation.setDiscount(discountField); 
-            confirmation.setPrice2(String.valueOf(member.getDiscount()*finalPrice));
-            member.setPrice(member.getPrice() + member.getDiscount()*finalPrice); 
+            for (int i=0; i<member.getOrder().size(); ++i)
+            {
+                if (member.getOrder().get(i).getOrderValid() == false)
+                {
+                    String dateChoosen = member.getOrder().get(i).getDate();
+                    String nameRide = member.getOrder().get(i).getRideName();
+                    int nbOfTickets = member.getOrder().get(i).getNumberOfTickets();
+                    double price1 = member.getOrder().get(i).getPrice();
+                    String discountOrder = String.valueOf(member.getDiscount()*100 + "%");
+                    double price2 = price1*member.getDiscount();
+                    
+                    confirmation.getTableModel().addRow(new Object[]{dateChoosen, nameRide, nbOfTickets, price1, discountOrder, price2});
+                }
+            }
         }
-        else if (member == null && guest != null)
+        
+        if (member == null && guest!= null)
         {
-            confirmation.setDiscount ("No discount");
-            confirmation.setPrice2(String.valueOf(finalPrice));
-            guest.setPrice (guest.getPrice() + finalPrice);
+            for (int i=0; i<guest.getOrder().size(); ++i)
+            {
+                if (guest.getOrder().get(i).getOrderValid() == false)
+                {
+                    String dateChoosen = guest.getOrder().get(i).getDate();
+                    String nameRide = guest.getOrder().get(i).getRideName();
+                    int nbOfTickets = guest.getOrder().get(i).getNumberOfTickets();
+                    double price1 = guest.getOrder().get(i).getPrice();
+                    String discountOrder = "No discount";
+                    double price2 = price1;
+                    
+                    confirmation.getTableModel().addRow(new Object[]{dateChoosen, nameRide, nbOfTickets, price1, discountOrder, price2});
+                }
+            }
         }
-            
+                    
     }
     
     public void AffichageInfosAttraction (String attraction, String dateChoosen) {
         infoAttrac.getWindow().setVisible(true);
         infoAttrac.setChoosenDate(dateChoosen);
         infoAttrac.getBouton().setEnabled(true);
-        actualRide = attraction;
+        
+        saveActualRide (attraction);
+        
+        System.out.println ("Attraction actuelle : " + ActualRide.getName());
         
         boolean valid = false;
         int indiceDate=0;
@@ -295,30 +325,95 @@ public class Application{
          
          if (member!=null && guest==null)
          {
-             member.getOrder().add(new Order (date, actualRide, nbTickets, member.getPrice()));
+             //On ajoute la commande au tableau de commandes de l'utilisateur
+             member.getOrder().add(new Order (date, ActualRide.getName(), nbTickets, (nbTickets*ActualRide.getPrice()), false));
+             //On met à jour le prix total dépensé par l'utilisateur en lui ajoutant le prix de la commande actuelle
+             member.setPrice (member.getPrice() + nbTickets*ActualRide.getPrice());
          }
          else if (member==null && guest != null)
          {
-             guest.getOrder().add(new Order (date, actualRide, nbTickets, guest.getPrice()));
+             guest.getOrder().add(new Order (date, ActualRide.getName(), nbTickets, (nbTickets*ActualRide.getPrice()), false));
+             guest.setPrice(guest.getPrice() + nbTickets*ActualRide.getPrice());
+             
          }
      }
      
-     public void createTicket_inSQL (String date) {
-         DataInterface add = new DataBase ();
-         int idUser = 0;
-         int idRide = 0;
-         if (member!= null && guest==null)
-             idUser = member.getIdUser();
-         else if (member==null && guest!=null)
-             idUser = guest.getIdUser();
+     public void deleteAllOrder () {
          
-         for (int i=0; i<ride.length; ++i)
+         if (member!= null && guest==null)
          {
-             if (ride[i].getName().equals(actualRide))
-                 idRide = ride[i].getIdRide();
+             for (int i=0; i<member.getOrder().size(); ++i)
+             {
+                 if (member.getOrder().get(i).getOrderValid()==false)
+                     member.getOrder().remove(i);
+//                 member.getOrder().clear();
+             }
+         }
+     }
+     
+     public void createTicket_inSQL () {
+         DataInterface add = new DataBase ();
+         if (member!=null && guest == null)
+         {
+             //On parcourt toutes le commandes de l'utilisateur
+             for (int i=0; i<member.getOrder().size(); ++i)
+             {
+                 //Si la commande n'est pas validé (boolean== false)
+                 if (member.getOrder().get(i).getOrderValid() == false)
+                 {
+                     int idRide = 0;
+                     for (int j=0; j<ride.length; ++j)
+                    {
+                        if (ride[j].getName().equals(member.getOrder().get(i).getRideName()))
+                            idRide = ride[i].getIdRide();
+                    }
+                     int idUser = member.getIdUser();
+                     String date = member.getOrder().get(i).getDate();
+                     
+                     //On ajoute cette commande à la DB
+                     for (int k=0; k<member.getOrder().get(i).getNumberOfTickets(); ++k)
+                     {
+                         add.createTicket(idRide, idUser, date);
+                     }
+                        
+                     
+                     //On valide la commande en passant le boolean à true
+                     member.getOrder().get(i).setOrderValid(true);
+                 }
+             }
          }
          
-         add.createTicket(idRide, idUser, date);
+         if (guest!= null && member==null)
+         {
+             //On parcourt toutes le commandes de l'utilisateur
+             for (int i=0; i<guest.getOrder().size(); ++i)
+             {
+                 //Si la commande n'est pas validé (boolean== false)
+                 if (guest.getOrder().get(i).getOrderValid() == false)
+                 {
+                     int idRide = 0;
+                     for (int j=0; j<ride.length; ++j)
+                    {
+                        if (ride[j].getName().equals(guest.getOrder().get(i).getRideName()))
+                            idRide = ride[i].getIdRide();
+                    }
+                     int idUser = guest.getIdUser();
+                     String date = guest.getOrder().get(i).getDate();
+                     
+                     //On ajoute cette commande à la DB
+                     for (int k=0; k<guest.getOrder().get(i).getNumberOfTickets(); ++k)
+                     {
+                         add.createTicket(idRide, idUser, date);
+                     }
+                     
+                     
+                     //On valide la commande en passant le boolean à true
+                     
+                     guest.getOrder().get(i).setOrderValid(true);
+                 }
+             }
+         }
+        
      }
      
      // Création 'un nouveau member customer dans la base de donnéeset récupérationde ce MemberCustomer dans le programme

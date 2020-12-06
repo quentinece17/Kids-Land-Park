@@ -64,9 +64,9 @@ public class SignUpFrame extends javax.swing.JFrame {
 
         label3.setText("Confirm password");
 
-        button1.setBackground(new java.awt.Color(0, 0, 0));
+        button1.setBackground(new java.awt.Color(255, 255, 255));
         button1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setForeground(new java.awt.Color(0, 0, 0));
         button1.setLabel("Connect");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +175,10 @@ public class SignUpFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textField1ActionPerformed
 
+    private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField3ActionPerformed
+
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
         if ( evt.getSource() == button1 )
@@ -183,8 +187,8 @@ public class SignUpFrame extends javax.swing.JFrame {
             {
                 System.out.print("Warning !  no valid fields");
             }
-            
-            else 
+
+            else
             {
                 if (jPasswordField2.getText().equals(jPasswordField3.getText()))
                 {
@@ -195,10 +199,6 @@ public class SignUpFrame extends javax.swing.JFrame {
             }
         }// hello here
     }//GEN-LAST:event_button1ActionPerformed
-
-    private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField3ActionPerformed
 
     /**
      * @param args the command line arguments

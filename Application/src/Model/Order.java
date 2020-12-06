@@ -17,19 +17,24 @@ public class Order {
     private String rideName;
     private int numberOfTickets;
     private double final_price;
+    private boolean orderValid;
     
     // Constructeur Order
-    public Order(String d_, String ride, int nb, double price_){
+    public Order(String d_, String ride, int nb, double price_, boolean valid){
         date = d_;
         rideName = ride;
         numberOfTickets = nb;
         final_price = price_;
+        orderValid = valid;
     }
     
     // Getters
-    private String getDate () { return date; }
-    private String getRideName () { return rideName; }
-    private int getNumberOfTickets () { return numberOfTickets; }
+    public String getDate () { return date; }
+    public String getRideName () { return rideName; }
+    public int getNumberOfTickets () { return numberOfTickets; }
     public double getPrice(){ return final_price; }
+    public boolean getOrderValid () { return orderValid; }
     
+    //Setter
+    public void setOrderValid (boolean value) { orderValid = value; }
 }

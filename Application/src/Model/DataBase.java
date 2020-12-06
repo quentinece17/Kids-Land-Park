@@ -121,6 +121,40 @@ public class DataBase implements DataInterface {
     }
     
     @Override
+    public Ride findRide (String nameRide) {
+        
+        Ride container = null;
+        Connection conn = null;
+        Statement stmt = null;
+        
+        String request = "select * from Ride where name_ride = '" + nameRide + "';";
+        
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next())
+            {
+                container = new Ride (Integer.parseInt(rs.getString(1)), rs.getString(2), Double.parseDouble(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5)));
+            }
+            
+            conn.close();
+            stmt.close();
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        return container;
+    }
+    
+    @Override
     public MemberCustomer createMember (String pseu, String log) 
     {
         

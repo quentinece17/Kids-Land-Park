@@ -19,7 +19,7 @@ public class MemberCustomer extends Person implements CustomerInterface {
     private String loginUser;
     private String memberTypeUser;
     
-    //Liste de tickets achetés par le customer
+    //Liste de commandes achetés par le customer
     private ArrayList <Order> order= new ArrayList <Order> ();
 
     

@@ -15,6 +15,8 @@ public interface DataInterface {
     
     public Ride [] createRide ();
     
+    public Ride findRide (String nameRide);
+    
     public int verifNumberOfTickets (String date, int id);
     
     public String typeUser (String pseu, String log);

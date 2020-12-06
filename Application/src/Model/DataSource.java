@@ -19,7 +19,7 @@ public class DataSource {
     {
         try {
             
-            String url = "jdbc:mysql://localhost:3306/KidsLand";
+            String url = "jdbc:mysql://localhost:3306/KidsLand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String user = "root";
             String password = "33lovelyseals__";
 

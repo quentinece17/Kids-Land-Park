@@ -124,6 +124,7 @@ public class GuestInformationFrame extends JFrame{
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
+        window.setLocationRelativeTo(null);
         //window.add(p2, BorderLayout.SOUTH);    
           
     }

@@ -15,15 +15,17 @@ public class Order {
     
     private String date;
     private String rideName;
-    private int numberOfTickets;
+    private int AdultTickets;
+    private int ChildTickets;
     private double final_price;
     private boolean orderValid;
     
     // Constructeur Order
-    public Order(String d_, String ride, int nb, double price_, boolean valid){
+    public Order(String d_, String ride, int nbAdu, int nbChild, double price_, boolean valid){
         date = d_;
         rideName = ride;
-        numberOfTickets = nb;
+        AdultTickets = nbAdu;
+        ChildTickets = nbChild;
         final_price = price_;
         orderValid = valid;
     }
@@ -31,7 +33,8 @@ public class Order {
     // Getters
     public String getDate () { return date; }
     public String getRideName () { return rideName; }
-    public int getNumberOfTickets () { return numberOfTickets; }
+    public int getTicketsAdult () { return AdultTickets; }
+    public int getTicketsChild () { return ChildTickets; }
     public double getPrice(){ return final_price; }
     public boolean getOrderValid () { return orderValid; }
     

@@ -167,7 +167,6 @@ public class CustomerFrame extends JFrame {
         Locale locale = Locale.getDefault();
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
         dateActual = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE).format(date);
-        System.out.println (dateActual);
         
         //Affichage de la frame des attractions
         controller.AffichageChooseRide(dateActual);

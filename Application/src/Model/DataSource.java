@@ -21,7 +21,7 @@ public class DataSource {
             
             String url = "jdbc:mysql://localhost:3306/KidsLand";
             String user = "root";
-            String password = "Ajojo1718";
+            String password = "33lovelyseals__";
 
             conn = DriverManager.getConnection(url, user, password);
         }

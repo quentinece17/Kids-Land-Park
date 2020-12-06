@@ -11,11 +11,13 @@ package Model;
  */
 public interface DataInterface {
     
-    public void createTicket (int idRide, int idUser, int adTick, int childTick, String date, String datePurchase);
+    public void createTicket (int idRide, int idUser, int adTick, int childTick, String date, String datePurchase, double price);
     
     public Ride [] createRide ();
     
     public Ride findRide (String nameRide);
+    
+    public Order findOrder (int idUser);
     
     public int verifNumberOfTickets (String date, int id);
     

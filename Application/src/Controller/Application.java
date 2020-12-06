@@ -27,6 +27,8 @@ import View.InfosAttraction;
 import View.MatchingGuestExceptionFrame;
 import View.MatchingUserExceptionFrame;
 import View.NumberOfTickets;
+import View.OrderHistory;
+import View.ProfilMember;
 import View.SignUpFrame;
 
 import javax.swing.*;
@@ -54,6 +56,8 @@ public class Application{
     private InfosAttraction infoAttrac;
     private NumberOfTickets numTickets;
     private ConfirmOrder confirmation;
+    private ProfilMember profilMember;
+    private OrderHistory orderhistory;
     private MatchingGuestExceptionFrame matchingGuestFields;
     private MatchingUserExceptionFrame matchingUserSQL;
     
@@ -92,6 +96,8 @@ public class Application{
         infoAttrac = new InfosAttraction (this);
         numTickets = new NumberOfTickets (this);
         confirmation = new ConfirmOrder (this);
+        profilMember = new ProfilMember (this);
+        orderhistory = new OrderHistory (this);
         matchingGuestFields = new MatchingGuestExceptionFrame(this);
         matchingUserSQL = new MatchingUserExceptionFrame(this);
     }
@@ -125,7 +131,14 @@ public class Application{
     public void AffichageRegister (){ register.getWindow().setVisible(true);}
     public void AffichageMatchingGuest () { matchingGuestFields.getWindow().setVisible(true); }
     public void AffichageMatchingUser () { matchingUserSQL.getWindow().setVisible(true); }
-    
+    public void AffichageProfilMember () {
+        profilMember.getWindow().setVisible(true);
+        profilMember.setName(member.getNameUser());
+        profilMember.setAge (String.valueOf(member.getAgeUser()));
+        profilMember.setPseudo(member.getPseudoUser());
+        profilMember.setLogin(member.getLoginUser());
+        profilMember.setType(member.getMemberType());
+    }
     public void AffichageSignUp (String prenom, String nom, int age){
         newPerson.setDataSignUp(prenom, nom, age);
         newPerson.getWindow().setVisible(true);
@@ -137,7 +150,14 @@ public class Application{
         numTickets.getWindow().setVisible(true);        
         numTickets.setDateChoosen(date);
     }
-    
+    public void AffichageOrderHistory () {
+        orderhistory.getWindow().setVisible(true);
+        Order [] allOrders;
+        if (member!=null && guest==null)
+        {
+            
+        }
+    }
     public void AffichageCustomer (){ 
         customer.getWindow().setVisible(true);
         if (member != null && guest == null)
@@ -357,7 +377,11 @@ public class Application{
         }
     }
     
-
+    public Order AllCommandOfTheUser () {
+        
+        return null;
+    }
+    
      public void createGuestData (String name, int age, String user_type)
      {
          DataInterface add = new DataBase ();
@@ -415,8 +439,9 @@ public class Application{
                      String date = member.getOrder().get(i).getDate();
                      int adultTicket = member.getOrder().get(i).getTicketsAdult();
                      int childTicket = member.getOrder().get(i).getTicketsChild();
+                     double price = member.getOrder().get(i).getPrice();
                      //On ajoute cette commande à la DB
-                     add.createTicket(idRide, idUser, adultTicket, childTicket, date, dateOfPurchase);
+                     add.createTicket(idRide, idUser, adultTicket, childTicket, date, dateOfPurchase, price);
    
                      //On valide la commande en passant le boolean à true
                      member.getOrder().get(i).setOrderValid(true);
@@ -442,8 +467,9 @@ public class Application{
                      String date = guest.getOrder().get(i).getDate();
                      int adultTicket = guest.getOrder().get(i).getTicketsAdult();
                      int childTicket = guest.getOrder().get(i).getTicketsChild();
+                     double price = guest.getOrder().get(i).getPrice();
                      //On ajoute cette commande à la DB
-                     add.createTicket(idRide, idUser, adultTicket, childTicket, date, dateOfPurchase);
+                     add.createTicket(idRide, idUser, adultTicket, childTicket, date, dateOfPurchase, price);
                      
                      
                      

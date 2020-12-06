@@ -186,7 +186,7 @@ public class InfosAttraction extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jPanel5.setBackground(new java.awt.Color(195, 195, 195));
@@ -197,8 +197,7 @@ public class InfosAttraction extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(195, 195, 195));
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Select Attraction");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

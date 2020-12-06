@@ -71,8 +71,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
         jLabel7.setText("Name attraction 6");
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("See more");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,8 +104,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
         jLabel6.setText("Name attraction 5");
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("See more");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,8 +137,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
         jLabel5.setText("Name attraction 4");
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("See more");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,8 +170,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
         jLabel4.setText("Name attraction 3");
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("See more");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,8 +202,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
         jLabel3.setText("Name attraction 2");
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("See more");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,8 +235,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
         jLabel2.setText("Name attraction 1");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("See more");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

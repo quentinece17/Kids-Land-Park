@@ -60,7 +60,7 @@ public class FieldsExceptionFrame extends JFrame {
         window.add(imageLabel, BorderLayout.NORTH);
         window.add(exceptionMessage, BorderLayout.CENTER);
         window.add(ok, BorderLayout.SOUTH);
-
+        window.setLocationRelativeTo(null);
         //EXIT_ON_CLOSE.addActionListener(new RegisterFrame.InteractionButtonListener());
     }
 

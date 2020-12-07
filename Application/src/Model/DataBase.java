@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.lang.reflect.Member;
 import java.sql.*;
 import java.util.ArrayList;
 /**
@@ -155,6 +156,59 @@ public class DataBase implements DataInterface {
     }
     
     @Override
+    public ArrayList<Person> findCustos () {
+        
+        ArrayList <Person> contain = new ArrayList <>();
+        Connection conn = null;
+        Statement stmt = null;
+//        ArrayList <String> name_ride = new ArrayList<>();
+        
+//        name_ride = findNameRideForOrder(idUser);
+//        System.out.println (name_ride.size());
+        // On sélectrionne tous les customers de type 'membre' ou 'guest'
+        String request = "select * from Personne where (user_type='MC'|| user_type='GC');"; 
+        
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next())
+            {
+                // Si le type lu dans la DB est 'MC'
+                if ( rs.getString(6).equals("MC") )
+                {
+                    MemberCustomer mc = new MemberCustomer ( Integer.parseInt(rs.getString(1)), // Juste pour réccup  login et pseudo
+                                                     rs.getString(2), 
+                                                     Integer.parseInt(rs.getString(3)),
+                                                     rs.getString(4),
+                                                     rs.getString(5),
+                                                     rs.getString(6),
+                                                     rs.getString(7));
+                   
+                   contain.add( new MemberCustomer( Integer.parseInt(rs.getString(1)), rs.getString(2),
+                                Integer.parseInt(rs.getString(3)), rs.getString(6), mc.getPseudoUser(), mc.getLoginUser(), rs.getString(7)) ); // On ajoute alors le memberCustomer dans la table
+                }
+                // Si c'est GC
+                else if ( rs.getString(6).equals("GC") )
+                    contain.add(new GuestCustomer ( Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(6)) );
+            }
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        System.out.println("Taille contain list : " + contain.size());
+        return contain;
+    }
+    
+    @Override
     public ArrayList<Order> findOrder (int idUser) {
         
         ArrayList <Order> contain = new ArrayList <>();
@@ -220,6 +274,8 @@ public class DataBase implements DataInterface {
         }
         return name;
     }
+    
+    
     
     @Override
     public MemberCustomer createMember (String pseu, String log) 

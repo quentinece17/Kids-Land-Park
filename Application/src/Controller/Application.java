@@ -23,6 +23,7 @@ import View.FieldsExceptionFrame;
 import View.GuestInformationFrame;
 import View.RegisterFrame;
 import View.CustomerFrame;
+import View.EmployeeFrame;
 import View.InfosAttraction;
 import View.MatchingGuestExceptionFrame;
 import View.MatchingUserExceptionFrame;
@@ -62,6 +63,7 @@ public class Application{
     private OrderHistory orderhistory;
     private MatchingGuestExceptionFrame matchingGuestFields;
     private MatchingUserExceptionFrame matchingUserSQL;
+    private EmployeeFrame employ;
     
     //Tableau d'attractions
     private Ride [] ride;
@@ -102,6 +104,7 @@ public class Application{
         orderhistory = new OrderHistory (this);
         matchingGuestFields = new MatchingGuestExceptionFrame(this);
         matchingUserSQL = new MatchingUserExceptionFrame(this);
+        employ = new EmployeeFrame(this);
     }
     
     public void AddDate (String date) {
@@ -152,6 +155,66 @@ public class Application{
         numTickets.getWindow().setVisible(true);        
         numTickets.setDateChoosen(date);
     }
+    
+    public void AffichageEmployee()
+    {
+        employ.getWindow().setVisible(true);
+        int nbPersons = employ.getTableModel().getRowCount();
+        // Reinitialisatioin de la tableau au cas où c'était rempli
+        if (nbPersons != 0)
+            employ.getTableModel().setRowCount(0);
+        
+        ArrayList <Person> allCusto;
+        allCusto = AllCustoRegistered(); /// On récupère une liste contenant tous les customers enregistré jusqu'à présent dans la DB
+        
+        for ( int i = 0; i < allCusto.size(); ++i)
+        {
+            //if ( allCusto.get(i).getTypeUser().equals("MG") )
+            //System.out.println (allOrders.get(i).get
+            System.out.println(" Person Id : " + allCusto.get(i).getIdUser());
+        }
+        
+        employ.centerTable(employ.getTable());
+        
+        if ( allCusto.size() != 0 )
+        {
+            for ( int i=0; i < allCusto.size(); ++i )
+            {
+                System.out.println(allCusto.get(i).getTypeUser());
+                // Si on doit insérer un membre dans la JTable de la frame 'Employee'
+                if ( allCusto.get(i).getTypeUser().equals("MC") )
+                {
+                    System.out.println("RENTRE DANS MC 2 !!!!!");
+                    Person temp = allCusto.get(i);  // Pour pouvoir lire ensuite son pseudo et login
+                    employ.getTableModel().addRow(  new Object [] { allCusto.get(i).getIdUser(),
+                                                                    allCusto.get(i).getNameUser(),
+                                                                    allCusto.get(i).getAgeUser(),
+                                                                    temp.getPseuTable(),    // pseudo temporairement occupé
+                                                                    temp.getLogTable(),     // login : idem
+                                                                    "MC",
+                                                                    allCusto.get(i).getTypeUser(),
+                                                                    } );
+                }
+                
+                // Si on doit insérer un guest dans la JTable de la frame 'Employee'
+                else if (allCusto.get(i).getTypeUser().equals("GC"))
+                {
+                    employ.getTableModel().addRow(  new Object [] { allCusto.get(i).getIdUser(),
+                                                                    allCusto.get(i).getNameUser(),
+                                                                    allCusto.get(i).getAgeUser(),
+                                                                    "NONE",
+                                                                    "NONE",
+                                                                    "GC",
+                                                                    "NONE",
+                                                                    } );
+                }
+                    
+            }
+        }
+        
+        //allCusto = 
+    }
+    
     public void AffichageOrderHistory () {
         orderhistory.getWindow().setVisible(true);
         int numberOfOrder = orderhistory.getTableModel().getRowCount();
@@ -180,6 +243,7 @@ public class Application{
             }
         } 
     }
+    
     public void AffichageCustomer (){ 
         customer.getWindow().setVisible(true);
         if (member != null && guest == null)
@@ -392,6 +456,19 @@ public class Application{
             commandsUser = recup.findOrder(guest.getIdUser());
         
         return commandsUser;
+    }
+    
+    public ArrayList<Person> AllCustoRegistered () {
+        ArrayList <Person> custo = null;
+        DataInterface recup = new DataBase();
+        
+        // Si l'employee est bien instancié --> on récupère tous les membre et guest de la DB
+        if (employee != null)
+            custo = recup.findCustos();
+        else
+            JOptionPane.showMessageDialog(null, "employee attribute not instanciated --> 'employee = null' ");
+        
+        return custo;
     }
     
      public void createGuestData (String name, int age, String user_type)

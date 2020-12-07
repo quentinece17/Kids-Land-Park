@@ -36,6 +36,8 @@ import javax.swing.Icon;
 import java.awt.*;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javafx.scene.layout.Border;
 
 /**
@@ -152,11 +154,31 @@ public class Application{
     }
     public void AffichageOrderHistory () {
         orderhistory.getWindow().setVisible(true);
-        Order [] allOrders;
-        if (member!=null && guest==null)
+        int numberOfOrder = orderhistory.getTableModel().getRowCount();
+        if (numberOfOrder!=0)
         {
-            
+            orderhistory.getTableModel().setRowCount(0);
         }
+        ArrayList <Order> allOrders;
+        allOrders = AllCommandOfTheUser();
+        for (int i=0; i<allOrders.size(); ++i)
+        {
+            System.out.println (allOrders.get(i).getPurchaseDate() + " - " + allOrders.get(i).getDate());
+        }
+        orderhistory.centerTable(orderhistory.getTable());
+        if (allOrders.size()!=0)
+        {
+            for (int i=0; i<allOrders.size(); ++i)
+            {
+                String datePurchase = allOrders.get(i).getPurchaseDate();
+                String nameRide = allOrders.get(i).getRideName();
+                int adultTicket = allOrders.get(i).getTicketsAdult();
+                int childTicket = allOrders.get(i).getTicketsChild();
+                double price = allOrders.get(i).getPrice();
+                String dateValid = allOrders.get(i).getDate();
+                orderhistory.getTableModel().addRow(new Object[] {datePurchase, nameRide, adultTicket, childTicket, price, dateValid});
+            }
+        } 
     }
     public void AffichageCustomer (){ 
         customer.getWindow().setVisible(true);
@@ -191,16 +213,7 @@ public class Application{
     public void AffichageConfirmOrder (String date) {
         
         confirmation.getWindow().setVisible (true);
-//        if (member.getOrder().size() != 0)
-//        {
-//            for (int i=0; i<member.getOrder().size(); ++i)
-//            {
-//                System.out.println (member.getOrder().get(i).getRideName() + " - " + member.getOrder().get(i).getTicketsAdult() + " - " + member.getOrder().get(i).getTicketsAdult() + " - " + member.getOrder().get(i).getDate());
-//            }
-//        }
-//        else
-//            System.out.println ("Pas de commande en cours");
-
+       
         //On envoit la date choisi à la frame ConfirmOrder
         confirmation.setDateChoosen(date);
         //On reset le JTable
@@ -208,19 +221,11 @@ public class Application{
         int numberOfOrder2 = confirmation.getTableModel2().getRowCount();
         if (numberOfOrder!=0)
         {
-            for (int i=0; i<numberOfOrder; ++i)
-            {
-                confirmation.getTableModel().removeRow(i);
-
-            }
+            confirmation.getTableModel().setRowCount(0);
         }
         if (numberOfOrder2!=0)
         {
-            for (int i=0; i<numberOfOrder; ++i)
-            {
-                confirmation.getTableModel2().removeRow(i);
-
-            }
+            confirmation.getTableModel2().setRowCount(0);
         }
         if (member != null && guest == null)
         {
@@ -377,9 +382,16 @@ public class Application{
         }
     }
     
-    public Order AllCommandOfTheUser () {
+    public ArrayList<Order> AllCommandOfTheUser () {
+        ArrayList <Order> commandsUser = null;
+        DataInterface recup = new DataBase();
         
-        return null;
+        if (member!=null && guest==null)
+            commandsUser = recup.findOrder(member.getIdUser());
+        else if (member==null && guest!=null)
+            commandsUser = recup.findOrder(guest.getIdUser());
+        
+        return commandsUser;
     }
     
      public void createGuestData (String name, int age, String user_type)

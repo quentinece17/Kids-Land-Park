@@ -216,8 +216,8 @@ public class RegisterFrame extends JFrame {
                     //Si l'utilisateur est un Employee
                     else if (controller.getMember() == null && controller.getEmployee() != null)
                     {
-                        //Afficher la frame d'un Employee
-                        System.out.println ("Je suis un employé : " + controller.getEmployee().getNameUser());
+                        controller.AffichageEmployee();
+                        window.dispose();
                     }
                 }
                 

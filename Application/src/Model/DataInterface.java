@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @authors : quentin, corezntin& nicolas
+ * @authors : quentin, corentin& nicolas
  */
 public interface DataInterface {
     
@@ -36,5 +36,7 @@ public interface DataInterface {
     public GuestCustomer createGuest (String name, int age, String user_type);
     
     public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password);
+    
+    public ArrayList<Person> findCustos ();
     
 }

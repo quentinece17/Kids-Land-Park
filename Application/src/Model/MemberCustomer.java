@@ -23,7 +23,7 @@ public class MemberCustomer extends Person implements CustomerInterface {
     private ArrayList <Order> order= new ArrayList <Order> ();
 
     
-    public MemberCustomer(int id, String name, int age, String type, String pseu, String log, String memberType) {
+    public MemberCustomer(int id, String name, int age, String pseu, String log, String type, String memberType) {
        
        super (id, name, age,type);
        pseudoUser = pseu;

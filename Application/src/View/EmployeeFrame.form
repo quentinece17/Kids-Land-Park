@@ -25,7 +25,6 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Rides"/>
-            <Property name="actionCommand" type="java.lang.String" value="Rides"/>
           </Properties>
         </Menu>
       </SubComponents>

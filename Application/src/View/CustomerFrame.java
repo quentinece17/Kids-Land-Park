@@ -83,11 +83,8 @@ public class CustomerFrame extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
-        panel1.setBackground(new java.awt.Color(195, 195, 195));
+        panel1.setBackground(new java.awt.Color(238, 238, 238));
 
-        jPanel1.setBackground(new java.awt.Color(195, 195, 195));
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Date selected : ");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N

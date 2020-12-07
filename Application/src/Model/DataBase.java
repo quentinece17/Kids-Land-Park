@@ -191,7 +191,7 @@ public class DataBase implements DataInterface {
                                                      rs.getString(7));
                    
                    contain.add( new MemberCustomer( Integer.parseInt(rs.getString(1)), rs.getString(2),
-                                Integer.parseInt(rs.getString(3)), rs.getString(6), mc.getPseudoUser(), mc.getLoginUser(), rs.getString(7)) ); // On ajoute alors le memberCustomer dans la table
+                                Integer.parseInt(rs.getString(3)), mc.getPseudoUser(), mc.getLoginUser(), rs.getString(6), rs.getString(7)) ); // On ajoute alors le memberCustomer dans la table
                 }
                 // Si c'est GC
                 else if ( rs.getString(6).equals("GC") )

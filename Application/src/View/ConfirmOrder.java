@@ -74,6 +74,7 @@ public class ConfirmOrder extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
+        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -90,6 +91,8 @@ public class ConfirmOrder extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -216,7 +219,7 @@ public class ConfirmOrder extends javax.swing.JFrame {
         System.out.println (date);
         
         controller.createTicket_inSQL(date);
-        controller.AffichageCustomer();
+        controller.AffichageProfilMember();
         dispose();
 
         // TODO add your handling code here:

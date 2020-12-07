@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @authors : quentin, corezntin& nicolas
@@ -17,7 +19,9 @@ public interface DataInterface {
     
     public Ride findRide (String nameRide);
     
-    public Order findOrder (int idUser);
+    public ArrayList<Order> findOrder (int idUser);
+    
+    public String findNameRideForOrder (int idRide);
     
     public int verifNumberOfTickets (String date, int id);
     

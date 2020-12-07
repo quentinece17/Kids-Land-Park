@@ -90,11 +90,11 @@ public class AccueilFrame extends JFrame{
         label.setFont(font);    // Police et taille du string dans le label
         label.setBackground( new Color (206, 206, 206) ); //new Color(253, 233, 224)
         account.setBorder(bLabel);
-        account.setBackground(Color.BLACK); //new Color(254, 150, 160)
-        account.setForeground(Color.WHITE);
+//        account.setBackground(Color.BLACK); //new Color(254, 150, 160)
+//        account.setForeground(Color.WHITE);
         noAccount.setBorder(bLabel);
-        noAccount.setBackground(Color.BLACK); //new Color(254, 150, 160)
-        noAccount.setForeground(Color.WHITE);
+//        noAccount.setBackground(Color.BLACK); //new Color(254, 150, 160)
+//        noAccount.setForeground(Color.WHITE);
         
         
         account.addActionListener(new InteractionButtonListener());

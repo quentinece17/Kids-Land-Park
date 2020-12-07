@@ -154,17 +154,17 @@ public class DataBase implements DataInterface {
         return container;
     }
     
-    public Order findOrder (int idUser) {
+    @Override
+    public ArrayList<Order> findOrder (int idUser) {
         
         ArrayList <Order> contain = new ArrayList <>();
-        Order container = null;
         Connection conn = null;
-        Connection conn2 = null;
         Statement stmt = null;
-        Statement stmt2 = null;
-        String name_ride;
-        String request = "select * from Command where user_command = " + idUser + ";";
+//        ArrayList <String> name_ride = new ArrayList<>();
         
+//        name_ride = findNameRideForOrder(idUser);
+//        System.out.println (name_ride.size());
+        String request ="select date_purchase, ride_command, adult_ticket, child_ticket, total_price, date_command from Command where user_command = " + idUser + ";";
          try 
         {
             DataSource data = new DataSource ();
@@ -176,36 +176,49 @@ public class DataBase implements DataInterface {
             
             while (rs.next())
             {
-                int ride_cmd = Integer.parseInt(rs.getString(2));
-                String rqst = "Select name_ride from Ride where id_ride = " + ride_cmd + ";";
-                try 
-                {
-                     stmt2 = conn2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                     ResultSet rs2 = stmt.executeQuery(request);
-                     while (rs.next())
-                     {
-                         name_ride = rs.getString(1);
-                     }
-                     conn2.close();
-                     stmt2.close();
-                }
-                catch (SQLException e){
-            
-                    System.out.println ("Error Occured " + e.getMessage ());
-                }
                 
-//                contain.add(new Order (rs.getString(7), name_ride, Integer.parseInt(rs.getString(4), Integer.parseInt(rs.getString(5)), Double.parseDouble(rs.getString(8)), rs.getString(6)));
+                String name_ride = findNameRideForOrder (Integer.parseInt(rs.getString(2)));
+                contain.add(new Order (rs.getString(1), name_ride, Integer.parseInt(rs.getString(3)), Integer.parseInt(rs.getString(4)), Double.parseDouble(rs.getString(5)), rs.getString(6)));
+
             }
             conn.close();
             stmt.close();
         }
-        
         catch (SQLException e){
             
             System.out.println ("Error Occured " + e.getMessage ());
         }
         
-        return container;
+        return contain;
+    }
+    
+    @Override
+    public String findNameRideForOrder (int idRide) {
+        Connection conn = null;
+        Statement stmt = null;
+        String name=null;
+        String request = "select name_ride from Ride where id_ride = " + idRide + ";";
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next())
+            {
+                name = rs.getString(1);
+            }
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        return name;
     }
     
     @Override

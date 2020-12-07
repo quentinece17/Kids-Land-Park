@@ -39,7 +39,7 @@ public class Order {
         AdultTickets = nbAdu;
         ChildTickets = nbChild;
         final_price = price;
-        datePurchase = datevalid;
+        date = datevalid;
     }
     
     // Getters

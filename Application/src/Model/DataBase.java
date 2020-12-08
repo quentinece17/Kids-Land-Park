@@ -247,6 +247,13 @@ public class DataBase implements DataInterface {
     }
     
     @Override
+    public ArrayList<Ride> findRides(){
+        
+        
+        return null;
+    }
+    
+    @Override
     public String findNameRideForOrder (int idRide) {
         Connection conn = null;
         Statement stmt = null;

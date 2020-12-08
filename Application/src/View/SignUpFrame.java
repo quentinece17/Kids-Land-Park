@@ -16,6 +16,9 @@ import javax.swing.JFrame;
  */
 public class SignUpFrame extends javax.swing.JFrame {
 
+    // Attribut sauvegardées, on conserve nom et prénom séparément car ils sont rassemblés lors de l'affichage de la sign up frame
+    private String s1Name;
+    private String sFName;
     /**
      * Creates new form SignUpFrame
      */
@@ -204,12 +207,14 @@ public class SignUpFrame extends javax.swing.JFrame {
 
             if (!jPasswordField2.getText().equals(jPasswordField3.getText())){
                 MatchingException ex = new MatchingException(" Passwords are not matching ");
-                controller.setMatchingGuestExceptionLabel(ex.getMessage()); // Une fenetre de warning pop-up ici 
+                controller.setMatchingGuestExceptionLabel(ex.getMessage()); // Une fenetre de warning pop-up ici
+                controller.setSavedData(s1Name, sFName, userAge);
                 controller.AffichageMatchingGuest();
             }
             
             else
             {
+                // Deja vérifier mais c'est pour etre sur 
                 if (jPasswordField2.getText().equals(jPasswordField3.getText()))
                 {
                     controller.createMember_inSQL(userFullName, userAge, jTextField1.getText(), jPasswordField2.getText());
@@ -259,6 +264,8 @@ public class SignUpFrame extends javax.swing.JFrame {
     public void setDataSignUp(String n_, String lastN_, int age_ ){
         userFullName = n_ + " " + lastN_; // Construction du nom de l'utilisateur à insérer ensuite dans la base de données
         userAge = age_;                   // Stockage de l'age de l'utilisateur
+        s1Name = n_; // On le stock ici si jamais il y a besoin de lancer la frame d'exception Mismatch 
+        sFName = lastN_;
     }
     
     // Controller attribute related to the class Apllication

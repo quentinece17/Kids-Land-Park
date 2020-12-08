@@ -249,6 +249,9 @@ public class DataBase implements DataInterface {
     @Override
     public ArrayList<Ride> findRides(){
         
+        ArrayList <Person> contain = new ArrayList <>();
+        Connection conn = null;
+        Statement stmt = null;
         
         return null;
     }

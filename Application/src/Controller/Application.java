@@ -597,6 +597,13 @@ public class Application{
      public void setAgeExceptionLabel(String msg){
          age.setMessage(msg);
      }
+     
+     public void setSavedData(String firstName, String lastName, int age_){
+         matchingGuestFields.setSave1Name(firstName);
+         matchingGuestFields.setSaveLName(lastName);
+         matchingGuestFields.setSaveAge(age_);
+     }
+     
     ////////////////////////////////////////////////////////////////////
      
      //Getters

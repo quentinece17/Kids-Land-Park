@@ -38,6 +38,13 @@ public class MatchingGuestExceptionFrame extends JFrame {
     private JLabel exceptionMessage = new JLabel();
     private Button ok = new Button("OK");
     
+    // Data de l'utulisateur saisi dans la GuestInfoFrame
+    // --> AffichageSignUp nécessite 3 paramètres ( prenom, nom, age) 
+    // --> Donc on les stockent ici en tant qu'attributs 
+    private String saveFirstName;
+    private String saveLastName;
+    private int saveAge;
+    
     
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel; 
@@ -83,7 +90,7 @@ public class MatchingGuestExceptionFrame extends JFrame {
          // Si on clique sur le bouton ok, on revient à la fenêtre d'avant qui est ici la fenêtre des GuestCustomer
          if (e.getSource()== ok)
          {
-            controller.AffichageGuestInfo();
+            controller.AffichageSignUp(saveFirstName, saveLastName, saveAge);   // Renvoie à la frame d'avant avec les attributs nécessaire
             window.dispose();
          }
       }
@@ -95,4 +102,7 @@ public class MatchingGuestExceptionFrame extends JFrame {
    
    // Setters
    public void setMessage(String  msg) { exceptionMessage.setText(msg); }
+   public void setSaveAge ( int age ) { saveAge = age; }
+   public void setSave1Name ( String str ) { saveFirstName = str; }
+   public void setSaveLName ( String str ) { saveLastName = str; }
 }

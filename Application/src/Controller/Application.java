@@ -204,7 +204,7 @@ public class Application{
                                                                     'X',    // pseudo temporairement occupé
                                                                     'X',     // login : idem
                                                                     "GC",
-                                                                    allGuests.get(i).getTypeUser(),
+                                                                    'X',
                                                                     } );  
             }
         }
@@ -221,7 +221,7 @@ public class Application{
                                                                     allMembers.get(i).getPseudoUser(),    // pseudo temporairement occupé
                                                                     allMembers.get(i).getLoginUser(),     // login : idem
                                                                     "MC",
-                                                                    allMembers.get(i).getTypeUser(),
+                                                                    allMembers.get(i).getMemberType(),
                                                                     } );
             }
         }

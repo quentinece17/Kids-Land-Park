@@ -155,6 +155,44 @@ public class DataBase implements DataInterface {
         return container;
     }
     
+    // Fonction différente de findRide() qui récupère l'attraction voulu
+    // -->Cette fonction récupère TOUTES les attractions du park
+    @Override
+    public  ArrayList<Ride> findRides () {
+        
+        ArrayList <Ride> container = new ArrayList <>(); // List d'attraction qui récupère toutes celles présente
+                                                         // ->> dans la table 'Ridde' de la base de données
+        Connection conn = null;
+        Statement stmt = null;
+        
+        String request = "select * from Ride;";
+        
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next())
+            {
+                container.add(new Ride (Integer.parseInt(rs.getString(1)), rs.getString(2), Double.parseDouble(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5))) );
+            }
+            
+            conn.close();
+            stmt.close();
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        return container;
+    }
+    
+    
     @Override
     public ArrayList<Person> findCustos () {
         
@@ -244,16 +282,6 @@ public class DataBase implements DataInterface {
         }
         
         return contain;
-    }
-    
-    @Override
-    public ArrayList<Ride> findRides(){
-        
-        ArrayList <Person> contain = new ArrayList <>();
-        Connection conn = null;
-        Statement stmt = null;
-        
-        return null;
     }
     
     @Override

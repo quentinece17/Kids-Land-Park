@@ -159,34 +159,47 @@ public class Application{
     public void AffichageEmployee()
     {
         employ.getWindow().setVisible(true);
-        int nbPersons = employ.getTableModel().getRowCount();
-        // Reinitialisatioin de la tableau au cas où c'était rempli
-        if (nbPersons != 0)
-            employ.getTableModel().setRowCount(0);
+        int nbPersons = employ.getTableModel1().getRowCount();
+        int nbRides = employ.getTableModel2().getRowCount();
+        
+        // Reinitialisation des lignes des JTable au cas où c'était rempli
+        
+        // -> JTable Customers
+        if (nbPersons != 0)     employ.getTableModel1().setRowCount(0);
+        // -> JTable Rides
+        if (nbRides != 0)       employ.getTableModel2().setRowCount(0);
         
         ArrayList <Person> allCusto;
+        ArrayList <Ride> allRides;
         allCusto = AllCustoRegistered(); /// On récupère une liste contenant tous les customers enregistré jusqu'à présent dans la DB
+        allRides = AllRides_inSQL();     /// Idem que l'instruction de dessus mais avec les Attractions
         
-        for ( int i = 0; i < allCusto.size(); ++i)
+        /*for ( int i = 0; i < allCusto.size(); ++i)
         {
             //if ( allCusto.get(i).getTypeUser().equals("MG") )
             //System.out.println (allOrders.get(i).get
             System.out.println(" Person Id : " + allCusto.get(i).getIdUser());
+        }*/
+        for ( int i = 0; i < allRides.size(); ++i)
+        {
+            //if ( allCusto.get(i).getTypeUser().equals("MG") )
+            //System.out.println (allOrders.get(i).get
+            System.out.println(" Ride Id : " + allRides.get(i).getIdRide());
         }
         
-        employ.centerTable(employ.getTable());
+        employ.centerTable(employ.getTable1()); // JTable des CUSTOMERS
+        employ.centerTable(employ.getTable2()); // JTable des ATTRACTION
         
+        // On rempli la JTable 'CUSTOMERS' récupéré ci-dessus
         if ( allCusto.size() != 0 )
         {
             for ( int i=0; i < allCusto.size(); ++i )
             {
-                System.out.println(allCusto.get(i).getTypeUser());
                 // Si on doit insérer un membre dans la JTable de la frame 'Employee'
                 if ( allCusto.get(i).getTypeUser().equals("MC") )
                 {
-                    System.out.println("RENTRE DANS MC 2 !!!!!");
                     Person temp = allCusto.get(i);  // Pour pouvoir lire ensuite son pseudo et login
-                    employ.getTableModel().addRow(  new Object [] { allCusto.get(i).getIdUser(),
+                    employ.getTableModel1().addRow(  new Object [] { allCusto.get(i).getIdUser(),
                                                                     allCusto.get(i).getNameUser(),
                                                                     allCusto.get(i).getAgeUser(),
                                                                     temp.getPseuTable(),    // pseudo temporairement occupé
@@ -199,7 +212,7 @@ public class Application{
                 // Si on doit insérer un guest dans la JTable de la frame 'Employee'
                 else if (allCusto.get(i).getTypeUser().equals("GC"))
                 {
-                    employ.getTableModel().addRow(  new Object [] { allCusto.get(i).getIdUser(),
+                    employ.getTableModel1().addRow(  new Object [] { allCusto.get(i).getIdUser(),
                                                                     allCusto.get(i).getNameUser(),
                                                                     allCusto.get(i).getAgeUser(),
                                                                     "NONE",
@@ -212,7 +225,20 @@ public class Application{
             }
         }
         
-        //allCusto = 
+        // On rempli la JTable 'CUSTOMERS' récupéré ci-dessus
+        if ( allRides.size() != 0 )
+        {
+            for ( int i=0; i < allRides.size(); ++i )
+            {
+                employ.getTableModel2().addRow(  new Object [] {    allRides.get(i).getIdRide(),
+                                                                    allRides.get(i).getName(),
+                                                                    allRides.get(i).getPrice(),
+                                                                    allRides.get(i).getFeatures(),
+                                                                    allRides.get(i).getNbTicketsAvailable() } );
+            }
+        }
+        
+        
     }
     
     public void AffichageOrderHistory () {
@@ -465,13 +491,26 @@ public class Application{
         ArrayList <Person> custo = null;
         DataInterface recup = new DataBase();
         
-        // Si l'employee est bien instancié --> on récupère tous les membre et guest de la DB
+        // Si l'employee est bien instancié dans la classe Application --> on récupère tous les membre et guest de la DB
         if (employee != null)
             custo = recup.findCustos();
         else
             JOptionPane.showMessageDialog(null, "employee attribute not instanciated --> 'employee = null' ");
         
         return custo;
+    }
+    
+    public ArrayList<Ride> AllRides_inSQL(){
+        ArrayList <Ride> rides = null;
+        DataInterface recup = new DataBase();
+        
+        // Si l'employee est bien instancié dans la classe Application --> on récupère tous les membre et guest de la DB
+        if (employee != null)
+            rides = recup.findRides();
+        else
+            JOptionPane.showMessageDialog(null, "employee attribute not instanciated --> 'employee = null' ");
+            
+        return rides;
     }
     
      public void createGuestData (String name, int age, String user_type)

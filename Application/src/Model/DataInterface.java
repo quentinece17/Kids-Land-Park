@@ -37,7 +37,8 @@ public interface DataInterface {
     
     public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password);
     
-    public ArrayList<Person> findCustos ();
+    public ArrayList<GuestCustomer> findGuests_inSQL ();
+    public ArrayList<MemberCustomer> findMembers_inSQL ();
     
     /**
      *

@@ -180,7 +180,7 @@ public class Application{
         for ( int i = 0; i < allGuests.size(); ++i)
             System.out.println(" GUEST Id : " + allGuests.get(i).getIdUser());
         for ( int i = 0; i < allMembers.size(); ++i)
-            System.out.println(" MEMBER Id : " + allGuests.get(i).getIdUser());
+            System.out.println(" MEMBER Id : " + allMembers.get(i).getIdUser());
         /*for ( int i = 0; i < allRides.size(); ++i)
         {
             //if ( allCusto.get(i).getTypeUser().equals("MG") )

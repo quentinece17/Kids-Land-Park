@@ -54,7 +54,7 @@ public class AccueilFrame extends JFrame{
         controller = app;
         
         try{
-            img = new ImageIcon(new ImageIcon("icon.jpg").getImage().getScaledInstance(155, 131, Image.SCALE_DEFAULT));    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("Icon.jpg").getImage().getScaledInstance(155, 131, Image.SCALE_DEFAULT));    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
@@ -73,7 +73,7 @@ public class AccueilFrame extends JFrame{
         // Design des panels
         //p1.setSize(new Dimension(900, 350));
         //p2.setSize(new Dimension(900, 400));
-        p1.setBackground(new Color (195, 195, 195)); //new Color(253, 233, 224)
+        p1.setBackground(new Color (102, 102, 102)); //new Color(253, 233, 224)
         //p2.setBackground(new Color (195, 195, 195)); //new Color(253, 233, 224)
         
         // On met le Layout du panel 1 à null pour pouvoir placer les boutons comme bon nous semble
@@ -84,17 +84,17 @@ public class AccueilFrame extends JFrame{
         imageLabel.setBounds(170, 140, 157, 133);
         
         // Design des label et bouttons 
-        imageLabel.setBorder(bImage);
+//        imageLabel.setBorder(bImage);
         label.setBorder(bLabel);
-        label.setForeground( Color.BLACK );
+        label.setForeground( Color.WHITE );
         label.setFont(font);    // Police et taille du string dans le label
-        label.setBackground( new Color (206, 206, 206) ); //new Color(253, 233, 224)
+        label.setBackground(new Color (255, 255, 255) ); //new Color(253, 233, 224)
         account.setBorder(bLabel);
-//        account.setBackground(Color.BLACK); //new Color(254, 150, 160)
-//        account.setForeground(Color.WHITE);
+//        account.setBackground(new Color (204,204,204)); //new Color(254, 150, 160)
+        account.setForeground(Color.WHITE);
         noAccount.setBorder(bLabel);
-//        noAccount.setBackground(Color.BLACK); //new Color(254, 150, 160)
-//        noAccount.setForeground(Color.WHITE);
+//        noAccount.setBackground(new Color (204,204,204)); //new Color(254, 150, 160)
+        noAccount.setForeground(Color.WHITE);
         
         
         account.addActionListener(new InteractionButtonListener());
@@ -107,7 +107,7 @@ public class AccueilFrame extends JFrame{
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
-        //window.add(p2, BorderLayout.SOUTH);        
+//        window.add(p2, BorderLayout.SOUTH);        
         
     }
     

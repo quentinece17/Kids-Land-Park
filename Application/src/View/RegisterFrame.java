@@ -49,8 +49,8 @@ public class RegisterFrame extends JFrame {
     private JButton retour ;
 
     //Gestion du titre de la fenêtre
-    String space = "                                ";
-    private JLabel label = new JLabel("Please enter your personnal information : " + space);
+    String space = "               ";
+    private JLabel label = new JLabel(space +"Please enter your personnal information : " );
     Font font= new Font("Arial",Font.BOLD,20);
     
     //Gestion du login
@@ -91,12 +91,12 @@ public class RegisterFrame extends JFrame {
 
         
         javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 3 );
-        imageLabel.setBorder(bImage);
+//        imageLabel.setBorder(bImage);
            
         // Design des panels
         //p1.setSize(new Dimension(900, 350));
         //p2.setSize(new Dimension(900, 400));
-        p1.setBackground(new Color (195, 195, 195));
+        p1.setBackground(new Color (102, 102, 102));
         //p2.setBackground(Color.BLACK);  
          
         buildpanel1();    
@@ -114,12 +114,12 @@ public class RegisterFrame extends JFrame {
     {
         
         // Border pour le JLabel 'label'(Color.RED) et Border pour les boutons (Color.BLACK) de l'écrand d'accueil
-        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(new Color (206, 206, 206), 2);
+        javax.swing.border.Border bLabel = BorderFactory.createLineBorder(new Color (255, 255, 255), 2);
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.WHITE);
-        javax.swing.border.Border bTextFields = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
+        javax.swing.border.Border bTextFields = BorderFactory.createLineBorder(new Color (204, 204, 204), 2 );
         
         try{
-            img = new ImageIcon(new ImageIcon("retour4.jpg").getImage().getScaledInstance(55, 40, Image.SCALE_DEFAULT));    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("fleche.png").getImage().getScaledInstance(55, 40, Image.SCALE_DEFAULT));    // Chargement de l'image
             retour = new JButton(img);       // On place cette image dans le Label dédiée à l'image du park
         }catch (Exception e){ e.printStackTrace(); }
 
@@ -127,9 +127,9 @@ public class RegisterFrame extends JFrame {
         p1.setLayout(null);
         label.setBounds(0, 45, 925, 45);
         pseudo.setBounds(50,160,60,40);
-        pseu.setBounds(125,170,90,20);
+        pseu.setBounds(125,170,140,20);
         login.setBounds(50,240,80,40);
-        log.setBounds(125,250,90,20);
+        log.setBounds(125,250,140,20);
         register.setBounds(125,310,85,25);
         retour.setBounds(0,0,55,40);    /// On met la meme largeur et hauteur que le redimensionnement du bouton retourn ici
         

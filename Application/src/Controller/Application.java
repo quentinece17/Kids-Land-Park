@@ -265,7 +265,7 @@ public class Application{
     public void AffichageChooseRide (String dateChoosen) {
         chooseride.getWindow().setVisible(true);
         chooseride.setDateChoosen(dateChoosen);
-        chooseride.setDateChoosenLabel(dateChoosen);
+        chooseride.setDateChoosenLabel("Available Rides for : " + dateChoosen);
         chooseride.setInfoAttrac1(ride[0].getName());
         chooseride.setInfoAttrac2(ride[1].getName());
         chooseride.setInfoAttrac3(ride[2].getName());
@@ -291,6 +291,8 @@ public class Application{
         {
             confirmation.getTableModel2().setRowCount(0);
         }
+        confirmation.centerTable(confirmation.getTable());
+        confirmation.centerTable(confirmation.getTable2());
         if (member != null && guest == null)
         {
             if (member.getOrder().size()!=0)
@@ -357,9 +359,10 @@ public class Application{
         {
             if (ride[i].getName().equals(attraction))
             {
+                
                 infoAttrac.setName(ride[i].getName());
-                infoAttrac.setPrice(String.valueOf(ride[i].getPrice()));
-                infoAttrac.setChildPrice(String.valueOf(ride[i].getPrice()-2));
+                infoAttrac.setPrice("$"+String.valueOf(ride[i].getPrice()));
+                infoAttrac.setChildPrice("$"+String.valueOf(ride[i].getPrice()-2));
                 infoAttrac.setFeatures(ride[i].getFeatures());
                 
                 DataInterface verif = new DataBase ();

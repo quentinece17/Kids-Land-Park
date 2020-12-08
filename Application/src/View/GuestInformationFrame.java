@@ -94,7 +94,7 @@ public class GuestInformationFrame extends JFrame{
          
         // On set du border de l'image
         javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
-        imageLabel.setBorder(bImage);
+//        imageLabel.setBorder(bImage);
         imageLabel.setBounds(455, 150, 155, 131);
         
          // Frame Design
@@ -112,7 +112,7 @@ public class GuestInformationFrame extends JFrame{
         // Design des panels
        // p1.setSize(new Dimension(900, 520));    // La somme des hauteurs des 2 panels donnent 900, soit la hauteur en pixel du GuestIinformationFrame
         //p2.setSize(new Dimension(900, 380));
-        p1.setBackground( new Color (195, 195, 195) );
+        p1.setBackground( new Color (102, 102, 102) );
         p1.add(imageLabel);
         //p2.setBackground(Color.BLACK);  
          
@@ -136,7 +136,7 @@ public class GuestInformationFrame extends JFrame{
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.WHITE);
         
         try{
-            img = new ImageIcon(new ImageIcon("retour4.jpg").getImage().getScaledInstance(55, 40, Image.SCALE_DEFAULT));    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("fleche.png").getImage().getScaledInstance(55, 40, Image.SCALE_DEFAULT));    // Chargement de l'image
             retour = new JButton(img);       // On place cette image dans le Label dédiée à l'image du park
         }catch (Exception e){ e.printStackTrace(); }
 
@@ -146,7 +146,7 @@ public class GuestInformationFrame extends JFrame{
         
         p1.setLayout(null);
         label2.setBounds(0, 60, 900, 45);
-        start.setBounds(460,290,130,30);
+        start.setBounds(480,320,130,30);
         retour.setBounds(0,0,55,40);    /// On met la meme largeur et hauteur que le redimensionnement du bouton retourn ici
          
         label2.setBorder(bLabel);

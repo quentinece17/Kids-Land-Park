@@ -109,7 +109,9 @@ public class ConfirmOrder extends javax.swing.JFrame {
         jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Date", "Ride", "Adult Tickets", "Child Tickets", "Price"
@@ -131,7 +133,7 @@ public class ConfirmOrder extends javax.swing.JFrame {
         jTable2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null}
             },
             new String [] {
                 "Discount", "Total Price"
@@ -188,8 +190,8 @@ public class ConfirmOrder extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))

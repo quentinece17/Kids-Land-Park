@@ -24,6 +24,7 @@ import View.GuestInformationFrame;
 import View.RegisterFrame;
 import View.CustomerFrame;
 import View.EmployeeFrame;
+import View.GuestProfil;
 import View.InfosAttraction;
 import View.MatchingGuestExceptionFrame;
 import View.MatchingUserExceptionFrame;
@@ -60,6 +61,7 @@ public class Application{
     private NumberOfTickets numTickets;
     private ConfirmOrder confirmation;
     private ProfilMember profilMember;
+    private GuestProfil profilGuest;
     private OrderHistory orderhistory;
     private MatchingGuestExceptionFrame matchingGuestFields;
     private MatchingUserExceptionFrame matchingUserSQL;
@@ -101,6 +103,7 @@ public class Application{
         numTickets = new NumberOfTickets (this);
         confirmation = new ConfirmOrder (this);
         profilMember = new ProfilMember (this);
+        profilGuest = new GuestProfil (this);
         orderhistory = new OrderHistory (this);
         matchingGuestFields = new MatchingGuestExceptionFrame(this);
         matchingUserSQL = new MatchingUserExceptionFrame(this);
@@ -120,9 +123,6 @@ public class Application{
         //Si elle n'existe pas, on l'ajouter
         if (valid)
             allDates.add(new Date (date));
-       
-        
-        
     }
     
     public void saveActualRide (String name) {
@@ -137,12 +137,22 @@ public class Application{
     public void AffichageMatchingGuest () { matchingGuestFields.getWindow().setVisible(true); }
     public void AffichageMatchingUser () { matchingUserSQL.getWindow().setVisible(true); }
     public void AffichageProfilMember () {
-        profilMember.getWindow().setVisible(true);
-        profilMember.setName(member.getNameUser());
-        profilMember.setAge (String.valueOf(member.getAgeUser()));
-        profilMember.setPseudo(member.getPseudoUser());
-        profilMember.setLogin(member.getLoginUser());
-        profilMember.setType(member.getMemberType());
+        if (member!=null && guest==null)
+        {
+            profilMember.getWindow().setVisible(true);
+            profilMember.setName(member.getNameUser());
+            profilMember.setAge (String.valueOf(member.getAgeUser()));
+            profilMember.setPseudo(member.getPseudoUser());
+            profilMember.setLogin(member.getLoginUser());
+            profilMember.setType(member.getMemberType()); 
+        }
+        else if (guest!=null && member==null)
+        {
+            profilGuest.getWindow().setVisible(true);
+            profilGuest.setName(guest.getNameUser());
+            profilGuest.setAge(String.valueOf(guest.getAgeUser()));
+        }
+ 
     }
     public void AffichageSignUp (String prenom, String nom, int age){
         newPerson.setDataSignUp(prenom, nom, age);
@@ -348,26 +358,32 @@ public class Application{
         
         if (member == null && guest!= null)
         {
-            double pTot = 0;
-            for (int i=0; i<guest.getOrder().size(); ++i)
+            if (guest.getOrder().size()!=0)
             {
-                if (guest.getOrder().get(i).getOrderValid() == false)
+                double pTot = 0;
+                for (int i=0; i<guest.getOrder().size(); ++i)
                 {
-                    String dateChoosen = guest.getOrder().get(i).getDate();
-                    String nameRide = guest.getOrder().get(i).getRideName();
-                    int adultTicket = member.getOrder().get(i).getTicketsAdult();
-                    int childTicket = member.getOrder().get(i).getTicketsChild();
-                    double price1 = guest.getOrder().get(i).getPrice();
-                    pTot += price1;
-                    
-                    confirmation.getTableModel().addRow(new Object[]{dateChoosen, nameRide, adultTicket, childTicket, price1});
+                    if (guest.getOrder().get(i).getOrderValid() == false)
+                    {
+                      
+                        String dateChoosen = guest.getOrder().get(i).getDate();
+                        String nameRide = guest.getOrder().get(i).getRideName();
+                        int adultTicket = guest.getOrder().get(i).getTicketsAdult();
+                        int childTicket = guest.getOrder().get(i).getTicketsChild();
+                        double price1 = guest.getOrder().get(i).getPrice();
+                        pTot += price1;
+
+                        confirmation.getTableModel().addRow(new Object[]{dateChoosen, nameRide, adultTicket, childTicket, price1});
+                    }
                 }
+                String discountOrder = "No Discount";
+                confirmation.getTableModel2().addRow(new Object[]{discountOrder, pTot});
             }
-            String discountOrder = "No Discount";
-            confirmation.getTableModel2().addRow(new Object[]{discountOrder, pTot});
+            
         }
-                    
     }
+                    
+    
     
     public void AffichageInfosAttraction (String attraction, String dateChoosen) {
         infoAttrac.getWindow().setVisible(true);

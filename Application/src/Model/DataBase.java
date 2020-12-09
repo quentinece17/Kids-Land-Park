@@ -122,6 +122,78 @@ public class DataBase implements DataInterface {
     }
     
     @Override
+    public void addRideFromEmployee (String name, double price, String features, int capacity) {
+        
+        Connection conn = null;
+        Statement stmt = null;
+        String request = "insert into Ride (name_ride, price_ride, features_ride, max_tickets) values ('" + name + "', " + price + ", '" + features + "', " + capacity + ");";
+        
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
+            
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+    }
+    
+    @Override
+    public void updateRide (int id, String name, double price, String features, int capacity) {
+        
+        Connection conn = null;
+        Statement stmt = null;
+        String request = "UPDATE Ride SET name_ride = '" + name + "', price_ride ='" + price + "', features_ride = '" + features + "', max_tickets = " + capacity + " where id_ride = " + id + ";";
+        
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
+            
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+    }
+    
+    @Override
+    public void deleteRide (int id) {
+        
+        Connection conn = null;
+        Statement stmt = null;
+        String request = "DELETE FROM Ride where id_ride = " + id + ";";
+ 
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
+            
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+    }
+    
+    @Override
     public Ride findRide (String nameRide) {
         
         Ride container = null;
@@ -337,8 +409,6 @@ public class DataBase implements DataInterface {
         return name;
     }
     
-    
-    
     @Override
     public MemberCustomer createMember (String pseu, String log) 
     {
@@ -378,6 +448,28 @@ public class DataBase implements DataInterface {
         }
         
         return user;
+    }
+    
+    public void deleteCustomer (int id) {
+        Connection conn = null;
+        Statement stmt = null;
+        String request = "DELETE FROM Personne where user_id = " + id + ";";
+ 
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
+            
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
     }
     
     @Override

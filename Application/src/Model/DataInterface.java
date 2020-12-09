@@ -17,6 +17,12 @@ public interface DataInterface {
     
     public Ride [] createRide ();
     
+    public void addRideFromEmployee (String name, double price, String features, int capacity);
+    
+    public void updateRide (int id, String name, double price, String features, int capacity);
+    
+    public void deleteRide (int id);
+    
     public Ride findRide (String nameRide);
     
     public ArrayList<Order> findOrder (int idUser);
@@ -36,6 +42,8 @@ public interface DataInterface {
     public GuestCustomer createGuest (String name, int age, String user_type);
     
     public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password);
+    
+    public void deleteCustomer (int id);
     
     public ArrayList<GuestCustomer> findGuests_inSQL ();
     public ArrayList<MemberCustomer> findMembers_inSQL ();

@@ -461,6 +461,28 @@ public class Application{
         ride = create.createRide();
         
     }
+    
+    public void addRide_inSQL (String name, double price, String features, int capacity) {
+        DataInterface add = new DataBase();
+        add.addRideFromEmployee(name, price, features, capacity);
+    }
+    
+    public void updateRide_inSQL (int id, String name, double price, String features, int capacity) {
+        
+        DataInterface update = new DataBase ();
+        update.updateRide(id, name, price, features, capacity);
+    }
+    
+    public void deleteRide_inSQL (int id) {
+        DataInterface delete = new DataBase();
+        delete.deleteRide(id);
+    }
+    
+    public void deleteCustomer_inSQL (int id) {
+        DataInterface delete = new DataBase();
+        delete.deleteCustomer(id);
+    }
+
     // Permet de vérifier si l'utilisateur existe dans la base de données
     public boolean personData (String pseu, String log)
     {
@@ -551,7 +573,6 @@ public class Application{
      {
          DataInterface add = new DataBase ();
          guest = add.createGuest(name, age, user_type);
-         System.out.println ("Hello " + guest.getNameUser() + "\n Age : " + guest.getAgeUser() + " \nId : " + guest.getIdUser() + "\nType : "+ guest.getTypeUser());
      } 
 
      public void create0rder (String date, int nbAd, int nbChild) {

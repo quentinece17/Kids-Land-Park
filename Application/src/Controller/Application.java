@@ -69,7 +69,7 @@ public class Application{
     
     //Tableau d'attractions
     private Ride [] ride;
-    
+    private ArrayList <Ride> rides = null;
     private Ride ActualRide;
     
     //Liste de dates
@@ -171,35 +171,32 @@ public class Application{
         employ.getWindow().setVisible(true);
         int nbPersons = employ.getTableModel1().getRowCount();
         int nbRides = employ.getTableModel2().getRowCount();
-        
+        int nbOrders = employ.getTableModel3().getRowCount();
         // Reinitialisation des lignes des JTable au cas où c'était rempli
+        
         
         // -> JTable Customers
         if (nbPersons != 0)     employ.getTableModel1().setRowCount(0);
         // -> JTable Rides
         if (nbRides != 0)       employ.getTableModel2().setRowCount(0);
         
+        if (nbOrders != 0)      employ.getTableModel3().setRowCount(0);
+        
         ArrayList <GuestCustomer> allGuests;
         ArrayList <MemberCustomer> allMembers;
         ArrayList <Ride> allRides;
+        ArrayList <Order> allOrders;
         // Instanciation des listes
         allGuests = AllGuestsRegistered();   /// On récupère une liste contenant tous les GUESTS enregistré jusqu'à présent dans la DB
         allMembers = AllMembersRegistered();    ///Idem que l'instruction de dessus mais avec les MEMBERS
-        allRides = AllRides_inSQL();            /// Idem que l'instruction de dessus mais avec les Attractions
-        
-        for ( int i = 0; i < allGuests.size(); ++i)
-            System.out.println(" GUEST Id : " + allGuests.get(i).getIdUser());
-        for ( int i = 0; i < allMembers.size(); ++i)
-            System.out.println(" MEMBER Id : " + allMembers.get(i).getIdUser());
-        /*for ( int i = 0; i < allRides.size(); ++i)
-        {
-            //if ( allCusto.get(i).getTypeUser().equals("MG") )
-            //System.out.println (allOrders.get(i).get
-            System.out.println(" Ride Id : " + allRides.get(i).getIdRide());
-        }*/
-        
+        AllRides_inSQL();            /// Idem que l'instruction de dessus mais avec les Attractions
+        allRides = rides;
+        allOrders = allOrderSaved();
+      
+        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());
         employ.centerTable(employ.getTable1()); // JTable des CUSTOMERS
         employ.centerTable(employ.getTable2()); // JTable des ATTRACTION
+        employ.centerTable(employ.getTable3());
         
         // On rempli la JTable 'CUSTOMERS' récupéré ci-dessus
         if ( allGuests.size() != 0 )
@@ -246,6 +243,22 @@ public class Application{
                                                                     allRides.get(i).getPrice(),
                                                                     allRides.get(i).getFeatures(),
                                                                     allRides.get(i).getNbTicketsAvailable() } );
+                
+            }
+        }
+        
+        if (allOrders.size() != 0)
+        {
+            for (int i=0; i< allOrders.size(); ++i)
+            {
+                employ.getTableModel3().addRow(new Object [] {  allOrders.get(i).getId(),
+                                                                allOrders.get(i).getCustomer(),
+                                                                allOrders.get(i).getRideName(),
+                                                                allOrders.get(i).getTicketsAdult(),
+                                                                allOrders.get(i).getTicketsChild(),
+                                                                allOrders.get(i).getPrice(),
+                                                                allOrders.get(i).getDate(),
+                                                                allOrders.get(i).getPurchaseDate()});
             }
         }
         
@@ -462,9 +475,9 @@ public class Application{
         
     }
     
-    public void addRide_inSQL (String name, double price, String features, int capacity) {
+    public void addRide_inSQL (String name, double price, String features, int capacity, String image) {
         DataInterface add = new DataBase();
-        add.addRideFromEmployee(name, price, features, capacity);
+        add.addRideFromEmployee(name, price, features, capacity, image);
     }
     
     public void updateRide_inSQL (int id, String name, double price, String features, int capacity) {
@@ -481,6 +494,12 @@ public class Application{
     public void deleteCustomer_inSQL (int id) {
         DataInterface delete = new DataBase();
         delete.deleteCustomer(id);
+    }
+    
+    public void deleteOrder_inSQL (int id) {
+        DataInterface delete = new DataBase();
+        delete.deleteOrder(id);
+        
     }
 
     // Permet de vérifier si l'utilisateur existe dans la base de données
@@ -541,6 +560,20 @@ public class Application{
         return members;   
     }
     
+    public ArrayList<Order> allOrderSaved () {
+        
+        ArrayList <Order> orders = null;
+        DataInterface recup = new DataBase();
+        
+        if (employee != null)
+            orders = recup.findAllOrders_inSQL();
+        
+        else
+            JOptionPane.showMessageDialog(null, "employee attribute not instanciated --> 'employee = null' ");
+        
+        return orders;
+    }
+    
     public ArrayList<GuestCustomer> AllGuestsRegistered () {
         
         ArrayList <GuestCustomer> guests = null;
@@ -556,8 +589,8 @@ public class Application{
         return guests;   
     }
     
-    public ArrayList<Ride> AllRides_inSQL(){
-        ArrayList <Ride> rides = null;
+    public void AllRides_inSQL(){
+        
         DataInterface recup = new DataBase();
         
         // Si l'employee est bien instancié dans la classe Application --> on récupère tous les membre et guest de la DB
@@ -565,8 +598,6 @@ public class Application{
             rides = recup.findRides();
         else
             JOptionPane.showMessageDialog(null, "employee attribute not instanciated --> 'employee = null' ");
-            
-        return rides;
     }
     
      public void createGuestData (String name, int age, String user_type)
@@ -706,4 +737,5 @@ public class Application{
      public MemberCustomer getMember () { return member; }
      public Ride[] getRide () { return ride; }
      public ArrayList <Date> getAllDates () { return allDates; }
+     public ArrayList <Ride> getRideForEmployee () { return rides; }
 }

@@ -13,6 +13,8 @@ package Model;
 //A voir plutôt comme une classe "Commande"
 public class Order {
     
+    private int id;
+    private String customer;
     private String date;
     private String datePurchase;
     private String rideName;
@@ -42,7 +44,21 @@ public class Order {
         date = datevalid;
     }
     
+    //Constructeur pour la liste des commandes pour l'employé
+    public Order (int id_, String user, String ride, int nbAdu, int nbChild, double price, String dateValid, String dPurchase) 
+    {
+        id = id_;
+        customer = user;
+        rideName = ride;
+        AdultTickets = nbAdu;
+        ChildTickets = nbChild;
+        final_price = price;
+        date = dateValid;
+        datePurchase = dPurchase;
+    }
     // Getters
+    public int getId () { return id; }
+    public String getCustomer () { return customer; }
     public String getDate () { return date; }
     public String getPurchaseDate () { return datePurchase; }
     public String getRideName () { return rideName; }

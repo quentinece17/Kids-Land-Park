@@ -17,7 +17,7 @@ public interface DataInterface {
     
     public Ride [] createRide ();
     
-    public void addRideFromEmployee (String name, double price, String features, int capacity);
+    public void addRideFromEmployee (String name, double price, String features, int capacity, String image);
     
     public void updateRide (int id, String name, double price, String features, int capacity);
     
@@ -28,6 +28,8 @@ public interface DataInterface {
     public ArrayList<Order> findOrder (int idUser);
     
     public String findNameRideForOrder (int idRide);
+    
+    public String findNameUserForOrder (int idUser);
     
     public int verifNumberOfTickets (String date, int id);
     
@@ -45,9 +47,11 @@ public interface DataInterface {
     
     public void deleteCustomer (int id);
     
+    public void deleteOrder (int id);
+    
     public ArrayList<GuestCustomer> findGuests_inSQL ();
     public ArrayList<MemberCustomer> findMembers_inSQL ();
-    
+    public ArrayList<Order> findAllOrders_inSQL ();
     /**
      *
      * @return an array List of Ride to display the list in the JTable of the 'Employee' frame

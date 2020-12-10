@@ -8,6 +8,7 @@ package Model;
 import java.lang.reflect.Member;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author quentin
@@ -122,12 +123,12 @@ public class DataBase implements DataInterface {
     }
     
     @Override
-    public void addRideFromEmployee (String name, double price, String features, int capacity) {
+    public void addRideFromEmployee (String name, double price, String features, int capacity, String image) {
         
         Connection conn = null;
         Statement stmt = null;
-        String request = "insert into Ride (name_ride, price_ride, features_ride, max_tickets) values ('" + name + "', " + price + ", '" + features + "', " + capacity + ");";
-        
+        String request = "insert into Ride (name_ride, price_ride, features_ride, max_tickets, image) values ('" + name + "', " + price + ", '" + features + "', " + capacity + ", '" + image + "');";
+        System.out.println (request);
          try 
         {
             DataSource data = new DataSource ();
@@ -183,13 +184,14 @@ public class DataBase implements DataInterface {
             
             stmt = conn.createStatement();
             stmt.executeUpdate(request);
-            
+            JOptionPane.showMessageDialog(null, "Deleted Successfully !");
             conn.close();
             stmt.close();
         }
         catch (SQLException e){
             
             System.out.println ("Error Occured " + e.getMessage ());
+            JOptionPane.showMessageDialog(null, "Deleted impossible, some orders are associated with this Ride");
         }
     }
     
@@ -250,7 +252,7 @@ public class DataBase implements DataInterface {
             
             while (rs.next())
             {
-                container.add(new Ride (Integer.parseInt(rs.getString(1)), rs.getString(2), Double.parseDouble(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5))) );
+                container.add(new Ride (Integer.parseInt(rs.getString(1)), rs.getString(2), Double.parseDouble(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5)), rs.getString(6)) );
             }
             
             conn.close();
@@ -343,6 +345,50 @@ public class DataBase implements DataInterface {
     }
     
     @Override
+    public ArrayList <Order> findAllOrders_inSQL () {
+        ArrayList <Order> orders = new ArrayList<>();
+        Connection conn = null;
+        Statement stmt = null;
+
+        // On sélectionne tous les customers de type 'membre'
+        String request = "select * from Command;"; 
+        
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            // On ajoute tous les guest a la list 
+            while (rs.next())
+            {
+                int id = Integer.parseInt(rs.getString(1));
+                int valueRide = Integer.parseInt(rs.getString(2));
+                String nameRide = findNameRideForOrder (valueRide);
+                int valueUser = Integer.parseInt(rs.getString(3));
+                String nameUser = findNameUserForOrder (valueUser);
+                int adultTicket = Integer.parseInt(rs.getString(4));
+                int childTicket = Integer.parseInt(rs.getString(5));
+                String date = rs.getString(6);
+                String datePurchase = rs.getString(7);
+                double price = Double.parseDouble(rs.getString(8));
+                
+                orders.add(new Order (id, nameUser, nameRide, adultTicket, childTicket, price, date, datePurchase));
+                
+            }
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        return orders;
+    }
+    @Override
     public ArrayList<Order> findOrder (int idUser) {
         
         ArrayList <Order> contain = new ArrayList <>();
@@ -410,6 +456,35 @@ public class DataBase implements DataInterface {
     }
     
     @Override
+    public String findNameUserForOrder (int idUser) {
+        Connection conn = null;
+        Statement stmt = null;
+        String name=null;
+        String request = "select user_name from Personne where user_id = " + idUser + ";";
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            ResultSet rs = stmt.executeQuery(request);
+            
+            while (rs.next())
+            {
+                name = rs.getString(1);
+            }
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        return name;
+    }
+    
+    @Override
     public MemberCustomer createMember (String pseu, String log) 
     {
         
@@ -450,11 +525,38 @@ public class DataBase implements DataInterface {
         return user;
     }
     
+    @Override
     public void deleteCustomer (int id) {
         Connection conn = null;
         Statement stmt = null;
-        String request = "DELETE FROM Personne where user_id = " + id + ";";
- 
+        String request = "DELETE FROM Command where user_command =" + id + ";";
+                
+        System.out.println (request);
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
+            request = "DELETE FROM Personne where user_id = " + id + ";";
+            stmt.executeUpdate(request);
+            JOptionPane.showMessageDialog(null, "Deleted Sucessfully");
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+            JOptionPane.showMessageDialog(null, "Deleted impossible, some orders are associated with this Ride");
+        }
+    }
+    
+    public void deleteOrder (int id) {
+        Connection conn = null;
+        Statement stmt = null;
+        String request = "DELETE FROM Command where id_command =" + id + ";";
+                
          try 
         {
             DataSource data = new DataSource ();
@@ -463,12 +565,14 @@ public class DataBase implements DataInterface {
             stmt = conn.createStatement();
             stmt.executeUpdate(request);
             
+            JOptionPane.showMessageDialog(null, "Deleted Sucessfully");
             conn.close();
             stmt.close();
         }
         catch (SQLException e){
             
             System.out.println ("Error Occured " + e.getMessage ());
+            JOptionPane.showMessageDialog(null, "Deleted impossible, some orders are associated with this Ride");
         }
     }
     

@@ -57,5 +57,6 @@ public interface DataInterface {
      * @return an array List of Ride to display the list in the JTable of the 'Employee' frame
      */
     public ArrayList<Ride> findRides ();
+    public ArrayList<String> getAvailableTickets();
     
 }

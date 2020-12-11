@@ -75,6 +75,9 @@ o	Si il n'existe pas -> la personne n'est pas référencé dans la DB, on lui de
         - Avoir accès aux dossiers des clients (MemberCustomer ?) -> avoir accès à la DB
         - Définir les attractions les + populaires
 
+	Mode de représentaiton des données :
+	--> Tout d'abord, pour pouvoir utiliser le JFreeChart, nous incluons en amont les fichier 'jcommon-1.0.0.jar' et 'jfreechart-1.0.1.jar' à nos libraries.
+
 
 Librairies pour l'affichage des dates : 
 

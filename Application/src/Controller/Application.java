@@ -193,7 +193,12 @@ public class Application{
         allRides = rides;
         allOrders = allOrderSaved();
       
-        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());
+        DataInterface verif = new DataBase ();
+        ArrayList<String> ticketsAvailable = verif.getAvailableTickets();
+        if (ticketsAvailable.size() != 0 )
+            employ.setTickets(ticketsAvailable);
+        
+//        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());
         employ.centerTable(employ.getTable1()); // JTable des CUSTOMERS
         employ.centerTable(employ.getTable2()); // JTable des ATTRACTION
         employ.centerTable(employ.getTable3());
@@ -234,7 +239,7 @@ public class Application{
         }
         
         // On rempli la JTable 'CUSTOMERS' récupéré ci-dessus
-        if ( allRides.size() != 0 )
+        /*if ( allRides.size() != 0 )
         {
             for ( int i=0; i < allRides.size(); ++i )
             {
@@ -245,7 +250,7 @@ public class Application{
                                                                     allRides.get(i).getNbTicketsAvailable() } );
                 
             }
-        }
+        }*/
         
         if (allOrders.size() != 0)
         {

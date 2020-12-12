@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -30,6 +31,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
     private DefaultTableModel model1;
     private DefaultTableModel model2;
     private DefaultTableModel model3;
+    private ArrayList<String> tickets = new ArrayList<String> ();
     /**
      * Creates new form EmployeeFrame
      */
@@ -49,6 +51,11 @@ public class EmployeeFrame extends javax.swing.JFrame {
    public DefaultTableModel getTableModel1 () { return model1; }    // Customers
    public DefaultTableModel getTableModel2 () { return model2; }    // Attraction 
    public DefaultTableModel getTableModel3 () { return model3; }
+   
+   // Setters
+   public void setTickets (ArrayList<String> list_){
+       tickets = list_;
+   }
    
    public void centerTable (JTable table) {
         DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
@@ -112,6 +119,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
         };
         label1 = new java.awt.Label();
         labelImage = new javax.swing.JLabel();
+        button1 = new java.awt.Button();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -213,7 +221,6 @@ public class EmployeeFrame extends javax.swing.JFrame {
             }
         });
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
@@ -241,7 +248,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -447,7 +454,6 @@ public class EmployeeFrame extends javax.swing.JFrame {
         });
         jTable2.setColumnSelectionAllowed(true);
         jTable2.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable2.setShowGrid(true);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
@@ -462,6 +468,13 @@ public class EmployeeFrame extends javax.swing.JFrame {
 
         labelImage.setBackground(new java.awt.Color(102, 102, 102));
 
+        button1.setLabel("Tickets PieChart");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -475,7 +488,9 @@ public class EmployeeFrame extends javax.swing.JFrame {
                         .addGap(264, 264, 264)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addGap(216, 216, 216)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
                         .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -485,9 +500,15 @@ public class EmployeeFrame extends javax.swing.JFrame {
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
         );
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
@@ -695,7 +716,6 @@ public class EmployeeFrame extends javax.swing.JFrame {
             }
         });
         jTable3.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable3.setShowGrid(true);
         jScrollPane3.setViewportView(jTable3);
 
         jLabel13.setBackground(new java.awt.Color(102, 102, 102));
@@ -957,10 +977,16 @@ public class EmployeeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_button1ActionPerformed
+
   private String fileName = null; 
   private String rideImage = null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button button1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;

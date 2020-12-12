@@ -18,9 +18,9 @@ public class GuestCustomer extends Person implements CustomerInterface {
     //Liste de tickets achetés par le customer
     private ArrayList <Order> order = new ArrayList <Order> ();
 
-    public GuestCustomer(int id, String name, int age, String type) {
+    public GuestCustomer(int id, String name, int age, String type, String img) {
         
-        super (id, name, age,type);
+        super (id, name, age,type, img);
         totalPrice = 0;
     }
 

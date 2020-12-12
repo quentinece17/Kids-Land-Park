@@ -217,7 +217,7 @@ public class SignUpFrame extends javax.swing.JFrame {
                 // Deja vérifier mais c'est pour etre sur 
                 if (jPasswordField2.getText().equals(jPasswordField3.getText()))
                 {
-                    controller.createMember_inSQL(userFullName, userAge, jTextField1.getText(), jPasswordField2.getText());
+                    controller.createMember_inSQL(userFullName, userAge, jTextField1.getText(), jPasswordField2.getText(), image);
                     controller.AffichageCustomer();
                     dispose();  // La fenetre actuel disparait
                 }
@@ -261,17 +261,19 @@ public class SignUpFrame extends javax.swing.JFrame {
         });
     }*/
     public JFrame getWindow () { return this; }
-    public void setDataSignUp(String n_, String lastN_, int age_ ){
+    public void setDataSignUp(String n_, String lastN_, int age_, String img ){
         userFullName = n_ + " " + lastN_; // Construction du nom de l'utilisateur à insérer ensuite dans la base de données
         userAge = age_;                   // Stockage de l'age de l'utilisateur
         s1Name = n_; // On le stock ici si jamais il y a besoin de lancer la frame d'exception Mismatch 
         sFName = lastN_;
+        image = img;
     }
     
     // Controller attribute related to the class Apllication
     private Application controller;
     private String userFullName;
     private int userAge;
+    private String image;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

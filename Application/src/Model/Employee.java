@@ -14,9 +14,9 @@ public class Employee extends Person {
     private String pseudoUser;
     private String loginUser;
         
-    public Employee (int id, String name, int age, String type, String pseu, String log) { 
+    public Employee (int id, String name, int age, String type, String pseu, String log, String img) { 
         
-        super (id, name, age, type); 
+        super (id, name, age, type, img); 
         pseudoUser = pseu;
         loginUser = log;
 

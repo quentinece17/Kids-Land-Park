@@ -67,8 +67,7 @@ public class Application{
     private MatchingUserExceptionFrame matchingUserSQL;
     private EmployeeFrame employ;
     
-    //Tableau d'attractions
-    private Ride [] ride;
+    //Liste d'attractions
     private ArrayList <Ride> rides = null;
     private Ride ActualRide;
     
@@ -145,17 +144,23 @@ public class Application{
             profilMember.setPseudo(member.getPseudoUser());
             profilMember.setLogin(member.getLoginUser());
             profilMember.setType(member.getMemberType()); 
+            String img = member.getImage();
+            ImageIcon image = new ImageIcon (new ImageIcon (img).getImage().getScaledInstance(profilMember.getImageLabel().getWidth(), profilMember.getImageLabel().getHeight(), Image.SCALE_SMOOTH));
+            profilMember.getImageLabel().setIcon(image);
         }
         else if (guest!=null && member==null)
         {
             profilGuest.getWindow().setVisible(true);
             profilGuest.setName(guest.getNameUser());
             profilGuest.setAge(String.valueOf(guest.getAgeUser()));
+            String img =guest.getImage();
+            ImageIcon image = new ImageIcon (new ImageIcon (img).getImage().getScaledInstance(profilGuest.getImageLabel().getWidth(), profilGuest.getImageLabel().getHeight(), Image.SCALE_SMOOTH));
+            profilGuest.getImageLabel().setIcon(image);
         }
  
     }
-    public void AffichageSignUp (String prenom, String nom, int age){
-        newPerson.setDataSignUp(prenom, nom, age);
+    public void AffichageSignUp (String prenom, String nom, int age, String image){
+        newPerson.setDataSignUp(prenom, nom, age, image);
         newPerson.getWindow().setVisible(true);
     }
     public void AffichageGuestInfo () { guestInfo.getWindow().setVisible(true);}
@@ -189,11 +194,9 @@ public class Application{
         // Instanciation des listes
         allGuests = AllGuestsRegistered();   /// On récupère une liste contenant tous les GUESTS enregistré jusqu'à présent dans la DB
         allMembers = AllMembersRegistered();    ///Idem que l'instruction de dessus mais avec les MEMBERS
-        AllRides_inSQL();            /// Idem que l'instruction de dessus mais avec les Attractions
         allRides = rides;
         allOrders = allOrderSaved();
       
-        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());
         employ.centerTable(employ.getTable1()); // JTable des CUSTOMERS
         employ.centerTable(employ.getTable2()); // JTable des ATTRACTION
         employ.centerTable(employ.getTable3());
@@ -316,12 +319,12 @@ public class Application{
         chooseride.getWindow().setVisible(true);
         chooseride.setDateChoosen(dateChoosen);
         chooseride.setDateChoosenLabel("Available Rides for : " + dateChoosen);
-        chooseride.setInfoAttrac1(ride[0].getName());
-        chooseride.setInfoAttrac2(ride[1].getName());
-        chooseride.setInfoAttrac3(ride[2].getName());
-        chooseride.setInfoAttrac4(ride[3].getName());
-        chooseride.setInfoAttrac5(ride[4].getName());
-        chooseride.setInfoAttrac6(ride[5].getName());
+        chooseride.setInfoAttrac1(rides.get(0).getName());
+        chooseride.setInfoAttrac2(rides.get(1).getName());
+        chooseride.setInfoAttrac3(rides.get(2).getName());
+        chooseride.setInfoAttrac4(rides.get(3).getName());
+        chooseride.setInfoAttrac5(rides.get(4).getName());
+        chooseride.setInfoAttrac6(rides.get(5).getName());
     }
     
     public void AffichageConfirmOrder (String date) {
@@ -397,7 +400,6 @@ public class Application{
     }
                     
     
-    
     public void AffichageInfosAttraction (String attraction, String dateChoosen) {
         infoAttrac.getWindow().setVisible(true);
         infoAttrac.setChoosenDate(dateChoosen);
@@ -411,25 +413,30 @@ public class Application{
         int nbExist = 0;
         
         //On regarde à quelle attraction correspond celle envoyé en paramètre (celle sur laquelle l'utilisateur a cliqué)
-        for (int i=0; i<ride.length; ++i)
+        for (int i=0; i<rides.size(); ++i)
         {
-            if (ride[i].getName().equals(attraction))
+            if (rides.get(i).getName().equals(attraction))
             {
                 
-                infoAttrac.setName(ride[i].getName());
-                infoAttrac.setPrice("$"+String.valueOf(ride[i].getPrice()));
-                infoAttrac.setChildPrice("$"+String.valueOf(ride[i].getPrice()-2));
-                infoAttrac.setFeatures(ride[i].getFeatures());
+                infoAttrac.setName(rides.get(i).getName());
+                infoAttrac.setPrice("$"+String.valueOf(rides.get(i).getPrice()));
+                infoAttrac.setChildPrice("$"+String.valueOf(rides.get(i).getPrice()-2));
+                infoAttrac.setFeatures(rides.get(i).getFeatures());
                 
                 DataInterface verif = new DataBase ();
-                nbExist = verif.verifNumberOfTickets(dateChoosen, ride[i].getIdRide());
+                nbExist = verif.verifNumberOfTickets(dateChoosen, rides.get(i).getIdRide());
                 
-                infoAttrac.setTicketsAvailable(String.valueOf(ride[i].getNbTicketsAvailable()-nbExist));
+                infoAttrac.setTicketsAvailable(String.valueOf(rides.get(i).getNbTicketsAvailable()-nbExist));
                 
-                if (nbExist == ride[i].getNbTicketsAvailable())
+                if (nbExist == rides.get(i).getNbTicketsAvailable())
                 {
                     infoAttrac.getBouton().setEnabled(false);
                 }
+                
+                //Affichage de l'image
+                String img = rides.get(i).getImage();
+                ImageIcon image = new ImageIcon (new ImageIcon (img).getImage().getScaledInstance(infoAttrac.getImageLabel().getWidth(), infoAttrac.getImageLabel().getHeight(), Image.SCALE_SMOOTH));
+                infoAttrac.getImageLabel().setIcon(image);
                 
                 //On regarde si la date chosie existe dans la liste (si elle a déjà été sélectionné au paravant)
 //                for (int j=0; j<allDates.size(); ++j)
@@ -471,7 +478,7 @@ public class Application{
     public void InitialisationRide () 
     {
         DataInterface create = new DataBase ();
-        ride = create.createRide();
+        rides = create.findRides();
         
     }
     
@@ -480,10 +487,16 @@ public class Application{
         add.addRideFromEmployee(name, price, features, capacity, image);
     }
     
-    public void updateRide_inSQL (int id, String name, double price, String features, int capacity) {
+    public void updateRide_inSQL (int id, String name, double price, String features, int capacity, String image) {
         
         DataInterface update = new DataBase ();
-        update.updateRide(id, name, price, features, capacity);
+        update.updateRide(id, name, price, features, capacity, image);
+    }
+    
+    public void updateUser_inSQL (String image) {
+        DataInterface update = new DataBase ();
+        update.updateCustomer(member.getIdUser(), image);
+        member.setImage(image);
     }
     
     public void deleteRide_inSQL (int id) {
@@ -589,21 +602,10 @@ public class Application{
         return guests;   
     }
     
-    public void AllRides_inSQL(){
-        
-        DataInterface recup = new DataBase();
-        
-        // Si l'employee est bien instancié dans la classe Application --> on récupère tous les membre et guest de la DB
-        if (employee != null)
-            rides = recup.findRides();
-        else
-            JOptionPane.showMessageDialog(null, "employee attribute not instanciated --> 'employee = null' ");
-    }
-    
-     public void createGuestData (String name, int age, String user_type)
+     public void createGuestData (String name, int age, String user_type, String image)
      {
          DataInterface add = new DataBase ();
-         guest = add.createGuest(name, age, user_type);
+         guest = add.createGuest(name, age, user_type,image);
      } 
 
      public void create0rder (String date, int nbAd, int nbChild) {
@@ -647,10 +649,10 @@ public class Application{
                  if (member.getOrder().get(i).getOrderValid() == false)
                  {
                      int idRide = 0;
-                     for (int j=0; j<ride.length; ++j)
+                     for (int j=0; j<rides.size(); ++j)
                     {
-                        if (ride[j].getName().equals(member.getOrder().get(i).getRideName()))
-                            idRide = ride[j].getIdRide();
+                        if (rides.get(j).getName().equals(member.getOrder().get(i).getRideName()))
+                            idRide = rides.get(j).getIdRide();
                     }
                      int idUser = member.getIdUser();
                      String date = member.getOrder().get(i).getDate();
@@ -675,10 +677,10 @@ public class Application{
                  if (guest.getOrder().get(i).getOrderValid() == false)
                  {
                      int idRide = 0;
-                     for (int j=0; j<ride.length; ++j)
+                     for (int j=0; j<rides.size(); ++j)
                     {
-                        if (ride[j].getName().equals(guest.getOrder().get(i).getRideName()))
-                            idRide = ride[j].getIdRide();
+                        if (rides.get(j).getName().equals(guest.getOrder().get(i).getRideName()))
+                            idRide = rides.get(j).getIdRide();
                     }
                      int idUser = guest.getIdUser();
                      String date = guest.getOrder().get(i).getDate();
@@ -700,9 +702,9 @@ public class Application{
      }
      
      // Création 'un nouveau member customer dans la base de donnéeset récupérationde ce MemberCustomer dans le programme
-     public void createMember_inSQL(String fullName, int age, String pseudo_, String password_){
+     public void createMember_inSQL(String fullName, int age, String pseudo_, String password_, String image){
          DataInterface add = new DataBase ();
-         member = add.createSQL_Member(fullName, age, "MC", pseudo_, password_);
+         member = add.createSQL_Member(fullName, age, "MC", pseudo_, password_, image);
      }
      
      // Exception Frame Setters
@@ -735,7 +737,6 @@ public class Application{
      public Employee getEmployee () { return employee; }
      public GuestCustomer getGuest () { return guest; }
      public MemberCustomer getMember () { return member; }
-     public Ride[] getRide () { return ride; }
      public ArrayList <Date> getAllDates () { return allDates; }
      public ArrayList <Ride> getRideForEmployee () { return rides; }
 }

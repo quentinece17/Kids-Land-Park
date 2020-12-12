@@ -19,7 +19,7 @@ public interface DataInterface {
     
     public void addRideFromEmployee (String name, double price, String features, int capacity, String image);
     
-    public void updateRide (int id, String name, double price, String features, int capacity);
+    public void updateRide (int id, String name, double price, String features, int capacity, String image);
     
     public void deleteRide (int id);
     
@@ -41,9 +41,11 @@ public interface DataInterface {
     
     public int verifUser (String pseu, String log);
     
-    public GuestCustomer createGuest (String name, int age, String user_type);
+    public GuestCustomer createGuest (String name, int age, String user_type, String image);
     
-    public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password);
+    public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password, String image);
+    
+    public void updateCustomer (int id, String image);
     
     public void deleteCustomer (int id);
     

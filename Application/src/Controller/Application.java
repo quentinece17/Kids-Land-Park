@@ -26,6 +26,7 @@ import View.CustomerFrame;
 import View.EmployeeFrame;
 import View.GuestProfil;
 import View.InfosAttraction;
+import View.JFreeChartRideFrame;
 import View.MatchingGuestExceptionFrame;
 import View.MatchingUserExceptionFrame;
 import View.NumberOfTickets;
@@ -41,6 +42,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import javafx.scene.layout.Border;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -66,6 +71,7 @@ public class Application{
     private MatchingGuestExceptionFrame matchingGuestFields;
     private MatchingUserExceptionFrame matchingUserSQL;
     private EmployeeFrame employ;
+    JFreeChartRideFrame rideChart;
     
     //Liste d'attractions
     private ArrayList <Ride> rides = null;
@@ -107,6 +113,7 @@ public class Application{
         matchingGuestFields = new MatchingGuestExceptionFrame(this);
         matchingUserSQL = new MatchingUserExceptionFrame(this);
         employ = new EmployeeFrame(this);
+        rideChart = new JFreeChartRideFrame(this);
     }
     
     public void AddDate (String date) {
@@ -166,6 +173,7 @@ public class Application{
     public void AffichageGuestInfo () { guestInfo.getWindow().setVisible(true);}
     public void AffichageFieldsException () { field.getWindow().setVisible(true);}
     public void AffichageAgeException () { field.getWindow().setVisible(true);}
+    public void AffichageChartAttraction () { rideChart.getChart().setVisible(true); }
     public void AffichageNumberOfTickets (String date) {
         numTickets.getWindow().setVisible(true);        
         numTickets.setDateChoosen(date);
@@ -197,10 +205,15 @@ public class Application{
         allRides = rides;
         allOrders = allOrderSaved();
       
+        /// Dans cette partie du code on récupère le nom et les tickets restants de chaque attraction dans la base de données
+        // --> pour pouvoir ensuite les représenter dans un fromage
         DataInterface verif = new DataBase ();
-        ArrayList<String> ticketsAvailable = verif.getAvailableTickets();
+        ArrayList<String> ticketsAvailable = verif.getAvailableTickets();   // Récupération des tickets restants de chaque attraction dans la base de données
+        ArrayList<String> nomRides = verif.getRideNames();   // Récupération des nom d'attraction dans la base de données
+        
         if (ticketsAvailable.size() != 0 )
             employ.setTickets(ticketsAvailable);
+        
         
 //        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());
         employ.centerTable(employ.getTable1()); // JTable des CUSTOMERS
@@ -711,6 +724,27 @@ public class Application{
      public void createMember_inSQL(String fullName, int age, String pseudo_, String password_, String image){
          DataInterface add = new DataBase ();
          member = add.createSQL_Member(fullName, age, "MC", pseudo_, password_, image);
+     }
+     
+     public void buildRideChart(ArrayList<String> name_, ArrayList<String> tickets_)
+     {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        for (int i = 0; i < tickets_.size(); ++i)
+         dataset.setValue((Comparable) rides.get(i), (double)Integer.parseInt(tickets_.get(i)) ); // Je ne sais pas pourquoi le compilateur veut un '(Comparable)'
+
+            // create a chart...
+            JFreeChart chart = ChartFactory.createPieChart3D(
+                                                           "Popularity of Rides",
+                                                            dataset,
+                                                            true, // legend?
+                                                            true, // tooltips?
+                                                            false // URLs?
+                                                        );
+
+         // create and display a frame...
+         ChartFrame frame = new ChartFrame("Popular Rides", chart);
+         rideChart.setChart(frame);     // La chart est alors initialisé
+         rideChart.packing();           // Une fonctiojn qui appelle juste pack() pour la JFreeChart de l'employée
      }
      
      // Exception Frame Setters

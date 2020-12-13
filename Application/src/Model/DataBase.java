@@ -147,11 +147,11 @@ public class DataBase implements DataInterface {
     }
     
     @Override
-    public void updateRide (int id, String name, double price, String features, int capacity) {
+    public void updateRide (int id, String name, double price, String features, int capacity, String image) {
         
         Connection conn = null;
         Statement stmt = null;
-        String request = "UPDATE Ride SET name_ride = '" + name + "', price_ride ='" + price + "', features_ride = '" + features + "', max_tickets = " + capacity + " where id_ride = " + id + ";";
+        String request = "UPDATE Ride SET name_ride = '" + name + "', price_ride ='" + price + "', features_ride = '" + features + "', max_tickets = " + capacity + ", image = '" + image +"' where id_ride = " + id + ";";
         
          try 
         {
@@ -160,7 +160,7 @@ public class DataBase implements DataInterface {
             
             stmt = conn.createStatement();
             stmt.executeUpdate(request);
-            
+            JOptionPane.showMessageDialog(null, "Updated Sucessfully");
             conn.close();
             stmt.close();
         }
@@ -292,7 +292,7 @@ public class DataBase implements DataInterface {
             // On ajoute tous les guest a la list 
             while (rs.next())
             {
-                    contain.add(new GuestCustomer ( Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(6)) );
+                    contain.add(new GuestCustomer ( Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(6), rs.getString(8)) );
             }
             conn.close();
             stmt.close();
@@ -331,7 +331,7 @@ public class DataBase implements DataInterface {
             // On ajoute tous les guest a la list 
             while (rs.next())
             {
-                    contain.add(new MemberCustomer ( Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)) );
+                    contain.add(new MemberCustomer ( Integer.parseInt(rs.getString(1)), rs.getString(2), Integer.parseInt(rs.getString(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)) );
             }
             conn.close();
             stmt.close();
@@ -508,7 +508,7 @@ public class DataBase implements DataInterface {
                 int id = Integer.parseInt(rs.getString(1));
                 int age = Integer.parseInt (rs.getString(3));
                 //On crée un MemberCustomer
-                user = new MemberCustomer (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                user = new MemberCustomer (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
                     
             }
             
@@ -523,6 +523,28 @@ public class DataBase implements DataInterface {
         }
         
         return user;
+    }
+    
+    @Override
+    public void updateCustomer (int id, String image) {
+        Connection conn = null;
+        Statement stmt = null;
+        String request = "UPDATE Personne SET image = '" + image + "' where user_id = " + id + ";";       
+         try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate(request);
+            JOptionPane.showMessageDialog(null, "Updated Sucessfully");
+            conn.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
     }
     
     @Override
@@ -599,7 +621,7 @@ public class DataBase implements DataInterface {
                
                 int id = Integer.parseInt(rs.getString(1));
                 int age = Integer.parseInt (rs.getString(3));
-                user = new Employee (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6));
+                user = new Employee (id, rs.getString(2), age, rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(8));
                     
             }
             
@@ -691,13 +713,13 @@ public class DataBase implements DataInterface {
     }
     
     @Override
-    public GuestCustomer createGuest(String name, int age, String user_type) 
+    public GuestCustomer createGuest(String name, int age, String user_type, String image) 
     {
         Connection conn = null;
         Statement stmt = null;
         GuestCustomer guest = null;
         
-        String request = "insert into Personne (user_name, user_age, user_type) values ('" + name +"', " + age + ", '" + user_type + "');";
+        String request = "insert into Personne (user_name, user_age, user_type, image) values ('" + name +"', " + age + ", '" + user_type + "', '" + image + "');";
         
         try 
         {
@@ -713,7 +735,7 @@ public class DataBase implements DataInterface {
             
             while (rs.next()) {
                 int id = Integer.parseInt(rs.getString(1));
-                guest = new GuestCustomer (id, name, age, user_type);
+                guest = new GuestCustomer (id, name, age, user_type, image);
             }
 
             conn.close();
@@ -729,13 +751,12 @@ public class DataBase implements DataInterface {
 
     // Fonction qui insère un member customer à part entière dans la base de données 
     @Override
-    public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password) {
+    public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password, String image) {
         
         Connection conn = null;
         Statement stmt = null;
         MemberCustomer member = null;
         String mType = "X";
-        
         // On défini ici le type du member customer en fonction de son age
         // On commence du + grand au plus petit sinon par exemple si l'age est de 13 et qu'on vérifie si l'age est <= 55 en dernier, la personne sera senior automatiquement
         if (age >= 55)  mType = "senior";
@@ -744,7 +765,7 @@ public class DataBase implements DataInterface {
         
             
         //MemberCustomer member = new MemberCustomer(name, age, user_type, pseudo , password); 
-        String request = "insert into Personne (user_name, user_age, user_pseudo, user_login, user_type, member_type) values ('" + name + "', " + age + ", '" + pseudo + "', '" + password + "', 'MC', '" + mType + "');";
+        String request = "insert into Personne (user_name, user_age, user_pseudo, user_login, user_type, member_type, image) values ('" + name + "', " + age + ", '" + pseudo + "', '" + password + "', 'MC', '" + mType + "', '" + image + "');";
         
         // Insertion dans la base de données du nouveau Member Customer
         try 

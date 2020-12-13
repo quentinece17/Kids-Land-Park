@@ -19,13 +19,14 @@ public class MemberCustomer extends Person implements CustomerInterface {
     private String loginUser;
     private String memberTypeUser;
     
+    
     //Liste de commandes achetés par le customer
     private ArrayList <Order> order= new ArrayList <Order> ();
 
     
-    public MemberCustomer(int id, String name, int age, String pseu, String log, String type, String memberType) {
+    public MemberCustomer(int id, String name, int age, String pseu, String log, String type, String memberType, String img) {
        
-       super (id, name, age,type);
+       super (id, name, age,type, img);
        pseudoUser = pseu;
        loginUser = log;
        memberTypeUser = memberType;
@@ -53,6 +54,7 @@ public class MemberCustomer extends Person implements CustomerInterface {
     public String getMemberType() { return memberTypeUser;}
     public double getDiscount() { return discount;} 
     public double getPrice () { return totalPrice; }
+    
     public ArrayList <Order> getOrder () { return order; }
     
     

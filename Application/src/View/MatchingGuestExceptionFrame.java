@@ -44,6 +44,7 @@ public class MatchingGuestExceptionFrame extends JFrame {
     private String saveFirstName;
     private String saveLastName;
     private int saveAge;
+    private String saveImage;
     
     
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
@@ -90,7 +91,7 @@ public class MatchingGuestExceptionFrame extends JFrame {
          // Si on clique sur le bouton ok, on revient à la fenêtre d'avant qui est ici la fenêtre des GuestCustomer
          if (e.getSource()== ok)
          {
-            controller.AffichageSignUp(saveFirstName, saveLastName, saveAge);   // Renvoie à la frame d'avant avec les attributs nécessaire
+            controller.AffichageSignUp(saveFirstName, saveLastName, saveAge, saveImage);   // Renvoie à la frame d'avant avec les attributs nécessaire
             window.dispose();
          }
       }
@@ -105,4 +106,5 @@ public class MatchingGuestExceptionFrame extends JFrame {
    public void setSaveAge ( int age ) { saveAge = age; }
    public void setSave1Name ( String str ) { saveFirstName = str; }
    public void setSaveLName ( String str ) { saveLastName = str; }
+   public void setSaveImage (String img) {saveImage = img; }
 }

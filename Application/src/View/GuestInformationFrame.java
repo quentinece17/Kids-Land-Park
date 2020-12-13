@@ -74,7 +74,10 @@ public class GuestInformationFrame extends JFrame{
     private ButtonGroup customerType = new ButtonGroup();           // Button group qui laisse libre choix quand a la sélection du typer de 'customer'
     private JRadioButton guestButton = new JRadioButton("Guest");     // Boutton Guest 
     private JRadioButton memberButton = new JRadioButton("Member");   // Boutton Member
-    
+    private JLabel sexe = new JLabel ("Genre : ");
+    private ButtonGroup sexeUser = new ButtonGroup ();
+    private JRadioButton hommeButton = new JRadioButton ("Male");
+    private JRadioButton femmeButton = new JRadioButton ("Female");
     
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel; 
@@ -144,6 +147,9 @@ public class GuestInformationFrame extends JFrame{
         customerType.add(memberButton);
         customerType.add(guestButton);
         
+        sexeUser.add(hommeButton);
+        sexeUser.add(femmeButton);
+        
         p1.setLayout(null);
         label2.setBounds(0, 60, 900, 45);
         start.setBounds(480,320,130,30);
@@ -166,10 +172,14 @@ public class GuestInformationFrame extends JFrame{
         agetext.setBounds(245, 240, 110, 20);
         agetext.setBorder(bTextFields);
         age.setForeground(Color.WHITE);
-        type.setBounds(150, 305, 100, 40);
+        type.setBounds(150, 280, 140, 40);
         type.setForeground(Color.WHITE);
-        memberButton.setBounds(268, 305, 100, 40);
-        guestButton.setBounds(268, 345, 100, 40);
+        memberButton.setBounds(268, 280, 100, 40);
+        guestButton.setBounds(268, 320, 100, 40);
+        sexe.setBounds(150, 360, 50, 40);
+        sexe.setForeground(Color.WHITE);
+        hommeButton.setBounds (210, 360, 100, 40);
+        femmeButton.setBounds(210, 400, 100, 40);
         
         // Initialiser les couleurs des boutyons pour les laisser se fojndre dans la couleur de fond du panel
         type.setBackground(new Color (195, 195, 195));
@@ -178,6 +188,12 @@ public class GuestInformationFrame extends JFrame{
         guestButton.setForeground(Color.WHITE);
         memberButton.setBackground(new Color (195, 195, 195));
         memberButton.setForeground(Color.WHITE);
+        sexe.setBackground(new Color (195, 195, 195));
+        sexe.setForeground(Color.WHITE);
+        hommeButton.setBackground(new Color (195, 195, 195));
+        hommeButton.setForeground(Color.WHITE);
+        femmeButton.setBackground(new Color (195, 195, 195));
+        femmeButton.setForeground(Color.WHITE);
         
         
         start.setBorder(bButtons);
@@ -202,6 +218,9 @@ public class GuestInformationFrame extends JFrame{
         p1.add(type);
         p1.add(memberButton);
         p1.add(guestButton);
+        p1.add (sexe);
+        p1.add (hommeButton);
+        p1.add(femmeButton);
 
     }
     
@@ -264,9 +283,18 @@ public class GuestInformationFrame extends JFrame{
                             //On récupère les informations de l'utilisateur
                             String nameUser = f_name.getText() +" " + l_name.getText();
                             int ageUser = Integer.parseInt(agetext.getText());
-
-                            controller.AffichageSignUp(f_name.getText(), l_name.getText(), ageUser);
-                            window.dispose();
+                            String image=null;
+                            if (hommeButton.isSelected())
+                                image = "/Users/quentin/NetBeansProjects/Project-Databases/Application/Images/Personnes/Member_Homme.jpg";
+                            else if (femmeButton.isSelected())
+                                image = "/Users/quentin/NetBeansProjects/Project-Databases/Application/Images/Personnes/Member_Femme.jpg";
+                            if (image != null)
+                            {
+                                controller.AffichageSignUp(f_name.getText(), l_name.getText(), ageUser, image);
+                                window.dispose();
+                            }
+                            else
+                                JOptionPane.showMessageDialog(null, "Please, select all the information");
                             } 
                         }
 
@@ -277,16 +305,26 @@ public class GuestInformationFrame extends JFrame{
                             //On récupère les informations de l'utilisateur
                             String nameUser = f_name.getText() +" " + l_name.getText();
                             String typeUser = "GC";
+                            String image = null;
                             int ageUser = Integer.parseInt(agetext.getText());
-
+                            if (hommeButton.isSelected())
+                                image = "/Users/quentin/NetBeansProjects/Project-Databases/Application/Images/Personnes/Guest_Homme.jpg";
+                            else if (femmeButton.isSelected())
+                                image = "/Users/quentin/NetBeansProjects/Project-Databases/Application/Images/Personnes/Guest_Femme.jpg";
                             //Création du GuestCustomer dans la base de donnée
-                            controller.createGuestData (nameUser, ageUser, typeUser);
+                            
+                            if (image!=null)
+                            {
+                                controller.createGuestData (nameUser, ageUser, typeUser, image);
 
                             //Affichage de la page pour un Customer
                             //controller.AffichageFieldsException();
                             // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
                             controller.AffichageCustomer();
                             window.dispose();
+                            }
+                            else 
+                                JOptionPane.showMessageDialog(null, "Please, select all the information");
                             } 
                         }
                 }

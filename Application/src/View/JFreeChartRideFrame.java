@@ -23,6 +23,7 @@ public class JFreeChartRideFrame extends JFrame {
     private ArrayList<String> tickets = new ArrayList<String> ();
     JFrame window = new JFrame();
     ChartFrame popularRides;
+    int [] totalTickets = null;
     
     public JFreeChartRideFrame( Application app)
     {
@@ -39,6 +40,7 @@ public class JFreeChartRideFrame extends JFrame {
     
     // Setters
     public void setTickets (ArrayList<String> list_) {tickets = list_;}
+    public void setTotalTickets (int tab[]) {totalTickets = tab;}
     public void setChart (ChartFrame cf) { popularRides = cf; }
     
 }

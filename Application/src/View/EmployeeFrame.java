@@ -37,6 +37,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
     private final DefaultTableModel model3;
     private ArrayList<String> tickets = new ArrayList<> ();   /// --> For the JFreeChart  || L'ordre des tickets est le même que celui des Rides 
     private final ArrayList<String> rides = new ArrayList<> ();     /// --> For the JFreeChart
+    private int [] totalTickets;
     /**
      * Creates new form EmployeeFrame
      * @param app
@@ -68,6 +69,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
    public void setTickets (ArrayList<String> list_){
        tickets = list_;
    }
+   public void setTotalTickets (int tab[]) {totalTickets = tab;}
    
    public void centerTable (JTable table) {
         DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
@@ -1008,7 +1010,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Les éléments des deux listes se corespondent et sont donc au même indice
 //        if (tickets.size()!=0 && rides.size() == tickets.size()){
-            controller.buildRideChart(rides, tickets);
+            controller.buildRideChart(rides, totalTickets);
             
             controller.AffichageChartAttraction();
             dispose();

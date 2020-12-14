@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -214,6 +215,7 @@ public class ConfirmOrder extends javax.swing.JFrame {
         System.out.println (date);
         
         controller.createTicket_inSQL(date);
+        JOptionPane.showMessageDialog(null, "Your order have been registered");
         controller.AffichageProfilMember();
         dispose();
 

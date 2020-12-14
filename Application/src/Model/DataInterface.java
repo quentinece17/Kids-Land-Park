@@ -185,4 +185,6 @@ public interface DataInterface {
      */
     public ArrayList<String> getRideNames();
     
+    public int [] getTotalTicketsOfEachRide();
+    
 }

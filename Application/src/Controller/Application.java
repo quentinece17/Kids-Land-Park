@@ -205,9 +205,11 @@ public class Application{
         DataInterface verif = new DataBase ();
         ArrayList<String> ticketsAvailable = verif.getAvailableTickets();   // Récupération des tickets restants de chaque attraction dans la base de données
         ArrayList<String> nomRides = verif.getRideNames();   // Récupération des nom d'attraction dans la base de données
+        int [] tousLesTickets = verif.getTotalTicketsOfEachRide();
         
         if (ticketsAvailable.size() != 0 )
-            employ.setTickets(ticketsAvailable);
+            employ.setTotalTickets(tousLesTickets);
+            //employ.setTickets(ticketsAvailable);
         
         
 //        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());
@@ -769,11 +771,11 @@ public class Application{
      * @param name_
      * @param tickets_
      */
-     public void buildRideChart(ArrayList<String> name_, ArrayList<String> tickets_)
+     public void buildRideChart(ArrayList<String> name_, int [] tickets_)
      {
         DefaultPieDataset dataset = new DefaultPieDataset();
-        for (int i = 0; i < tickets_.size(); ++i)
-            dataset.setValue((Comparable) rides.get(i).getName(), Integer.parseInt(tickets_.get(i)) ); // Je ne sais pas pourquoi le compilateur veut un '(Comparable)'
+        for (int i = 0; i < tickets_.length; ++i)
+            dataset.setValue((Comparable) rides.get(i).getName(), tickets_[i] ); // Je ne sais pas pourquoi le compilateur veut un '(Comparable)'
 
             // create a chart...
             JFreeChart chart = ChartFactory.createPieChart3D(

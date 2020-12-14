@@ -786,7 +786,60 @@ public class DataBase implements DataInterface {
         }
         return member;
     }
-
+    
+    
+    @Override
+    public int [] getTotalTicketsOfEachRide() {
+        
+        ArrayList<String> tickets = new ArrayList<String> ();
+        
+        Connection conn = null;
+        Statement stmt = null;
+        MemberCustomer member = null;
+        int nbCommandes = 0;
+        int nbRides = 0;
+        int [] totalTicketsForaRide = null;
+        
+        String request = "select id_ride from Ride;";
+        
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+                  
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(request);
+            while (rs.next()) {
+                nbRides = Integer.parseInt(rs.getString(1));
+            }
+            totalTicketsForaRide = new int [nbRides];
+           // for (int i : totalTicketsForaRide)
+            
+            request = "select * from Command;";
+            rs = stmt.executeQuery(request);
+            while (rs.next()) {
+                nbCommandes = Integer.parseInt(rs.getString(1));
+            }
+            
+            request = "select ride_command from Command;";
+            rs = stmt.executeQuery(request);
+            
+            while (rs.next()) {
+                totalTicketsForaRide[Integer.parseInt(rs.getString(1))] +=1;
+            }
+            
+            conn.close();
+            stmt.close();
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        
+        return totalTicketsForaRide;
+    }
+    
     @Override
     public ArrayList<String> getAvailableTickets() {
         
@@ -798,7 +851,6 @@ public class DataBase implements DataInterface {
         
         
         String request = "select max_tickets from Ride;";
-        System.out.println("Test");
         try 
         {
             DataSource data = new DataSource ();

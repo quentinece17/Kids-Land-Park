@@ -17,6 +17,7 @@ public class GuestProfil extends javax.swing.JFrame {
 
     /**
      * Creates new form GuestProfil
+     * @param app
      */
     public GuestProfil(Application app) {
         controller = app;
@@ -242,12 +243,22 @@ public class GuestProfil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Getter 
+     * @return les attributs
+     */
     public JFrame getWindow () { return this; }
     public JLabel getImageLabel () { return ImageLabel; }
+    
+    /**
+     * Initialisation de la liste de Rides 
+     * @param text
+     */
+    @Override
     public void setName (String text) { jLabel6.setText(text);}
     public void setAge (String text) { jLabel7.setText(text); }
     
-    private Application controller;
+    private final Application controller;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImageLabel;

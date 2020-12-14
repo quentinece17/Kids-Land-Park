@@ -50,6 +50,10 @@ public class MatchingGuestExceptionFrame extends JFrame {
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel; 
     
+    /**
+     * Constructeur 
+     * @param app
+     */
     public MatchingGuestExceptionFrame (Application app){
         
         controller = app;
@@ -73,9 +77,11 @@ public class MatchingGuestExceptionFrame extends JFrame {
         window.add(exceptionMessage, BorderLayout.CENTER);
         window.add(ok, BorderLayout.SOUTH);
 
-        //EXIT_ON_CLOSE.addActionListener(new RegisterFrame.InteractionButtonListener());
     }
 
+    /**
+     * Classe gérant les événements 
+     */
     private class InteractionButtonListener implements ActionListener
     {
         
@@ -98,10 +104,16 @@ public class MatchingGuestExceptionFrame extends JFrame {
 
     }
     
-    // Getters
+   /**
+     * Getter
+     * @return la window actuelle
+     */
    public JFrame getWindow() { return window; }
    
-   // Setters
+   /**
+     * Setter 
+     * @param msg
+     */
    public void setMessage(String  msg) { exceptionMessage.setText(msg); }
    public void setSaveAge ( int age ) { saveAge = age; }
    public void setSave1Name ( String str ) { saveFirstName = str; }

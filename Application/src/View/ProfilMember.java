@@ -21,6 +21,7 @@ public class ProfilMember extends javax.swing.JFrame {
 
     /**
      * Creates new form ProfilCustomer
+     * @param app
      */
     public ProfilMember(Application app) {
         controller = app;
@@ -306,18 +307,25 @@ public class ProfilMember extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    //Getters
+    /**
+     * Getters 
+     * @return les attributs
+     */
     public JFrame getWindow () { return this; }
     public JLabel getImageLabel () { return ImageLabel; }
     
-    //Setters
+    /**
+     * Setter 
+     * @param text
+     */
+    @Override
     public void setName (String text) { jLabel6.setText(text); }
     public void setAge (String text) { jLabel7.setText(text); }
     public void setPseudo (String text) { jLabel8.setText(text); }
     public void setLogin (String text) { jLabel9.setText(text); }
     public void setType (String text) { jLabel10.setText(text); }
     
-   private Application controller;
+   private final Application controller;
    private String fileName = null; 
    private String rideImage = null;
    

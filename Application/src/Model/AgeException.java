@@ -11,7 +11,9 @@ package Model;
  */
 public class AgeException extends Exception {
     
-    // Si il n'y a pas de paramètre, on appelle le constructeur par défaut
+    /**
+     * Si il n'y a pas de paramètre, on appelle le constructeur par défaut 
+     */
     public AgeException(){
         super("Please enter an appropriate age.");
     }

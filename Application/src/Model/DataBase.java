@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
  *
  * @author quentin
  */
+
+//Voir l'interface DataInterface pour les JavaDoc
 public class DataBase implements DataInterface {
     
     @Override
@@ -51,6 +53,7 @@ public class DataBase implements DataInterface {
        return type;
     }
     
+    @Override
     public void createTicket (int idRide, int idUser, int adTick, int childTick, String date, String datePurchase, double price) {
         
         Connection conn = null;
@@ -267,10 +270,6 @@ public class DataBase implements DataInterface {
         return container;
     }
     
-    /**
-     *
-     * @return an array list of guest from the DB
-     */
     @Override
     public ArrayList<GuestCustomer> findGuests_inSQL () {
         
@@ -306,10 +305,6 @@ public class DataBase implements DataInterface {
         return contain;
     }
     
-    /**
-     *
-     * @return an array list of guest from the DB
-     */
     @Override
     public ArrayList<MemberCustomer> findMembers_inSQL () {
         
@@ -389,6 +384,7 @@ public class DataBase implements DataInterface {
         }
         return orders;
     }
+   
     @Override
     public ArrayList<Order> findOrder (int idUser) {
         
@@ -575,6 +571,7 @@ public class DataBase implements DataInterface {
         }
     }
     
+    @Override
     public void deleteOrder (int id) {
         Connection conn = null;
         Statement stmt = null;
@@ -679,6 +676,7 @@ public class DataBase implements DataInterface {
         return valid;
     }
 
+    @Override
     public int verifNumberOfTickets (String date, int id) {
         
         int nb = 0;
@@ -750,7 +748,6 @@ public class DataBase implements DataInterface {
         return guest;
     }
 
-    // Fonction qui insère un member customer à part entière dans la base de données 
     @Override
     public MemberCustomer createSQL_Member(String name, int age, String user_type, String pseudo, String password, String image) {
         
@@ -790,7 +787,6 @@ public class DataBase implements DataInterface {
         return member;
     }
 
-    // Récupère la liste des Tickets restants pour chaque ride
     @Override
     public ArrayList<String> getAvailableTickets() {
         
@@ -827,7 +823,6 @@ public class DataBase implements DataInterface {
         return tickets;
     }
     
-    // Récupère la liste des Tickets restants pour chaque ride
     @Override
     public ArrayList<String> getRideNames() {
         

@@ -20,6 +20,7 @@ public class OrderHistory extends javax.swing.JFrame {
 
     /**
      * Creates new form OrderHistory
+     * @param app
      */
     public OrderHistory(Application app) {
         controller = app;
@@ -173,12 +174,16 @@ public class OrderHistory extends javax.swing.JFrame {
     table.getColumnModel().getColumn(i).setCellRenderer(custom);
     }
     
+    /**
+     * Getter 
+     * @return 
+     */
     public JFrame getWindow () { return this; }
     public JTable getTable () { return jTable1; }
     public DefaultTableModel getTableModel () { return model; }
     
-    private Application controller;
-    private DefaultTableModel model;
+    private final Application controller;
+    private final DefaultTableModel model;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

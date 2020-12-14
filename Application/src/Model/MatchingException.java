@@ -11,6 +11,10 @@ package Model;
  */
 public class MatchingException extends Exception {
     
+    /**
+     * Constructeur 
+     * @param str
+     */
     public MatchingException(String str){
         super(str);
     }

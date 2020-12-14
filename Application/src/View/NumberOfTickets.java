@@ -18,6 +18,7 @@ public class NumberOfTickets extends javax.swing.JFrame {
 
     /**
      * Creates new form NumberOfTickets
+     * @param app
      */
     public NumberOfTickets(Application app) {
         controller = app;
@@ -226,6 +227,7 @@ public class NumberOfTickets extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (jRadioButton2.isSelected())
@@ -273,13 +275,21 @@ public class NumberOfTickets extends javax.swing.JFrame {
     // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Setter 
+     * @param date
+     */
     public void setDateChoosen (String date) { dateChoosen = date; }
     
+    /**
+     * Getter 
+     * @return 
+     */
    public JFrame getWindow () { return this; }
    public JRadioButton getRadioButton1 () { return jRadioButton1; }
    public JRadioButton getRadioButton2 () { return jRadioButton2; }
 
-    private Application controller;
+    private final Application controller;
     private String dateChoosen;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

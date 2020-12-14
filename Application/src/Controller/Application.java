@@ -81,14 +81,20 @@ public class Application{
     private GuestCustomer guest = null;
     private MemberCustomer member = null;
     
-    //Constructeur
+    /**
+     * Constructeur
+     * @throws java.text.ParseException
+     */
     public Application() throws ParseException{  
 
         InitialisationRide ();
         Initialisation ();
     }
 
-    //Initialisation des différentes window
+    /**
+     * Initialisation de chaque Frame
+     * @throws java.text.ParseException
+     */
     public void Initialisation () throws ParseException 
     {
         accueil = new AccueilFrame(this);
@@ -112,15 +118,25 @@ public class Application{
         rideChart = new JFreeChartRideFrame(this);
     }
     
+    /**
+     * Sauvegarde du Ride actuelle 
+     */
     public void saveActualRide (String name) {
         
         DataInterface save = new DataBase();
         ActualRide = save.findRide(name);
     }
 
-    //Méthodes d'affichage des différentes windows
+    /**
+     * Méthodes d'affichage de chaque Frame 
+     */
     public void AffichageAccueil () { accueil.getWindow().setVisible(true);}
-    public void AffichageRegister (){ register.getWindow().setVisible(true);}
+    public void AffichageRegister (){ 
+        register.setPseudo(null);
+        register.setLogin (null);
+        register.getWindow().setVisible(true);
+   
+    }
     public void AffichageMatchingGuest () { matchingGuestFields.getWindow().setVisible(true); }
     public void AffichageMatchingUser () { matchingUserSQL.getWindow().setVisible(true); }
     public void AffichageProfilMember () {
@@ -167,13 +183,11 @@ public class Application{
         int nbRides = employ.getTableModel2().getRowCount();
         int nbOrders = employ.getTableModel3().getRowCount();
         // Reinitialisation des lignes des JTable au cas où c'était rempli
-        
-        
         // -> JTable Customers
         if (nbPersons != 0)     employ.getTableModel1().setRowCount(0);
         // -> JTable Rides
         if (nbRides != 0)       employ.getTableModel2().setRowCount(0);
-        
+        // -> JTable Order
         if (nbOrders != 0)      employ.getTableModel3().setRowCount(0);
         
         ArrayList <GuestCustomer> allGuests;
@@ -303,20 +317,11 @@ public class Application{
             customer.setText("Hello " + member.getNameUser());
         if (guest != null && member == null)
             customer.setText("Hello " + guest.getNameUser());
-        
-//        if (member.getOrder().size() != 0)
-//        {
-//            for (int i=0; i<member.getOrder().size(); ++i)
-//            {
-//                System.out.println (member.getOrder().get(i).getRideName() + " - " + member.getOrder().get(i).getNumberOfTickets() + " - " + member.getOrder().get(i).getDate());
-//            }
-//        }
-//        else
-//            System.out.println ("Pas de commande en cours");
     }
     
     public void AffichageChooseRide (String dateChoosen) {
         chooseride.getWindow().setVisible(true);
+        chooseride.getComboBox().removeAllItems();
         chooseride.setDateChoosen(dateChoosen);
         chooseride.setDateChoosenLabel("Available Rides for : " + dateChoosen);
         chooseride.setInfoAttrac1(rides.get(0).getName());
@@ -444,43 +449,15 @@ public class Application{
                 ImageIcon image = new ImageIcon (new ImageIcon (img).getImage().getScaledInstance(infoAttrac.getImageLabel().getWidth(), infoAttrac.getImageLabel().getHeight(), Image.SCALE_SMOOTH));
                 infoAttrac.getImageLabel().setIcon(image);
                 
-                //On regarde si la date chosie existe dans la liste (si elle a déjà été sélectionné au paravant)
-//                for (int j=0; j<allDates.size(); ++j)
-//                {
-//                    if (allDates.get(j).getDateActuelle().equals(dateChoosen))
-//                    {
-//                        valid = true;
-//                        indiceDate = j;
-//                    }
-//                        
-//                }
-//                
-//                if (valid)
-//                {
-////                    //On recupère l'indice du Ride correspondant à celui choisi
-////                    for (int k=0; k<allDates.get(indiceDate).getRide().length; ++k)
-////                    {
-////                        if (allDates.get(indiceDate).getRide()[k].getName().equals(attraction))
-////                            indiceRide =k;
-////    
-////                    }
-//                    //On récupère le nombre de tickets restant de l'attraction choisie pour la date choisie
-//                    int container = allDates.get(indiceDate).getRide()[i].getNbTicketsAvailable();
-//                    
-//                    infoAttrac.setTicketsAvailable(String.valueOf(container));
-//                    
-//                }
-//                //Si la date n'a jamais été sélectionné au paravant, on affiche la valeur non mise à jour se trouvant dans le tableau d'attraction de la classe Application
-//                else
-//                {
-//                    infoAttrac.setTicketsAvailable(String.valueOf(ride[i].getNbTicketsAvailable()));
-//                }
             }
             
         }
         
     }
 
+    /**
+     * Initialisation de la liste de Rides 
+     */
     public void InitialisationRide () 
     {
         DataInterface create = new DataBase ();
@@ -488,40 +465,76 @@ public class Application{
         
     }
     
+    /**
+     * Ajout d'une ride dans la base de donnée
+     * @param name
+     * @param price
+     * @param features
+     * @param capacity
+     * @param image
+     */
     public void addRide_inSQL (String name, double price, String features, int capacity, String image) {
         DataInterface add = new DataBase();
         add.addRideFromEmployee(name, price, features, capacity, image);
     }
-    
+    /**
+     * Modification d'une Ride en SQL
+     * @param id
+     * @param name
+     * @param price
+     * @param features
+     * @param capacity
+     * @param image
+     */
     public void updateRide_inSQL (int id, String name, double price, String features, int capacity, String image) {
         
         DataInterface update = new DataBase ();
         update.updateRide(id, name, price, features, capacity, image);
     }
     
+    /**
+     * Modification d'un User en SQL
+     * @param image
+     */
     public void updateUser_inSQL (String image) {
         DataInterface update = new DataBase ();
         update.updateCustomer(member.getIdUser(), image);
         member.setImage(image);
     }
     
+    /**
+     * Suppression d'une Ride en SQL
+     * @param id
+     */
     public void deleteRide_inSQL (int id) {
         DataInterface delete = new DataBase();
         delete.deleteRide(id);
     }
     
+    /**
+     * Méthodes d'affichage de chaque Frame
+     * @param id
+     */
     public void deleteCustomer_inSQL (int id) {
         DataInterface delete = new DataBase();
         delete.deleteCustomer(id);
     }
     
+    /**
+     * Suppression d'un Order en SQL 
+     * @param id
+     */
     public void deleteOrder_inSQL (int id) {
         DataInterface delete = new DataBase();
         delete.deleteOrder(id);
         
     }
 
-    // Permet de vérifier si l'utilisateur existe dans la base de données
+    /**
+     * @param pseu
+     * @param log
+     * @return si la personne existe dans la base de Donnée
+     */
     public boolean personData (String pseu, String log)
     {
         //Permet de vérifier si la personne qui s'identifie existe
@@ -552,6 +565,9 @@ public class Application{
         }
     }
     
+    /** 
+     * @return la liste de commande de l'utilisateur
+     */
     public ArrayList<Order> AllCommandOfTheUser () {
         ArrayList <Order> commandsUser = null;
         DataInterface recup = new DataBase();
@@ -564,6 +580,9 @@ public class Application{
         return commandsUser;
     }
     
+    /**
+     * @return la liste de tous les membres de la base de donnée
+     */
     public ArrayList<MemberCustomer> AllMembersRegistered () {
         
         ArrayList <MemberCustomer> members = null;
@@ -579,6 +598,9 @@ public class Application{
         return members;   
     }
     
+    /** 
+     * @return la liste de tous les orders de la base de donnée
+     */
     public ArrayList<Order> allOrderSaved () {
         
         ArrayList <Order> orders = null;
@@ -593,6 +615,9 @@ public class Application{
         return orders;
     }
     
+    /** 
+     * @return la liste de tous les Guest de la base de donnée
+     */
     public ArrayList<GuestCustomer> AllGuestsRegistered () {
         
         ArrayList <GuestCustomer> guests = null;
@@ -608,12 +633,25 @@ public class Application{
         return guests;   
     }
     
+    /**
+     * Création d'un Guest dans la base de donnée
+     * @param name
+     * @param age
+     * @param user_type
+     * @param image
+     */
      public void createGuestData (String name, int age, String user_type, String image)
      {
          DataInterface add = new DataBase ();
          guest = add.createGuest(name, age, user_type,image);
      } 
 
+     /**
+     * Création d'une commande pour l'utilisateur 
+     * @param date
+     * @param nbAd
+     * @param nbChild
+     */
      public void create0rder (String date, int nbAd, int nbChild) {
          
          if (member!=null && guest==null)
@@ -631,19 +669,25 @@ public class Application{
          }
      }
      
+     /**
+     * Suppression des commandes en cours de l'utilisateur 
+     */
      public void deleteAllOrder () {
          
          if (member!= null && guest==null)
          {
-             for (int i=0; i<member.getOrder().size(); ++i)
-             {
-//                 if (member.getOrder().get(i).getOrderValid()==false)
-//                     member.getOrder().remove(i);
-             }
              member.getOrder().clear();
+         }
+         else if (guest != null && member == null)
+         {
+             guest.getOrder().clear();
          }
      }
      
+     /**
+     * Création d'un ticket en SQL
+     * @param dateOfPurchase
+     */
      public void createTicket_inSQL (String dateOfPurchase) {
          DataInterface add = new DataBase ();
          if (member!=null && guest == null)
@@ -707,17 +751,29 @@ public class Application{
         
      }
      
-     // Création 'un nouveau member customer dans la base de donnéeset récupérationde ce MemberCustomer dans le programme
+     /**
+     * Création 'un nouveau member customer dans la base de donnéeset récupérationde ce MemberCustomer dans le programme
+     * @param fullName
+     * @param age
+     * @param pseudo_
+     * @param password_
+     * @param image
+     */
      public void createMember_inSQL(String fullName, int age, String pseudo_, String password_, String image){
          DataInterface add = new DataBase ();
          member = add.createSQL_Member(fullName, age, "MC", pseudo_, password_, image);
      }
      
+     /**
+     * Construction d'un diagramme de Ride 
+     * @param name_
+     * @param tickets_
+     */
      public void buildRideChart(ArrayList<String> name_, ArrayList<String> tickets_)
      {
         DefaultPieDataset dataset = new DefaultPieDataset();
         for (int i = 0; i < tickets_.size(); ++i)
-         dataset.setValue((Comparable) rides.get(i), (double)Integer.parseInt(tickets_.get(i)) ); // Je ne sais pas pourquoi le compilateur veut un '(Comparable)'
+            dataset.setValue((Comparable) rides.get(i).getName(), Integer.parseInt(tickets_.get(i)) ); // Je ne sais pas pourquoi le compilateur veut un '(Comparable)'
 
             // create a chart...
             JFreeChart chart = ChartFactory.createPieChart3D(
@@ -732,11 +788,13 @@ public class Application{
          ChartFrame frame = new ChartFrame("Popular Rides", chart);
          rideChart.setChart(frame);     // La chart est alors initialisé
          rideChart.packing();           // Une fonctiojn qui appelle juste pack() pour la JFreeChart de l'employée
+         
      }
      
-     // Exception Frame Setters
-     // On initialise le message de la fenêtre d'exception correspondante
-     /////////////////////////////////////////////////////////////////////////
+     /**
+     * Initialisation des messages d'excpetion 
+     * @param msg
+     */
      public void setFieldExceptionLabel(String msg){
          field.setMessage(msg);
      }
@@ -752,15 +810,23 @@ public class Application{
          age.setMessage(msg);
      }
      
-     public void setSavedData(String firstName, String lastName, int age_){
+     /**
+     *  Sauvegarde des paramètres
+     * @param firstName
+     * @param lastName
+     * @param age_
+     * @param image
+     */
+     public void setSavedData(String firstName, String lastName, int age_, String image){
          matchingGuestFields.setSave1Name(firstName);
          matchingGuestFields.setSaveLName(lastName);
          matchingGuestFields.setSaveAge(age_);
+         matchingGuestFields.setSaveImage(image);
      }
-     
-    ////////////////////////////////////////////////////////////////////
-     
-     //Getters
+          
+     /**
+     * @return les attributs 
+     */
      public Employee getEmployee () { return employee; }
      public GuestCustomer getGuest () { return guest; }
      public MemberCustomer getMember () { return member; }

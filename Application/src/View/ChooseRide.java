@@ -23,6 +23,7 @@ public class ChooseRide extends javax.swing.JFrame {
 
     /**
      * Creates new form ChooseRide
+     * @param app
      */
     public ChooseRide(Application app) {
         controller = app;
@@ -451,7 +452,6 @@ public class ChooseRide extends javax.swing.JFrame {
 
         controller.AffichageInfosAttraction(jLabel6.getText(), dateChoosen);
         dispose ();
-// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -460,13 +460,6 @@ public class ChooseRide extends javax.swing.JFrame {
         dispose ();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
-        controller.AffichageCustomer();
-        dispose();
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -480,8 +473,17 @@ public class ChooseRide extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+        controller.AffichageCustomer();
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    /**
+     * Setters
+     */
     public void setDateChoosen (String date) { dateChoosen = date; }
-    
     public void setDateChoosenLabel (String text) { jLabel1.setText(text); }
     public void setInfoAttrac1 (String text) { jLabel2.setText(text); }
     public void setInfoAttrac2 (String text) { jLabel3.setText(text); }
@@ -490,10 +492,14 @@ public class ChooseRide extends javax.swing.JFrame {
     public void setInfoAttrac5 (String text) { jLabel6.setText(text); }
     public void setInfoAttrac6 (String text) { jLabel7.setText(text); }
     
+    /**
+     * Getters 
+     * @return les attributs
+     */
     public JFrame getWindow () { return this; }
     public JComboBox getComboBox () { return jComboBox1; }
     
-    private Application controller;
+    private final Application controller;
     private String dateChoosen;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

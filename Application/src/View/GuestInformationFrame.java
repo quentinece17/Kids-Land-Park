@@ -43,10 +43,7 @@ public class GuestInformationFrame extends JFrame{
     
     //JPanel
     private JPanel p1 = new JPanel();   // Ecran d'accueil
-    private JPanel p2 = new JPanel();
-    
-    // JButtonGroup --> Le nouveau venu est soit un Member customer soit un Guest customer
-    
+    private JPanel p2 = new JPanel();    
     
     //JButton
     private JButton start = new JButton(" Confirm ");
@@ -84,6 +81,10 @@ public class GuestInformationFrame extends JFrame{
     
     private String Message = new String(""); // Si il y a une exception --> Message récupère alors le String généré par cette Exception
     
+    /**
+     * Constructeur 
+     * @param app
+     */
     public GuestInformationFrame (Application app)
     {
         controller = app;
@@ -97,7 +98,6 @@ public class GuestInformationFrame extends JFrame{
          
         // On set du border de l'image
         javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 2 );
-//        imageLabel.setBorder(bImage);
         imageLabel.setBounds(455, 150, 155, 131);
         
          // Frame Design
@@ -106,21 +106,11 @@ public class GuestInformationFrame extends JFrame{
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         
-        //catch( FieldException eField) {
-            //Message = eField.getMessage(); // Message récupère le String généré dans le constructeur de FieldException
-            //controller.setie;ldExceptionLabel(Message);
-            //controller.AffichageFielFdsException()
-        //}
-        
         // Design des panels
-       // p1.setSize(new Dimension(900, 520));    // La somme des hauteurs des 2 panels donnent 900, soit la hauteur en pixel du GuestIinformationFrame
-        //p2.setSize(new Dimension(900, 380));
         p1.setBackground( new Color (102, 102, 102) );
         p1.add(imageLabel);
-        //p2.setBackground(Color.BLACK);  
          
         buildpanel1();    
-        //p2.add(imageLabel);
         
         start.addActionListener(new InteractionButtonListener());
         retour.addActionListener(new InteractionButtonListener());
@@ -128,10 +118,12 @@ public class GuestInformationFrame extends JFrame{
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
         window.setLocationRelativeTo(null);
-        //window.add(p2, BorderLayout.SOUTH);    
           
     }
     
+    /**
+     * Construit le panel 
+     */
     public void buildpanel1 ()
     {
         javax.swing.border.Border bLabel = BorderFactory.createLineBorder(Color.WHITE, 2);
@@ -200,12 +192,6 @@ public class GuestInformationFrame extends JFrame{
         start.setBackground(Color.BLACK);
         start.setForeground(Color.WHITE);
         
-        
-        //retour.setBorder(bButtons);
-        //retour.setBackground(new Color(254, 150, 160));
-        //retour.setForeground(Color.WHITE);
-
-        
         p1.add (firstname);
         p1.add (f_name);
         p1.add (lastname);
@@ -224,6 +210,9 @@ public class GuestInformationFrame extends JFrame{
 
     }
     
+    /**
+     * Classe gérant les événements 
+     */
     private class InteractionButtonListener implements ActionListener
     {
 
@@ -319,7 +308,7 @@ public class GuestInformationFrame extends JFrame{
 
                             //Affichage de la page pour un Customer
                             //controller.AffichageFieldsException();
-                            // JE NE SAIS PLUS CE QUI ETAIT CODER A CE MOMENT LA !!!!!!!!!!!!!! ON AFFICHE QUELLE FENETRE
+                            
                             controller.AffichageCustomer();
                             window.dispose();
                             }
@@ -340,7 +329,10 @@ public class GuestInformationFrame extends JFrame{
             
         }
        
-    // Getters
+    /**
+     * Getters 
+     * @return 
+     */
     public JFrame getWindow () { return window; }
     public String getMessage () { return Message; }
     

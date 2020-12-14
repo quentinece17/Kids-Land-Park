@@ -21,6 +21,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     private String sFName;
     /**
      * Creates new form SignUpFrame
+     * @param app
      */
     public SignUpFrame(Application app ) {
         
@@ -208,7 +209,7 @@ public class SignUpFrame extends javax.swing.JFrame {
             if (!jPasswordField2.getText().equals(jPasswordField3.getText())){
                 MatchingException ex = new MatchingException(" Passwords are not matching ");
                 controller.setMatchingGuestExceptionLabel(ex.getMessage()); // Une fenetre de warning pop-up ici
-                controller.setSavedData(s1Name, sFName, userAge);
+                controller.setSavedData(s1Name, sFName, userAge, image);
                 controller.AffichageMatchingGuest();
             }
             
@@ -226,7 +227,19 @@ public class SignUpFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Getter 
+     * @return la window actuelle
+     */
     public JFrame getWindow () { return this; }
+    
+    /**
+     * Setter 
+     * @param n_
+     * @param lastN_
+     * @param age_
+     * @param img
+     */
     public void setDataSignUp(String n_, String lastN_, int age_, String img ){
         userFullName = n_ + " " + lastN_; // Construction du nom de l'utilisateur à insérer ensuite dans la base de données
         userAge = age_;                   // Stockage de l'age de l'utilisateur
@@ -236,7 +249,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     }
     
     // Controller attribute related to the class Apllication
-    private Application controller;
+    private final Application controller;
     private String userFullName;
     private int userAge;
     private String image;

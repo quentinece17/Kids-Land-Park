@@ -22,6 +22,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +42,8 @@ public class CustomerFrame extends JFrame {
 
     /**
      * Creates new form Test
+     * @param app
+     * @throws java.text.ParseException
      */
     public CustomerFrame(Application app) throws ParseException {
         controller = app;
@@ -52,7 +56,10 @@ public class CustomerFrame extends JFrame {
         
     }
     
-    //Fonction permettant de rentre invalide toutes les dates se trouvant avant la date actuelle
+    /**
+     * Méthode permettant de rendre invalide toutes les dates avant la date actuelle 
+     * @throws java.text.ParseException
+     */
     public void InvalidDate () throws ParseException {
         //On définit le format de date : même format que dans la base de donnée
         SimpleDateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
@@ -81,6 +88,7 @@ public class CustomerFrame extends JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -143,6 +151,13 @@ public class CustomerFrame extends JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Choose your date of visit");
 
+        jButton1.setText("Log out");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,7 +167,9 @@ public class CustomerFrame extends JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18))
         );
@@ -167,7 +184,9 @@ public class CustomerFrame extends JFrame {
                             .addComponent(jLabel3)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -176,7 +195,7 @@ public class CustomerFrame extends JFrame {
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -230,10 +249,17 @@ public class CustomerFrame extends JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        dispose();
+        controller.AffichageAccueil();
+        JOptionPane.showMessageDialog(null, "You have been disconected");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
-     * @param args the command line arguments
+     * PClasse permettant de récupérer le format de la date
      */
-    
     private class MyDateListener implements PropertyChangeListener {
 
         @Override
@@ -246,9 +272,11 @@ public class CustomerFrame extends JFrame {
         
     }
     
-    //Classe permettant de rendre les dates indisponibles
+    /**
+     * Classe gérant les dates invalides 
+     */
     private class RangeValidation implements IDateEvaluator {
-        private DateUtil dateUtil = new DateUtil ();
+        private final DateUtil dateUtil = new DateUtil ();
         
         @Override
         public boolean isSpecial(Date date) {
@@ -309,26 +337,36 @@ public class CustomerFrame extends JFrame {
                 
     }
     
-    //Fonction permettant de récupérer la date actuelle (toujours sous le même format)
+    /**
+     * @return la date actuelle
+     */
     public String getCurrentDate () {
         DateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
         Date date = new Date();
         return format.format(date);
     }
     
+    /**
+     * Setter 
+     * @param text
+     */
      public void setText (String text)
     {
         jLabel2.setText(text);
     }
     
-     
+    /**
+     * Getter 
+     * @return 
+     */
     public JFrame getWindow () { return this; }
     public JLabel getLabel () { return jLabel1; }
 
-    private Application controller;
+    private final Application controller;
     private String dateActual;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JCalendar jCalendar1;

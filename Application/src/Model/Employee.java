@@ -11,9 +11,19 @@ package Model;
  */
 public class Employee extends Person {
     
-    private String pseudoUser;
-    private String loginUser;
+    private final String pseudoUser;
+    private final String loginUser;
         
+    /**
+     * Constructeur
+     * @param id
+     * @param name
+     * @param age
+     * @param type
+     * @param pseu
+     * @param log
+     * @param img
+     */
     public Employee (int id, String name, int age, String type, String pseu, String log, String img) { 
         
         super (id, name, age, type, img); 
@@ -22,6 +32,10 @@ public class Employee extends Person {
 
     }
     
+    /**
+     * Getters
+     * @return les attributs
+     */
     public String getPseudoUser () { return pseudoUser; }
     public String getLoginUser () { return loginUser; }
 

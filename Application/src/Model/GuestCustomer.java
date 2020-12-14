@@ -16,18 +16,32 @@ public class GuestCustomer extends Person {
     private double totalPrice;
     
     //Liste de tickets achetés par le customer
-    private ArrayList <Order> order = new ArrayList <Order> ();
+    private final ArrayList <Order> order = new ArrayList <> ();
 
+    /**
+     * Constructeur
+     * @param id
+     * @param name
+     * @param age
+     * @param type
+     * @param img
+     */
     public GuestCustomer(int id, String name, int age, String type, String img) {
         
         super (id, name, age,type, img);
         totalPrice = 0;
     }
-
-  
     
+    /**
+     * Getters 
+     * @return les attributs
+     */
     public ArrayList <Order> getOrder () { return order; }
     public double getPrice () { return totalPrice; }
     
-     public void setPrice (double p) { totalPrice = p; }
+    /**
+     * Setter 
+     * @param p
+     */
+    public void setPrice (double p) { totalPrice = p; }
 }

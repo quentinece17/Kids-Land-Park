@@ -15,6 +15,10 @@ public class DataSource {
     
     Connection conn = null;
     
+    /**
+     * Permet d'établir la connection à la database
+     * @return la Connection
+     */
     public Connection createConnection () 
     {
         try {

@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package Model;
-
-import java.util.ArrayList;
-
 /**
  *
  * @authors : quentin, corentin and nicolas
@@ -20,7 +17,14 @@ public class Ride {
     private int nbTicketsAvailable;
     private String image;
     
-    // Constructeur Ride
+    /**
+     * Constructeur 
+     * @param id
+     * @param name_
+     * @param price_
+     * @param features_
+     * @param maxTicket
+     */
     public Ride(int id, String name_, double price_, String features_ , int maxTicket){
         /// Initialisation des attributs de la nouvelle classe instanciée.
         idRide = id;
@@ -30,7 +34,16 @@ public class Ride {
         nbTicketsAvailable = maxTicket;
         
     }
-    //Constructeur pour la liste des Ride -> stocke l'image en +
+    
+    /**
+     * Constructeur surchargé avec une image en paramètre 
+     * @param id
+     * @param name_
+     * @param price_
+     * @param features_
+     * @param maxTicket
+     * @param img
+     */
     public Ride (int id, String name_, double price_, String features_ , int maxTicket, String img)
     {
         idRide = id;
@@ -41,12 +54,21 @@ public class Ride {
         image = img;
     }
     
-    // Getters
+    
+    /**
+     * Getters 
+     * @return les attributs
+     */
     public int getIdRide () { return idRide; } 
     public String getName() { return name; }
     public double getPrice() { return price; }
     public String getFeatures() { return features;}
     public int getNbTicketsAvailable () { return nbTicketsAvailable;}
     public String getImage () { return image; }
+    
+    /**
+     * Setter 
+     * @param nb
+     */
     public void setNbTicketsAvailable (int nb) { nbTicketsAvailable = nb; } 
 }

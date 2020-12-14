@@ -21,6 +21,7 @@ public class InfosAttraction extends javax.swing.JFrame {
 
     /**
      * Creates new form InfosAttraction
+     * @param app
      */
     public InfosAttraction(Application app) {
         controller = app;
@@ -301,6 +302,11 @@ public class InfosAttraction extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Setters 
+     * @param 
+     */
+    @Override
     public void setName (String text) { jLabel1.setText (text); }
     public void setPrice (String text) { jLabel3.setText (text); }
     public void setChildPrice (String text) { jLabel9.setText(text); }
@@ -308,12 +314,15 @@ public class InfosAttraction extends javax.swing.JFrame {
     public void setTicketsAvailable (String text) { jLabel7.setText(text); }
     public void setChoosenDate (String date) { dateChoosen = date; }
    
-    
+    /**
+     * Getters 
+     * @return les attributs
+     */
     public JFrame getWindow () { return this; }
     public JButton getBouton () { return jButton2; }
     public JLabel getImageLabel () { return ImageLabel; }
     
-    private Application controller;
+    private final Application controller;
     private String dateChoosen;
     
  

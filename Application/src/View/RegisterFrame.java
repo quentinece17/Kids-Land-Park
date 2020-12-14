@@ -60,7 +60,6 @@ public class RegisterFrame extends JFrame {
     //Gestion du pseudo
     private JLabel pseudo = new JLabel("Pseudo : ");
     private JTextField pseu = new JTextField(10);
-    
 
     //Information de l'utilisateur qu'on a besoin de récupérer dans Application
     private String typeUser;
@@ -71,6 +70,10 @@ public class RegisterFrame extends JFrame {
     ImageIcon img;                   // Image qu'on va mettre sur un JLabel
     JLabel imageLabel; 
 
+    /**
+     * Constructeur 
+     * @param app
+     */
     public RegisterFrame(Application app) {
         
         controller = app;
@@ -91,25 +94,23 @@ public class RegisterFrame extends JFrame {
 
         
         javax.swing.border.Border bImage = BorderFactory.createLineBorder(new Color (96, 96, 96), 3 );
-//        imageLabel.setBorder(bImage);
            
         // Design des panels
-        //p1.setSize(new Dimension(900, 350));
-        //p2.setSize(new Dimension(900, 400));
+       
         p1.setBackground(new Color (102, 102, 102));
-        //p2.setBackground(Color.BLACK);  
          
         buildpanel1();    
-        //p2.add(imageLabel);
         
         register.addActionListener(new InteractionButtonListener());
         retour.addActionListener(new InteractionButtonListener());
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
-        //window.add(p2, BorderLayout.SOUTH);        
         
     }
     
+    /**
+     * Construction du panel 
+     */
     public void buildpanel1()
     {
         
@@ -137,7 +138,6 @@ public class RegisterFrame extends JFrame {
         label.setBorder(bLabel);
         label.setForeground(Color.WHITE);
         label.setFont(font);
-        //label.setBackground(Color.BLACK);
         register.setBorder(bButtons);
         register.setBackground(Color.BLACK);
         register.setForeground(Color.WHITE);
@@ -146,7 +146,6 @@ public class RegisterFrame extends JFrame {
         log.setBorder(bTextFields);
         login.setForeground(Color.WHITE);
         retour.setForeground(Color.WHITE);
-        
 
         
         //ajouter les éléments au panel
@@ -161,7 +160,11 @@ public class RegisterFrame extends JFrame {
 
     }
     
-    // Vérifie si le pseudo comporte bien un '@' et un '.' pour une addresse e-mail
+    /**
+     * Vérifie que le pseudo comporte un "@" et un "."
+     * @param str
+     * @return boolean
+     */
     public boolean checkPseudo (String str) {
         // Non valide
         if ( (str.indexOf('@') == -1) || (str.indexOf('.') == -1) )
@@ -171,6 +174,9 @@ public class RegisterFrame extends JFrame {
             return true;
     }
     
+    /**
+     * Classe gérant les événements 
+     */
     private class InteractionButtonListener implements ActionListener
     {
       /**
@@ -223,12 +229,7 @@ public class RegisterFrame extends JFrame {
                 
                 
             }
-//              else if (name == null)
-//              {
-//                //Message d'erreur ou redemander à l'utilisateur d'essayer de se reconnecter
-//                  window.dispose ();
-//              }
-            
+// 
             if(e.getSource()== retour)
           {
               controller.AffichageAccueil();
@@ -241,11 +242,19 @@ public class RegisterFrame extends JFrame {
           
       }
 
-   
+    /**
+     * Getters 
+     * @return les attributs
+     */
     public JFrame getWindow () { return window; }
-    
     public String getTypeUser () { return typeUser; }
     public String getNameUser () { return nameUser; }
     public int getIdUser () { return idUser; }
+    public JLabel getPseudo () { return pseudo; }
+    public JLabel getLogin () { return login; }
+    
+    public void setPseudo (String ps) { pseu.setText(ps); }
+    public void setLogin (String lo) { log.setText(lo); }
+    
 }
     

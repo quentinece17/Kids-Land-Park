@@ -31,14 +31,15 @@ import javax.swing.table.TableModel;
  */
 public class EmployeeFrame extends javax.swing.JFrame {
 
-    private Application controller;
-    private DefaultTableModel model1;
-    private DefaultTableModel model2;
-    private DefaultTableModel model3;
-    private ArrayList<String> tickets = new ArrayList<String> ();   /// --> For the JFreeChart  || L'ordre des tickets est le même que celui des Rides 
-    private ArrayList<String> rides = new ArrayList<String> ();     /// --> For the JFreeChart
+    private final Application controller;
+    private final DefaultTableModel model1;
+    private final DefaultTableModel model2;
+    private final DefaultTableModel model3;
+    private ArrayList<String> tickets = new ArrayList<> ();   /// --> For the JFreeChart  || L'ordre des tickets est le même que celui des Rides 
+    private final ArrayList<String> rides = new ArrayList<> ();     /// --> For the JFreeChart
     /**
      * Creates new form EmployeeFrame
+     * @param app
      */
     public EmployeeFrame(Application app) {
         controller = app;
@@ -48,7 +49,10 @@ public class EmployeeFrame extends javax.swing.JFrame {
         model3 = (DefaultTableModel) jTable3.getModel();
     }
 
-    // Getters
+   /**
+    * Getters 
+     * @return les attributs
+    */
    public JFrame getWindow () { return this; }
    public JTable getTable1 () { return jTable1; }                   // Customers
    public JTable getTable2 () { return jTable2; }                   // Attraction
@@ -57,7 +61,10 @@ public class EmployeeFrame extends javax.swing.JFrame {
    public DefaultTableModel getTableModel2 () { return model2; }    // Attraction 
    public DefaultTableModel getTableModel3 () { return model3; }
    
-   // Setters
+   /**
+     * Setter 
+     * @param list_
+     */
    public void setTickets (ArrayList<String> list_){
        tickets = list_;
    }
@@ -150,6 +157,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
         };
         jLabel13 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         jMenu1.setText("Customers");
 
@@ -253,7 +261,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -512,7 +520,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(88, Short.MAX_VALUE))
+                        .addContainerGap(77, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -782,10 +790,20 @@ public class EmployeeFrame extends javax.swing.JFrame {
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Orders", jInternalFrame3);
+
+        jButton9.setBackground(new java.awt.Color(102, 102, 102));
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Log out");
+        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -795,12 +813,16 @@ public class EmployeeFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1089, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -985,21 +1007,28 @@ public class EmployeeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    /// Ne marche pa pour le moment, je ne peux rien tester Car je ne peux plus me connecter en tant qu'employée
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         // Les éléments des deux listes se corespondent et sont donc au même indice
-        if (tickets.size()!=0 && rides.size() == tickets.size()){
+//        if (tickets.size()!=0 && rides.size() == tickets.size()){
             controller.buildRideChart(rides, tickets);
             
             controller.AffichageChartAttraction();
             dispose();
-        }
+//        }
             
             
         //else 
         //warning
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+
+        dispose();
+        controller.AffichageAccueil();
+        JOptionPane.showMessageDialog(null, "You have been disconected");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
   private String fileName = null; 
   private String rideImage = null;
@@ -1015,6 +1044,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;

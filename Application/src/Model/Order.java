@@ -10,7 +10,6 @@ package Model;
  * @authors : quentin, corentin and nicolas
  */
 
-//A voir plutôt comme une classe "Commande"
 public class Order {
     
     private int id;
@@ -23,7 +22,15 @@ public class Order {
     private double final_price;
     private boolean orderValid;
     
-    // Constructeur Order
+    /**
+     * Constructeur 
+     * @param d_
+     * @param ride
+     * @param nbAdu
+     * @param nbChild
+     * @param price_
+     * @param valid
+     */
     public Order(String d_, String ride, int nbAdu, int nbChild, double price_, boolean valid){
         date = d_;
         rideName = ride;
@@ -33,7 +40,15 @@ public class Order {
         orderValid = valid;
     }
     
-    //Constructeur pour l'historique des commandes
+    /**
+     * Constructeur surchargé avec la date de validité 
+     * @param dpurchase
+     * @param ride
+     * @param nbAdu
+     * @param nbChild
+     * @param price
+     * @param datevalid
+     */
     public Order (String dpurchase, String ride, int nbAdu, int nbChild, double price, String datevalid)
     {
         datePurchase = dpurchase;
@@ -44,7 +59,18 @@ public class Order {
         date = datevalid;
     }
     
-    //Constructeur pour la liste des commandes pour l'employé
+    
+    /**
+     * Constructeur surchargé avec la date d'achat 
+     * @param id_
+     * @param user
+     * @param ride
+     * @param nbAdu
+     * @param nbChild
+     * @param price
+     * @param dateValid
+     * @param dPurchase
+     */
     public Order (int id_, String user, String ride, int nbAdu, int nbChild, double price, String dateValid, String dPurchase) 
     {
         id = id_;
@@ -56,7 +82,11 @@ public class Order {
         date = dateValid;
         datePurchase = dPurchase;
     }
-    // Getters
+   
+    /**
+     * Getters 
+     * @return les attributs
+     */
     public int getId () { return id; }
     public String getCustomer () { return customer; }
     public String getDate () { return date; }
@@ -67,6 +97,9 @@ public class Order {
     public double getPrice(){ return final_price; }
     public boolean getOrderValid () { return orderValid; }
     
-    //Setter
+    /**
+     * Setters 
+     * @param value
+     */
     public void setOrderValid (boolean value) { orderValid = value; }
 }

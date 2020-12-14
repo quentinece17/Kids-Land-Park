@@ -30,8 +30,6 @@ public class JFreeChartRideFrame extends JFrame {
         //popularRides.pack();
     }
     
-    
-    
     // Pour redimenssioner le tout
     public void packing(){ popularRides.pack(); }
     

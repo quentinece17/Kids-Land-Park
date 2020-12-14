@@ -49,6 +49,10 @@ public class AccueilFrame extends JFrame{
     JLabel imageLabel;               // JLabel qui va recevoir l'image
     
     
+    /**
+     * Constructeur 
+     * @param app
+     */
     public AccueilFrame(Application app){
         
         controller = app;
@@ -71,10 +75,7 @@ public class AccueilFrame extends JFrame{
         javax.swing.border.Border bButtons = BorderFactory.createLineBorder(Color.RED);
         
         // Design des panels
-        //p1.setSize(new Dimension(900, 350));
-        //p2.setSize(new Dimension(900, 400));
         p1.setBackground(new Color (102, 102, 102)); //new Color(253, 233, 224)
-        //p2.setBackground(new Color (195, 195, 195)); //new Color(253, 233, 224)
         
         // On met le Layout du panel 1 à null pour pouvoir placer les boutons comme bon nous semble
         p1.setLayout(null);
@@ -84,16 +85,13 @@ public class AccueilFrame extends JFrame{
         imageLabel.setBounds(170, 140, 157, 133);
         
         // Design des label et bouttons 
-//        imageLabel.setBorder(bImage);
         label.setBorder(bLabel);
         label.setForeground( Color.WHITE );
         label.setFont(font);    // Police et taille du string dans le label
         label.setBackground(new Color (255, 255, 255) ); //new Color(253, 233, 224)
         account.setBorder(bLabel);
-//        account.setBackground(new Color (204,204,204)); //new Color(254, 150, 160)
         account.setForeground(Color.WHITE);
         noAccount.setBorder(bLabel);
-//        noAccount.setBackground(new Color (204,204,204)); //new Color(254, 150, 160)
         noAccount.setForeground(Color.WHITE);
         
         
@@ -107,11 +105,12 @@ public class AccueilFrame extends JFrame{
         
          // Ajouter panel 1 et 2 sur la fenêtre d'accueil
         window.add(p1, BorderLayout.CENTER);
-//        window.add(p2, BorderLayout.SOUTH);        
         
     }
     
-        
+    /**
+     * Private classe oermettant de gérer les événement 
+     */
     private class InteractionButtonListener implements ActionListener
     {
         
@@ -136,13 +135,13 @@ public class AccueilFrame extends JFrame{
              controller.AffichageGuestInfo();
              window.dispose();             
          }
-
-         // Display the result.
-         //JOptionPane.showMessageDialog(null,  "you will pay "+ " $ for the call ");
       }
 
     }
     
+    /**
+     * @return la window actuelle
+     */
     public JFrame getWindow () { return window; }
 
 }

@@ -11,6 +11,9 @@ package Model;
  */
 public class FieldException extends RuntimeException {
     
+    /**
+     * Constructeur
+     */
     public FieldException(){
         super("Please fill all the text fields.");
     }

@@ -826,4 +826,41 @@ public class DataBase implements DataInterface {
         return tickets;
     }
     
+    // Récupère la liste des Tickets restants pour chaque ride
+    @Override
+    public ArrayList<String> getRideNames() {
+        
+        ArrayList<String> rides = new ArrayList<> ();
+        
+        Connection conn = null;
+        Statement stmt = null;
+        MemberCustomer member = null;
+        
+        
+        String request = "select name_ride from Ride;";
+        //System.out.println("Test");
+        try 
+        {
+            DataSource data = new DataSource ();
+            conn = data.createConnection();
+                  
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(request);
+
+            while (rs.next()) {
+                rides.add( rs.getString(1) );
+            }
+            
+            conn.close();
+            stmt.close();
+        }
+        
+        catch (SQLException e){
+            
+            System.out.println ("Error Occured " + e.getMessage ());
+        }
+        
+        return rides;
+    }
+    
 }

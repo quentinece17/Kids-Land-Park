@@ -60,5 +60,11 @@ public interface DataInterface {
      */
     public ArrayList<Ride> findRides ();
     public ArrayList<String> getAvailableTickets();
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<String> getRideNames();
     
 }

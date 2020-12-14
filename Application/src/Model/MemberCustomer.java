@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author quentin
  */
-public class MemberCustomer extends Person implements CustomerInterface {
+public class MemberCustomer extends Person {
 
     private double discount;
     private double totalPrice;
@@ -41,11 +41,6 @@ public class MemberCustomer extends Person implements CustomerInterface {
        else if (memberType.equals("senior"))
            discount = 0.1;
         
-    }
-
-    @Override
-    public void calculateBills() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     // Getters

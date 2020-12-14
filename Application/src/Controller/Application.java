@@ -7,7 +7,6 @@ package Controller;
 
 import Model.DataBase;
 import Model.DataInterface;
-import Model.Date;
 import Model.Employee;
 import Model.GuestCustomer;
 import Model.MatchingException;
@@ -76,10 +75,7 @@ public class Application{
     //Liste d'attractions
     private ArrayList <Ride> rides = null;
     private Ride ActualRide;
-    
-    //Liste de dates
-    ArrayList <Date> allDates = new ArrayList <>();
-    
+        
     //Utilisateur
     private Employee employee = null;
     private GuestCustomer guest = null;
@@ -114,21 +110,6 @@ public class Application{
         matchingUserSQL = new MatchingUserExceptionFrame(this);
         employ = new EmployeeFrame(this);
         rideChart = new JFreeChartRideFrame(this);
-    }
-    
-    public void AddDate (String date) {
-        boolean valid = true;
-        int indiceDate = 0;
-        int indiceRide = 0;
-        //On regarde si la date choisie existe déjà dans la liste de dates
-        for (int i =0; i<allDates.size(); ++i)
-        {
-            if (allDates.get(i).getDateActuelle().equals(date))
-                valid = false;
-        }
-        //Si elle n'existe pas, on l'ajouter
-        if (valid)
-            allDates.add(new Date (date));
     }
     
     public void saveActualRide (String name) {
@@ -256,7 +237,7 @@ public class Application{
         }
         
         // On rempli la JTable 'CUSTOMERS' récupéré ci-dessus
-        /*if ( allRides.size() != 0 )
+        if ( allRides.size() != 0 )
         {
             for ( int i=0; i < allRides.size(); ++i )
             {
@@ -267,7 +248,7 @@ public class Application{
                                                                     allRides.get(i).getNbTicketsAvailable() } );
                 
             }
-        }*/
+        }
         
         if (allOrders.size() != 0)
         {
@@ -344,6 +325,12 @@ public class Application{
         chooseride.setInfoAttrac4(rides.get(3).getName());
         chooseride.setInfoAttrac5(rides.get(4).getName());
         chooseride.setInfoAttrac6(rides.get(5).getName());
+        
+        for (int i=0; i<rides.size(); ++i)
+        {
+            chooseride.getComboBox().addItem(rides.get(i).getName());
+        }
+            
     }
     
     public void AffichageConfirmOrder (String date) {
@@ -777,6 +764,5 @@ public class Application{
      public Employee getEmployee () { return employee; }
      public GuestCustomer getGuest () { return guest; }
      public MemberCustomer getMember () { return member; }
-     public ArrayList <Date> getAllDates () { return allDates; }
      public ArrayList <Ride> getRideForEmployee () { return rides; }
 }

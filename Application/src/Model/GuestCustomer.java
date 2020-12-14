@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @authors : quentin, corentin and nicolas
  */
-public class GuestCustomer extends Person implements CustomerInterface {
+public class GuestCustomer extends Person {
     
     private double totalPrice;
     
@@ -24,10 +24,7 @@ public class GuestCustomer extends Person implements CustomerInterface {
         totalPrice = 0;
     }
 
-    @Override
-    public void calculateBills() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
     
     public ArrayList <Order> getOrder () { return order; }
     public double getPrice () { return totalPrice; }

@@ -65,6 +65,7 @@ public class DataBase implements DataInterface {
             stmt = conn.createStatement();
             stmt.executeUpdate(request);
             
+            JOptionPane.showMessageDialog(null, "Your order have been registered");
             conn.close();
             stmt.close();
         }

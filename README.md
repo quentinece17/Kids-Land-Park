@@ -94,7 +94,15 @@ Création des DB :
 
     - create table Personne (user_id INT AUTO_INCREMENT, user_name VARCHAR(20), user_age INT, user_pseudo VARCHAR(20), user_login VARCHAR(20), user_type VARCHAR(10), member_type VARCHAR(10), PRIMARY KEY (user_id));
 
-    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type) values ("Jean Dupont", 43, "dupont_jean43", "dupont43", "MC", "regular");
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Jerome Davido", 42, "jdavido@gmail.com", "jdavido", "MC", "regular", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Member_Homme.jpg");`
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Stéphanie Durand", 37, "sdurand@gmail.com", "sdurand", "E", "NULL", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Employee_Homme.jpg");
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Véronique Rivaud", 40, "NULL", "NULL", "GC", "NULL", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Guest_Femme.jpg");
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Clémence Dirma", 70, "NULL", "NULL", "GC", "NULL", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Guest_Femme.jpg");
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Jérémy Pied", 78, "NULL", "NULL", "GC", "NULL", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Member_Homme.jpg");`
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Yusuf Yazici", 28, "yyazici@gmail.com", "yyazici", "MC", "regular", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Member_Homme.jpg");
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Janette During", 69, "janeo2@yahoo.fr", "januil2", "MC", "senior", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Guest_Femme.jpg");
+    - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type, image) values ("Clémence Dirma", 70, "NULL", "NULL", "GC", "NULL", "C:\Users\\lonyf\\OneDrive\\Documents\\ECE 2020\\Project-Databases\\Application\\Images\\Personnes\\Guest_Femme.jpg");
+
 
     - insert into Personne (user_name, user_age, user_pseudo, user_login, user_type,member_type) values ("Marie Clair", 24, "clair_marie24", "clair24", "MC", "regular");
 

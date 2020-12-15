@@ -51,7 +51,7 @@ public class MatchingUserExceptionFrame {
         
         controller = app;
         try{
-            img = new ImageIcon(new ImageIcon("warning.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));    // Chargement de l'image
+            img = new ImageIcon(new ImageIcon("war.jpg").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
@@ -61,7 +61,7 @@ public class MatchingUserExceptionFrame {
         window.setSize(470, 330);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
-        window.setBackground(new Color(123, 123, 123));
+        window.setBackground(new Color(0, 0, 0));
         
         ok.addActionListener(new InteractionButtonListener());
         

@@ -815,11 +815,6 @@ public class DataBase implements DataInterface {
             totalTicketsForaRide = new int [nbRides];
            // for (int i : totalTicketsForaRide)
             
-            request = "select * from Command;";
-            rs = stmt.executeQuery(request);
-            while (rs.next()) {
-                nbCommandes = Integer.parseInt(rs.getString(1));
-            }
             
             request = "select ride_command from Command;";
             rs = stmt.executeQuery(request);

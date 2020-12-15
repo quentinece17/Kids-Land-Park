@@ -59,7 +59,7 @@ public class MatchingGuestExceptionFrame extends JFrame {
         controller = app;
         //exceptionMessage.setText(msg); // Le Jlabel de la fenêtre de warning affiche il message généré par 'FieldException'
         try{
-            img = new ImageIcon("warning.png");    // Chargement de l'image
+            img = new ImageIcon("war.jpg");    // Chargement de l'image
             imageLabel = new JLabel(img);       // On place cette image dans le Label dédiée à l'image du park
         }
         catch (Exception e){ e.printStackTrace(); }
@@ -69,7 +69,7 @@ public class MatchingGuestExceptionFrame extends JFrame {
         window.setSize(470, 330);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
-        window.setBackground(new Color(123, 123, 123));
+        window.setBackground(new Color(0, 0, 0));
         
         ok.addActionListener(new InteractionButtonListener());
         

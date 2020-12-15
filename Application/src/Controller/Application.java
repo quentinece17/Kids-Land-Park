@@ -207,9 +207,9 @@ public class Application{
         ArrayList<String> nomRides = verif.getRideNames();   // Récupération des nom d'attraction dans la base de données
         int [] tousLesTickets = verif.getTotalTicketsOfEachRide();
         
-        if (ticketsAvailable.size() != 0 )
+        if (tousLesTickets.length != 0 )
             employ.setTotalTickets(tousLesTickets);
-            //employ.setTickets(ticketsAvailable);
+        
         
         
 //        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());

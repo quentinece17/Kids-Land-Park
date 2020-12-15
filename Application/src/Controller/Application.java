@@ -132,8 +132,8 @@ public class Application{
      */
     public void AffichageAccueil () { accueil.getWindow().setVisible(true);}
     public void AffichageRegister (){ 
-        register.setPseudo(null);
-        register.setLogin (null);
+        register.setPseudo("");
+        register.setLogin ("");
         register.getWindow().setVisible(true);
    
     }
@@ -203,16 +203,16 @@ public class Application{
         /// Dans cette partie du code on récupère le nom et les tickets restants de chaque attraction dans la base de données
         // --> pour pouvoir ensuite les représenter dans un fromage
         DataInterface verif = new DataBase ();
-        ArrayList<String> ticketsAvailable = verif.getAvailableTickets();   // Récupération des tickets restants de chaque attraction dans la base de données
-        ArrayList<String> nomRides = verif.getRideNames();   // Récupération des nom d'attraction dans la base de données
-        int [] tousLesTickets = verif.getTotalTicketsOfEachRide();
         
-        if (ticketsAvailable.size() != 0 )
-            employ.setTotalTickets(tousLesTickets);
-            //employ.setTickets(ticketsAvailable);
+        int [] totalTicket = new int [rides.size()];
+        for (int i=0; i<rides.size(); ++i)
+        {
+            totalTicket[i] = verif.getTotalTicketsOfEachRide(rides.get(i).getIdRide());
+        }
+
+        if (totalTicket.length !=0)
+            employ.setTotalTickets(totalTicket);
         
-        
-//        System.out.println (allRides.get(7).getName() + " - " + allRides.get(7).getImage());
         employ.centerTable(employ.getTable1()); // JTable des CUSTOMERS
         employ.centerTable(employ.getTable2()); // JTable des ATTRACTION
         employ.centerTable(employ.getTable3());

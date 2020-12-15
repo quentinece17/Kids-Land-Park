@@ -676,7 +676,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
                         .addGap(112, 112, 112)
                         .addComponent(jLabel11))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(21, 21, 21)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1013,7 +1013,7 @@ public class EmployeeFrame extends javax.swing.JFrame {
             controller.buildRideChart(rides, totalTickets);
             
             controller.AffichageChartAttraction();
-            dispose();
+//            dispose();
 //        }
             
             

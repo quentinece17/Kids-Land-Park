@@ -789,7 +789,7 @@ public class DataBase implements DataInterface {
     
     
     @Override
-    public int [] getTotalTicketsOfEachRide() {
+    public int getTotalTicketsOfEachRide(int id) {
         
         ArrayList<String> tickets = new ArrayList<String> ();
         
@@ -799,8 +799,8 @@ public class DataBase implements DataInterface {
         int nbCommandes = 0;
         int nbRides = 0;
         int [] totalTicketsForaRide = null;
-        
-        String request = "select id_ride from Ride;";
+        int test=0;
+        String request = "select count(*) from Command where ride_command = " + id + ";";
         
         try 
         {
@@ -810,24 +810,19 @@ public class DataBase implements DataInterface {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = stmt.executeQuery(request);
             while (rs.next()) {
-                nbRides = Integer.parseInt(rs.getString(1));
+//                nbRides = Integer.parseInt(rs.getString(1));
+                test = Integer.parseInt(rs.getString(1));
             }
-            totalTicketsForaRide = new int [nbRides];
-           // for (int i : totalTicketsForaRide)
-            
-            request = "select * from Command;";
-            rs = stmt.executeQuery(request);
-            while (rs.next()) {
-                nbCommandes = Integer.parseInt(rs.getString(1));
-            }
-            
-            request = "select ride_command from Command;";
-            rs = stmt.executeQuery(request);
-            
-            while (rs.next()) {
-                totalTicketsForaRide[Integer.parseInt(rs.getString(1))] +=1;
-            }
-            
+//            totalTicketsForaRide = new int [nbRides];
+//           // for (int i : totalTicketsForaRide)
+//            
+//            request = "select ride_command from Command;";
+//            rs = stmt.executeQuery(request);
+//            
+//            while (rs.next()) {
+//                totalTicketsForaRide[Integer.parseInt(rs.getString(1))] +=1;
+//            }
+//            
             conn.close();
             stmt.close();
         }
@@ -837,7 +832,8 @@ public class DataBase implements DataInterface {
             System.out.println ("Error Occured " + e.getMessage ());
         }
         
-        return totalTicketsForaRide;
+//        return totalTicketsForaRide;
+        return test;
     }
     
     @Override

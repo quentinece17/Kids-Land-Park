@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Application">
+  <ClassDiagramComponents>
+    <Class name="Application" package="Controller" visibility="public" xPosition="1428.0" yPosition="2060.0">
+      <Fields>
+        <Field name="accueil" type="AccueilFrame" visibility="private"/>
+        <Field name="register" type="RegisterFrame" visibility="private"/>
+        <Field name="guestInfo" type="GuestInformationFrame" visibility="private"/>
+        <Field name="field" type="FieldsExceptionFrame" visibility="private"/>
+        <Field name="age" type="AgeExceptionFrame" visibility="private"/>
+        <Field name="customer" type="CustomerFrame" visibility="private"/>
+        <Field name="newPerson" type="SignUpFrame" visibility="private"/>
+        <Field name="chooseride" type="ChooseRide" visibility="private"/>
+        <Field name="infoAttrac" type="InfosAttraction" visibility="private"/>
+        <Field name="numTickets" type="NumberOfTickets" visibility="private"/>
+        <Field name="confirmation" type="ConfirmOrder" visibility="private"/>
+        <Field name="profilMember" type="ProfilMember" visibility="private"/>
+        <Field name="orderhistory" type="OrderHistory" visibility="private"/>
+        <Field name="matchingGuestFields" type="MatchingGuestExceptionFrame" visibility="private"/>
+        <Field name="matchingUserSQL" type="MatchingUserExceptionFrame" visibility="private"/>
+        <Field name="ride" type="Ride[]" visibility="private"/>
+        <Field name="ActualRide" type="Ride" visibility="private"/>
+        <Field name="allDates" type="ArrayList&lt;Date&gt;" visibility="package"/>
+        <Field name="employee" type="Employee" visibility="private"/>
+        <Field name="guest" type="GuestCustomer" visibility="private"/>
+        <Field name="member" type="MemberCustomer" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="Initialisation" returnType="void" visibility="public"/>
+        <Method name="AddDate" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+        </Method>
+        <Method name="saveActualRide" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="AffichageAccueil" returnType="void" visibility="public"/>
+        <Method name="AffichageRegister" returnType="void" visibility="public"/>
+        <Method name="AffichageMatchingGuest" returnType="void" visibility="public"/>
+        <Method name="AffichageMatchingUser" returnType="void" visibility="public"/>
+        <Method name="AffichageProfilMember" returnType="void" visibility="public"/>
+        <Method name="AffichageSignUp" returnType="void" visibility="public">
+          <Argument type="String" name="prenom"/>
+          <Argument type="String" name="nom"/>
+          <Argument type="int" name="age"/>
+        </Method>
+        <Method name="AffichageGuestInfo" returnType="void" visibility="public"/>
+        <Method name="AffichageFieldsException" returnType="void" visibility="public"/>
+        <Method name="AffichageAgeException" returnType="void" visibility="public"/>
+        <Method name="AffichageNumberOfTickets" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+        </Method>
+        <Method name="AffichageOrderHistory" returnType="void" visibility="public"/>
+        <Method name="AffichageCustomer" returnType="void" visibility="public"/>
+        <Method name="AffichageChooseRide" returnType="void" visibility="public">
+          <Argument type="String" name="dateChoosen"/>
+        </Method>
+        <Method name="AffichageConfirmOrder" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+        </Method>
+        <Method name="AffichageInfosAttraction" returnType="void" visibility="public">
+          <Argument type="String" name="attraction"/>
+          <Argument type="String" name="dateChoosen"/>
+        </Method>
+        <Method name="InitialisationRide" returnType="void" visibility="public"/>
+        <Method name="personData" returnType="boolean" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="AllCommandOfTheUser" returnType="Order" visibility="public"/>
+        <Method name="createGuestData" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="user_type"/>
+        </Method>
+        <Method name="create0rder" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+          <Argument type="int" name="nbAd"/>
+          <Argument type="int" name="nbChild"/>
+        </Method>
+        <Method name="deleteAllOrder" returnType="void" visibility="public"/>
+        <Method name="createTicket_inSQL" returnType="void" visibility="public">
+          <Argument type="String" name="dateOfPurchase"/>
+        </Method>
+        <Method name="createMember_inSQL" returnType="void" visibility="public">
+          <Argument type="String" name="fullName"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="pseudo_"/>
+          <Argument type="String" name="password_"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="Controller" visibility="public" xPosition="127.0" yPosition="1076.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AgeException" package="Model" visibility="public" xPosition="115.0" yPosition="906.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="str"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DataBase" package="Model" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="typeUser" returnType="String" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="createTicket" returnType="void" visibility="public">
+          <Argument type="int" name="idRide"/>
+          <Argument type="int" name="idUser"/>
+          <Argument type="int" name="adTick"/>
+          <Argument type="int" name="childTick"/>
+          <Argument type="String" name="date"/>
+          <Argument type="String" name="datePurchase"/>
+          <Argument type="double" name="price"/>
+        </Method>
+        <Method name="createRide" returnType="Ride[]" visibility="public"/>
+        <Method name="findRide" returnType="Ride" visibility="public">
+          <Argument type="String" name="nameRide"/>
+        </Method>
+        <Method name="findOrder" returnType="Order" visibility="public">
+          <Argument type="int" name="idUser"/>
+        </Method>
+        <Method name="createMember" returnType="MemberCustomer" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="createEmployee" returnType="Employee" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="verifUser" returnType="int" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="verifNumberOfTickets" returnType="int" visibility="public">
+          <Argument type="String" name="date"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="createGuest" returnType="GuestCustomer" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="user_type"/>
+        </Method>
+        <Method name="createSQL_Member" returnType="MemberCustomer" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="user_type"/>
+          <Argument type="String" name="pseudo"/>
+          <Argument type="String" name="password"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DataSource" package="Model" visibility="public" xPosition="512.0" yPosition="56.0">
+      <Fields>
+        <Field name="conn" type="Connection" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createConnection" returnType="Connection" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Date" package="Model" visibility="public" xPosition="2216.0" yPosition="1152.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="dateActuelle" type="String" visibility="private"/>
+        <Field name="rideOfTheDate" type="Ride[]" visibility="private"/>
+        <Field name="validDate" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="date"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Employee" package="Model" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="pseudoUser" type="String" visibility="private"/>
+        <Field name="loginUser" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FieldException" package="Model" visibility="public" xPosition="449.0" yPosition="238.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="GuestCustomer" package="Model" visibility="public" xPosition="620.0" yPosition="538.0">
+      <Fields>
+        <Field name="totalPrice" type="double" visibility="private"/>
+        <Field name="order" type="ArrayList&lt;Order&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="type"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="calculateBills" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MatchingException" package="Model" visibility="public" xPosition="530.0" yPosition="854.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="str"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="MemberCustomer" package="Model" visibility="public" xPosition="1178.0" yPosition="462.0">
+      <Fields>
+        <Field name="discount" type="double" visibility="private"/>
+        <Field name="totalPrice" type="double" visibility="private"/>
+        <Field name="pseudoUser" type="String" visibility="private"/>
+        <Field name="loginUser" type="String" visibility="private"/>
+        <Field name="memberTypeUser" type="String" visibility="private"/>
+        <Field name="order" type="ArrayList&lt;Order&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+          <Argument type="String" name="memberType"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="calculateBills" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Order" package="Model" visibility="public" xPosition="1820.0" yPosition="621.0">
+      <Fields>
+        <Field name="date" type="String" visibility="private"/>
+        <Field name="datePurchase" type="String" visibility="private"/>
+        <Field name="rideName" type="String" visibility="private"/>
+        <Field name="AdultTickets" type="int" visibility="private"/>
+        <Field name="ChildTickets" type="int" visibility="private"/>
+        <Field name="final_price" type="double" visibility="private"/>
+        <Field name="orderValid" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="d_"/>
+          <Argument type="String" name="ride"/>
+          <Argument type="int" name="nbAdu"/>
+          <Argument type="int" name="nbChild"/>
+          <Argument type="double" name="price_"/>
+          <Argument type="boolean" name="valid"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="dpurchase"/>
+          <Argument type="String" name="ride"/>
+          <Argument type="int" name="nbAdu"/>
+          <Argument type="int" name="nbChild"/>
+          <Argument type="double" name="price"/>
+          <Argument type="String" name="datevalid"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Person" package="Model" visibility="public" xPosition="1986.0" yPosition="177.0">
+      <Fields>
+        <Field name="idUser" type="int" visibility="private"/>
+        <Field name="nameUser" type="String" visibility="private"/>
+        <Field name="ageUser" type="int" visibility="private"/>
+        <Field name="typeUser" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="type"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Ride" package="Model" visibility="public" xPosition="2848.0" yPosition="716.0">
+      <Fields>
+        <Field name="idRide" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="price" type="double" visibility="private"/>
+        <Field name="features" type="String" visibility="private"/>
+        <Field name="nbTicketsAvailable" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="name_"/>
+          <Argument type="double" name="price_"/>
+          <Argument type="String" name="features_"/>
+          <Argument type="int" name="maxTicket"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="AccueilFrame" package="View" visibility="public" xPosition="556.0" yPosition="3451.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="window" type="JFrame" visibility="private"/>
+        <Field name="p1" type="JPanel" visibility="private"/>
+        <Field name="p2" type="JPanel" visibility="private"/>
+        <Field name="p3" type="JPanel" visibility="private"/>
+        <Field name="account" type="JButton" visibility="private"/>
+        <Field name="noAccount" type="JButton" visibility="private"/>
+        <Field name="space" type="String" visibility="package"/>
+        <Field name="label" type="JLabel" visibility="private"/>
+        <Field name="login" type="JLabel" visibility="private"/>
+        <Field name="log" type="JTextField" visibility="private"/>
+        <Field name="font" type="Font" visibility="package"/>
+        <Field name="img" type="ImageIcon" visibility="package"/>
+        <Field name="imageLabel" type="JLabel" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="AgeExceptionFrame" package="View" visibility="public" xPosition="971.0" yPosition="2584.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="window" type="JFrame" visibility="private"/>
+        <Field name="p1" type="JPanel" visibility="private"/>
+        <Field name="p2" type="JPanel" visibility="private"/>
+        <Field name="exceptionMessage" type="JLabel" visibility="private"/>
+        <Field name="ok" type="Button" visibility="private"/>
+        <Field name="img" type="ImageIcon" visibility="package"/>
+        <Field name="imageLabel" type="JLabel" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ChooseRide" package="View" visibility="public" xPosition="20.0" yPosition="1303.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="dateChoosen" type="String" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton4" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton5" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton6" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton7" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel7" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="panel1" type="java.awt.Panel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton4ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton5ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton6ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton7ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ConfirmOrder" package="View" visibility="public" xPosition="848.0" yPosition="871.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="dateChoosen" type="String" visibility="private"/>
+        <Field name="nbOfTickets" type="int" visibility="private"/>
+        <Field name="model" type="DefaultTableModel" visibility="private"/>
+        <Field name="model2" type="DefaultTableModel" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
+        <Field name="jTable2" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="getTableModel" returnType="DefaultTableModel" visibility="public"/>
+        <Method name="getTableModel2" returnType="DefaultTableModel" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="CustomerFrame" package="View" visibility="public" xPosition="2803.0" yPosition="1387.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="dateActual" type="String" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jCalendar1" type="com.toedter.calendar.JCalendar" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panel1" type="java.awt.Panel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="InvalidDate" returnType="void" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FieldsExceptionFrame" package="View" visibility="public" xPosition="1910.0" yPosition="1368.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="window" type="JFrame" visibility="private"/>
+        <Field name="p1" type="JPanel" visibility="private"/>
+        <Field name="p2" type="JPanel" visibility="private"/>
+        <Field name="exceptionMessage" type="JLabel" visibility="private"/>
+        <Field name="ok" type="Button" visibility="private"/>
+        <Field name="img" type="ImageIcon" visibility="package"/>
+        <Field name="imageLabel" type="JLabel" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="GuestInformationFrame" package="View" visibility="public" xPosition="2947.0" yPosition="2504.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="window" type="JFrame" visibility="private"/>
+        <Field name="p1" type="JPanel" visibility="private"/>
+        <Field name="p2" type="JPanel" visibility="private"/>
+        <Field name="start" type="JButton" visibility="private"/>
+        <Field name="retour" type="JButton" visibility="private"/>
+        <Field name="space" type="String" visibility="package"/>
+        <Field name="label2" type="JLabel" visibility="private"/>
+        <Field name="font2" type="Font" visibility="package"/>
+        <Field name="lastname" type="JLabel" visibility="private"/>
+        <Field name="l_name" type="JTextField" visibility="private"/>
+        <Field name="firstname" type="JLabel" visibility="private"/>
+        <Field name="f_name" type="JTextField" visibility="private"/>
+        <Field name="age" type="JLabel" visibility="private"/>
+        <Field name="agetext" type="JTextField" visibility="private"/>
+        <Field name="type" type="JLabel" visibility="private"/>
+        <Field name="customerType" type="ButtonGroup" visibility="private"/>
+        <Field name="guestButton" type="JRadioButton" visibility="private"/>
+        <Field name="memberButton" type="JRadioButton" visibility="private"/>
+        <Field name="img" type="ImageIcon" visibility="package"/>
+        <Field name="imageLabel" type="JLabel" visibility="package"/>
+        <Field name="Message" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="buildpanel1" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="InfosAttraction" package="View" visibility="public" xPosition="2591.0" yPosition="3289.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="dateChoosen" type="String" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel10" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="panel1" type="java.awt.Panel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MatchingGuestExceptionFrame" package="View" visibility="public" xPosition="889.0" yPosition="3762.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="window" type="JFrame" visibility="private"/>
+        <Field name="p1" type="JPanel" visibility="private"/>
+        <Field name="p2" type="JPanel" visibility="private"/>
+        <Field name="exceptionMessage" type="JLabel" visibility="private"/>
+        <Field name="ok" type="Button" visibility="private"/>
+        <Field name="img" type="ImageIcon" visibility="package"/>
+        <Field name="imageLabel" type="JLabel" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="MatchingUserExceptionFrame" package="View" visibility="public" xPosition="432.0" yPosition="3095.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="window" type="JFrame" visibility="private"/>
+        <Field name="p1" type="JPanel" visibility="private"/>
+        <Field name="p2" type="JPanel" visibility="private"/>
+        <Field name="exceptionMessage" type="JLabel" visibility="private"/>
+        <Field name="ok" type="Button" visibility="private"/>
+        <Field name="img" type="ImageIcon" visibility="package"/>
+        <Field name="imageLabel" type="JLabel" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="NumberOfTickets" package="View" visibility="public" xPosition="51.0" yPosition="2277.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="dateChoosen" type="String" visibility="private"/>
+        <Field name="buttonGroup1" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jRadioButton1" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jRadioButton2" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jSpinner1" type="javax.swing.JSpinner" visibility="private"/>
+        <Field name="jSpinner2" type="javax.swing.JSpinner" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jRadioButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jRadioButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="OrderHistory" package="View" visibility="public" xPosition="848.0" yPosition="1574.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="model" type="DefaultTableModel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="ProfilMember" package="View" visibility="public" xPosition="1405.0" yPosition="3762.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel10" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RegisterFrame" package="View" visibility="public" xPosition="2410.0" yPosition="2649.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="window" type="JFrame" visibility="private"/>
+        <Field name="p1" type="JPanel" visibility="private"/>
+        <Field name="p2" type="JPanel" visibility="private"/>
+        <Field name="register" type="JButton" visibility="private"/>
+        <Field name="retour" type="JButton" visibility="private"/>
+        <Field name="space" type="String" visibility="package"/>
+        <Field name="label" type="JLabel" visibility="private"/>
+        <Field name="font" type="Font" visibility="package"/>
+        <Field name="login" type="JLabel" visibility="private"/>
+        <Field name="log" type="JPasswordField" visibility="private"/>
+        <Field name="pseudo" type="JLabel" visibility="private"/>
+        <Field name="pseu" type="JTextField" visibility="private"/>
+        <Field name="typeUser" type="String" visibility="private"/>
+        <Field name="nameUser" type="String" visibility="private"/>
+        <Field name="idUser" type="int" visibility="private"/>
+        <Field name="ageUser" type="int" visibility="private"/>
+        <Field name="img" type="ImageIcon" visibility="package"/>
+        <Field name="imageLabel" type="JLabel" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="buildpanel1" returnType="void" visibility="public"/>
+        <Method name="checkPseudo" returnType="boolean" visibility="public">
+          <Argument type="String" name="str"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SignUpFrame" package="View" visibility="public" xPosition="2612.0" yPosition="1965.0">
+      <Fields>
+        <Field name="controller" type="Application" visibility="private"/>
+        <Field name="userFullName" type="String" visibility="private"/>
+        <Field name="userAge" type="int" visibility="private"/>
+        <Field name="button1" type="java.awt.Button" visibility="private"/>
+        <Field name="jPasswordField2" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="jPasswordField3" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="label1" type="java.awt.Label" visibility="private"/>
+        <Field name="label2" type="java.awt.Label" visibility="private"/>
+        <Field name="label3" type="java.awt.Label" visibility="private"/>
+        <Field name="label4" type="java.awt.Label" visibility="private"/>
+        <Field name="panel1" type="java.awt.Panel" visibility="private"/>
+        <Field name="panel2" type="java.awt.Panel" visibility="private"/>
+        <Field name="textField1" type="java.awt.TextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Application" name="app"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="textField1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jPasswordField3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="button1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UnvalidUserFrame" package="View" visibility="public" xPosition="93.0" yPosition="788.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Interface name="CustomerInterface" package="Model" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Methods>
+        <Method name="calculateBills" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="DataInterface" package="Model" visibility="public" xPosition="2541.0" yPosition="111.0">
+      <Methods>
+        <Method name="createTicket" returnType="void" visibility="public">
+          <Argument type="int" name="idRide"/>
+          <Argument type="int" name="idUser"/>
+          <Argument type="int" name="adTick"/>
+          <Argument type="int" name="childTick"/>
+          <Argument type="String" name="date"/>
+          <Argument type="String" name="datePurchase"/>
+          <Argument type="double" name="price"/>
+        </Method>
+        <Method name="createRide" returnType="Ride[]" visibility="public"/>
+        <Method name="findRide" returnType="Ride" visibility="public">
+          <Argument type="String" name="nameRide"/>
+        </Method>
+        <Method name="findOrder" returnType="Order" visibility="public">
+          <Argument type="int" name="idUser"/>
+        </Method>
+        <Method name="verifNumberOfTickets" returnType="int" visibility="public">
+          <Argument type="String" name="date"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="typeUser" returnType="String" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="createEmployee" returnType="Employee" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="createMember" returnType="MemberCustomer" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="verifUser" returnType="int" visibility="public">
+          <Argument type="String" name="pseu"/>
+          <Argument type="String" name="log"/>
+        </Method>
+        <Method name="createGuest" returnType="GuestCustomer" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="user_type"/>
+        </Method>
+        <Method name="createSQL_Member" returnType="MemberCustomer" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="age"/>
+          <Argument type="String" name="user_type"/>
+          <Argument type="String" name="pseudo"/>
+          <Argument type="String" name="password"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="matchingGuestFields" source="Controller.Application" target="View.MatchingGuestExceptionFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataBase" target="Model.GuestCustomer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ActualRide" source="Controller.Application" target="Model.Ride" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="profilMember" source="Controller.Application" target="View.ProfilMember" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Controller.Application" target="Model.Date" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Model.DataBase" target="Model.DataInterface"/>
+    <HasRelation name="chooseride" source="Controller.Application" target="View.ChooseRide" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="allDates" source="Controller.Application" target="Model.Date" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Date&gt;"/>
+    <UseRelation source="Controller.Application" target="Model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Controller.Application" target="Model.MemberCustomer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="order" source="Model.GuestCustomer" target="Model.Order" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Order&gt;"/>
+    <HasRelation name="controller" source="View.CustomerFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.AccueilFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Model.Employee" target="Model.Person"/>
+    <HasRelation name="orderhistory" source="Controller.Application" target="View.OrderHistory" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.MemberCustomer" target="Model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.RegisterFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataInterface" target="Model.Employee" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.GuestInformationFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.MatchingGuestExceptionFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="member" source="Controller.Application" target="Model.MemberCustomer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="field" source="Controller.Application" target="View.FieldsExceptionFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="matchingUserSQL" source="Controller.Application" target="View.MatchingUserExceptionFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Model.GuestCustomer" target="Model.CustomerInterface"/>
+    <HasRelation name="age" source="Controller.Application" target="View.AgeExceptionFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="order" source="Model.MemberCustomer" target="Model.Order" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Order&gt;"/>
+    <UseRelation source="Model.DataInterface" target="Model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataInterface" target="Model.Ride" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataInterface" target="Model.GuestCustomer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.AgeExceptionFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="numTickets" source="Controller.Application" target="View.NumberOfTickets" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="Model.Date" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.ConfirmOrder" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.GuestCustomer" target="Model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="accueil" source="Controller.Application" target="View.AccueilFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="guest" source="Controller.Application" target="Model.GuestCustomer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Controller.Application" target="Model.Ride" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataBase" target="Model.MemberCustomer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.ChooseRide" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.Date" target="Model.Ride" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.NumberOfTickets" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataBase" target="Model.Ride" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customer" source="Controller.Application" target="View.CustomerFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Model.MemberCustomer" target="Model.Person"/>
+    <HasRelation name="controller" source="View.MatchingUserExceptionFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataBase" target="Model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Model.MemberCustomer" target="Model.CustomerInterface"/>
+    <UseRelation source="Controller.Application" target="Model.Employee" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="register" source="Controller.Application" target="View.RegisterFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="employee" source="Controller.Application" target="Model.Employee" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.ProfilMember" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.OrderHistory" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.FieldsExceptionFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="confirmation" source="Controller.Application" target="View.ConfirmOrder" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataInterface" target="Model.MemberCustomer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Model.DataBase" target="Model.Employee" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Model.GuestCustomer" target="Model.Person"/>
+    <HasRelation name="controller" source="View.InfosAttraction" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Controller.Application" target="Model.GuestCustomer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="guestInfo" source="Controller.Application" target="View.GuestInformationFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="infoAttrac" source="Controller.Application" target="View.InfosAttraction" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="newPerson" source="Controller.Application" target="View.SignUpFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="View.SignUpFrame" target="Controller.Application" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

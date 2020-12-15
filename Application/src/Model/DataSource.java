@@ -23,9 +23,9 @@ public class DataSource {
     {
         try {
             
-            String url = "jdbc:mysql://localhost:3306/KidsLand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String url = "jdbc:mysql://localhost:3306/KidsLand";
             String user = "root";
-            String password = "33lovelyseals__";
+            String password = "Ajojo1718";
 
             conn = DriverManager.getConnection(url, user, password);
         }

@@ -14,9 +14,6 @@ Idées d'Extensions :
     - Pour chaque infos d'attractions, afficher les infos selon le thème de l'attraction (ex : GhostTerror -> thème qui fait peur)
 
 
-Pour le pattern MVC, j'ai essayé de classer les classes dans les packages Controller, View et Model mais je suis pas sûr de moi, donc hésitez pas à le dire si vous pensez différemment 
-
-
 Pour les DB : 3 DB :
 
 - La DB Tickets : 4 attributs

@@ -1,20 +1,8 @@
 # Project-Databases
 
-Quand on clique sur une date, il faut afficher les attractions et quand on clique sur une attraction : il faut regarder dans la liste "tickets" de la classe Ride combien il y en a pour la date actuelle
+# Explication base de données
 
-Idées d'Extensions : 
-
-    - Page Profil pour les Membres avec leurs informations : 
-        - Affichage d'une photo de profil se trouvant dans la base de donnée
-        - Possibilité de changer certaines informations
-        - Possibilité de se désabonner
-        - Visualisation de leurs commandes et possibilités de les supprimer (modifier ?)
-    
-    - Pour les attractions, afficher une image de l'attraction quand on regarde ses infos
-    - Pour chaque infos d'attractions, afficher les infos selon le thème de l'attraction (ex : GhostTerror -> thème qui fait peur)
-
-
-Pour les DB : 3 DB :
+3 DB: Tickets, Ride, Personne
 
 - La DB Tickets : 4 attributs
     - Id_tickets : identifiant du ticket -> Clé Primaire
@@ -36,53 +24,19 @@ Pour les DB : 3 DB :
 
 -> Cette DB sera modifié au fur et à mesure, dès qu'un GuestCustomer achétera des tickets, il sera référencé dans la DB personne sous le type "GC"
 
-Remarques : 
 
-    - Le nombre de tickets maximum disponible pour UNE DATE et pour UNE ATTRACTION ne se gère uniquement dans le code JAVA, pas dans les DB
-    - Pour gérer les dates, on peut gérer seulement un semestre (3-4 mois) et donc faire un tableau de toutes les dates sur cette période. Si il faut gérer une année entière -> peut-être réfléchir à une autre solution
+# Mode de représentaiton des données :
 
-
-Step à suivre pour l'application (je le vois comme ça, mais dites le si vous voyez ça autrement !): 
-
--	On demande à l’utilisateur s’il a un login 
-o	Si oui : il rentre le login
-o	Si non : c’est un guestCustomer
-
--	Si l’utilisateur rentre son login, on regarde dans la DB « Personne » si le login existe :
-o	Si il existe : on regarde si le login en question correspond à un Employé ou à un MemberCustomer (regarder le type : E ou MC)
-o	Si il n'existe pas -> la personne n'est pas référencé dans la DB, on lui demande de resaisir son login ou de se connecter en tant que GuestCustomer
-
-- Pour un Customer : 
-
-    - Il devra d'abord sélectionner une date DISPONIBLE 
-    - Les attractions disponibles pour cette date s'affichent
-    - Il sélectionne une attraction
-    - Il indique le nombre de tickets qu'il souhaite
-    - Il valide la commande
-    - Si c'est un Membre, la réduction s'applique
-
-    En back : 
-    - Quand la commande est validé, on rempli la liste de tickets dans la classe Date et dans la classe Ride -> quand la liste de tickets de la classe Ride est rempli au max -> l'attraction devient indisponible pour la date en question. Idem, si la liste de ticket de la classe Date est rempli au max -> la date devient indisponible 
-
-- Pour un Employee : Réfléchir à comment faire les points ci-dessous : 
-
-    - Pas mal de possibilités : 
-        - Modifier la disponibilité d'une attraction
-        - Créer des promotions (disponible pour tous les customers ? Juste les membres ? Juste les guest ?)
-        - Avoir accès aux dossiers des clients (MemberCustomer ?) -> avoir accès à la DB
-        - Définir les attractions les + populaires
-
-	Mode de représentaiton des données :
-	--> Tout d'abord, pour pouvoir utiliser le JFreeChart, nous incluons en amont les fichier 'jcommon-1.0.0.jar' et 'jfreechart-1.0.1.jar' à nos libraries.
+Tout d'abord, pour pouvoir utiliser le JFreeChart, nous incluons en amont les fichier 'jcommon-1.0.0.jar' et 'jfreechart-1.0.1.jar' à nos libraries.
 
 
-Librairies pour l'affichage des dates : 
+# Librairies pour l'affichage des dates : 
 
     - JDatePicker
     - https://www.codejava.net/java-se/swing/how-to-use-jdatepicker-to-display-calendar-component
 
 
-Création des DB : 
+# Script SQL
 
 - create database KidsLand;
 - use KidsLand;

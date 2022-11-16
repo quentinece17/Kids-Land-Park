@@ -1,6 +1,6 @@
 # Project-Databases
 
-# Explication base de données
+## Explication base de données
 
 3 DB: Tickets, Ride, Personne
 
@@ -25,18 +25,18 @@
 -> Cette DB sera modifié au fur et à mesure, dès qu'un GuestCustomer achétera des tickets, il sera référencé dans la DB personne sous le type "GC"
 
 
-# Mode de représentaiton des données :
+## Mode de représentaiton des données :
 
 Tout d'abord, pour pouvoir utiliser le JFreeChart, nous incluons en amont les fichier 'jcommon-1.0.0.jar' et 'jfreechart-1.0.1.jar' à nos libraries.
 
 
-# Librairies pour l'affichage des dates : 
+## Librairies pour l'affichage des dates : 
 
     - JDatePicker
     - https://www.codejava.net/java-se/swing/how-to-use-jdatepicker-to-display-calendar-component
 
 
-# Script SQL
+## Script SQL
 
 - create database KidsLand;
 - use KidsLand;
